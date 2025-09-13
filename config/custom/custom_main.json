@@ -1,0 +1,625 @@
+[
+  {
+    "name": "mainPageContainerMargin",
+    "label": "Main Page Container margin",
+    "group": "Layout",
+    "value": "20vw",
+    "type": "text",
+    "note": "Defines margin between the left & right screen edges and the main content container."
+  },
+  {
+    "name": "pageMargin",
+    "label": "Page margin",
+    "group": "Layout",
+    "value": "6%",
+    "type": "text"
+  },
+  {
+    "name": "pageWidth",
+    "label": "Page width",
+    "group": "Layout",
+    "note": "Defines the overall width of the page inside the main content container. This should always be greater than or equal to the Entry width to ensure proper layout. Set to 100% for full-screen width.",
+    "value": "100%",
+    "type": "text"
+  },
+  {
+    "name": "entryWidth",
+    "label": "Entry width",
+    "group": "Layout",
+    "note": "Defines the width of content for posts and pages (excl. Title). Ensure that this value is smaller than or equal to the Page width for proper content display. Set to 100% for full-screen width.",
+    "value": "100%",
+    "type": "text"
+  },
+  {
+    "name": "borderRadius",
+    "label": "Corner Roundness",
+    "group": "Layout",
+    "note": "Adjust the roundness of corners for elements like images, buttons or dropdown menus. Increasing this value (in pixels) will make the corners more rounded.",
+    "value": "3",
+    "type": "range",
+    "min": 0,
+    "max": 100,
+    "step": 1
+  },
+  {
+    "name": "baseline",
+    "label": "Baseline",
+    "group": "Layout",
+    "note": "Defines a core vertical rhythm unit for consistent spacing across the website, used as a multiplier for margins and paddings. Increasing this value enhances spacing, creating an airier layout, while decreasing it compacts content, for tighter visual appeal.",
+    "value": "0.28333rem",
+    "type": "text"
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "Hero section",
+    "group": "Layout",
+    "size": "big"
+  },
+  {
+    "name": "alignHero",
+    "label": "Content alignment",
+    "group": "Layout",
+    "value": "left",
+    "type": "radio",
+    "options": [
+      {
+        "label": "Left",
+        "value": "left"
+      },
+      {
+        "label": "Center",
+        "value": "center"
+      },
+      {
+        "label": "Right",
+        "value": "right"
+      }
+    ]
+  },
+  {
+    "name": "textHero",
+    "label": "Text",
+    "group": "Layout",
+    "value": "",
+    "type": "wysiwyg"
+  },
+  {
+    "name": "heightHero",
+    "label": "Image height",
+    "group": "Layout",
+    "value": "50vh",
+    "type": "text"
+  },
+  {
+    "name": "uploadHero",
+    "label": "Image",
+    "group": "Layout",
+    "value": "",
+    "type": "upload",
+    "upload": true
+  },
+  {
+    "name": "uploadHeroAlt",
+    "label": "Image Alt text",
+    "group": "Layout",
+    "placeholder": "Add an alternative text to the hero image",
+    "value": "",
+    "type": "text"
+  },
+  {
+    "name": "uploadHeroCaption",
+    "label": "Image Caption",
+    "group": "Layout",
+    "placeholder": "Add text caption to the hero image",
+    "value": "",
+    "type": "text"
+  },
+  {
+    "name": "navbarHeight",
+    "group": "Navbar",
+    "label": "Navbar height",
+    "value": "6rem",
+    "type": "text"
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "Dropdown menu",
+    "group": "Navbar",
+    "size": "big"
+  },
+  {
+    "name": "submenu",
+    "label": "Width",
+    "group": "Navbar",
+    "value": "auto",
+    "type": "radio",
+    "options": [
+      {
+        "label": "Auto",
+        "value": "auto"
+      },
+      {
+        "label": "Custom",
+        "value": "custom"
+      }
+    ]
+  },
+  {
+    "name": "submenuWidth",
+    "group": "Navbar",
+    "note": "The submenu width in PX unit",
+    "label": "",
+    "value": "240",
+    "type": "range",
+    "min": 0,
+    "max": 1000,
+    "step": 10,
+    "dependencies": [
+      {
+        "field": "submenu",
+        "value": "custom"
+      }
+    ]
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "Mobile menu",
+    "group": "Navbar",
+    "size": "big"
+  },
+  {
+    "name": "mobilemenu",
+    "label": "Type",
+    "group": "Navbar",
+    "value": "sidebar",
+    "type": "radio",
+    "options": [
+      {
+        "label": "Sidebar",
+        "value": "sidebar"
+      },
+      {
+        "label": "Overlay",
+        "value": "overlay"
+      }
+    ]
+  },
+  {
+    "name": "mobilemenuExpandableSubmenus",
+    "label": "Expandable submenus",
+    "group": "Navbar",
+    "value": true,
+    "type": "checkbox"
+  },
+  {
+    "name": "colorScheme",
+    "label": "Select color scheme",
+    "group": "Colors",
+    "note": "<br>The auto color scheme feature automatically adjusts the color scheme of the interface to match the user's operating system settings. If the operating system does not support this feature, the light version of the color scheme is used instead",
+    "value": "auto",
+    "type": "radio",
+    "options": [
+      {
+        "label": "Light",
+        "value": "light"
+      },
+      {
+        "label": "Dark",
+        "value": "dark"
+      },
+      {
+        "label": "Auto",
+        "value": "auto"
+      }
+    ]
+  },
+  {
+    "name": "pageBgLight",
+    "label": "Page Container Background Color (Light)",
+    "group": "Colors",
+    "value": "#FFFFFF",
+    "type": "colorpicker"
+  },
+  {
+    "name": "pageBgDark",
+    "label": "Page Container Background Color (Dark)",
+    "group": "Colors",
+    "value": "#181818",
+    "type": "colorpicker"
+  },
+  {
+    "name": "primaryColor",
+    "label": "Primary color (Light mode)",
+    "group": "Colors",
+    "value": "#D73A42",
+    "type": "colorpicker"
+  },
+  {
+    "name": "primaryDarkColor",
+    "label": "Primary color (Dark mode)",
+    "group": "Colors",
+    "value": "#FFC074",
+    "type": "colorpicker"
+  },
+  {
+    "name": "mainPageContainerAlpha",
+    "label": "Main Page Container transparency",
+    "group": "Colors",
+    "value": "0.8",
+    "type": "range",
+    "min": 0,
+    "max": 1,
+    "step": 0.1
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Share Buttons",
+    "note": "This section allows you to choose your preferred share buttons for various platforms. If you wish to add more, you can install the <a href='https://marketplace.getpublii.com/plugins/social-sharing/' target='_blank'>Social Sharing plugin</a> available on the Publii Marketplace.",
+    "size": "no-line"
+  },
+  {
+    "name": "shareFacebook",
+    "group": "Share Buttons",
+    "label": "Facebook",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareTwitter",
+    "group": "Share Buttons",
+    "label": "X (formerly Twitter)",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareTwitterName",
+    "group": "Share Buttons",
+    "note": "Enter your X account's handle here; it will be used when the X share button is clicked on your site e.g. 'via @XHandle'. If left blank, the default username of @SiteName will be used",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "shareTwitter",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "sharePinterest",
+    "group": "Share Buttons",
+    "label": "Pinterest",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareMix",
+    "group": "Share Buttons",
+    "label": "Mix (formerly StumbleUpon)",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareLinkedin",
+    "group": "Share Buttons",
+    "label": "LinkedIn",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareBuffer",
+    "group": "Share Buttons",
+    "label": "Buffer",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "shareWhatsApp",
+    "group": "Share Buttons",
+    "label": "WhatsApp",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Footer",
+    "note": "This section allows you to add follow buttons for various social media platforms. If you want to expand the available options, you can install the <a href='https://marketplace.getpublii.com/plugins/follow-buttons/' target='_blank'>Follow Buttons plugin</a> available on the Publii Marketplace.",
+    "size": "no-line"
+  },
+  {
+    "name": "socialButtons",
+    "group": "Footer",
+    "label": "Follow Buttons",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "socialFacebook",
+    "label": "Facebook",
+    "group": "Footer",
+    "placeholder": "Please enter your Facebook URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialTwitter",
+    "label": "X (formerly Twitter)",
+    "group": "Footer",
+    "placeholder": "Please enter your X URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialInstagram",
+    "label": "Instagram",
+    "group": "Footer",
+    "placeholder": "Please enter your Instagram URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialLinkedin",
+    "label": "LinkedIn",
+    "group": "Footer",
+    "placeholder": "Please enter your LinkedIn URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialVimeo",
+    "label": "Vimeo",
+    "group": "Footer",
+    "placeholder": "Please enter your Vimeo URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialPinterest",
+    "label": "Pinterest",
+    "group": "Footer",
+    "placeholder": "Please enter your Pinterest URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "socialYoutube",
+    "label": "Youtube",
+    "group": "Footer",
+    "placeholder": "Please enter your Youtube URL",
+    "value": "",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "socialButtons",
+        "value": "true"
+      }
+    ]
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Footer",
+    "size": "small thin"
+  },
+  {
+    "name": "copyrightText",
+    "label": "Copyright text",
+    "group": "Footer",
+    "value": "Powered by Publii",
+    "type": "wysiwyg"
+  },
+  {
+    "name": "searchFeature",
+    "label": "Search",
+    "group": "Search",
+    "note": "Enable / disable the search box, which is usually located next to the top menu. In order to use the search function, you also need to install the search plugin.",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "createSearchPage",
+    "label": "Search subpage",
+    "group": "Search",
+    "note": "Enabling this option will create an additional search.html page which may be required by some search plugins to display the search results on a separate page.",
+    "value": false,
+    "type": "checkbox"
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Gallery",
+    "note": "To use the gallery functionality, you need to install the appropriate plugin. Please check the available gallery plugins in the <a rel=\"noopener noreferrer\" href=\"https://marketplace.getpublii.com/plugins/\" target=\"_blank\">Publii Marketplace</a>.",
+    "size": "no-line"
+  },
+  {
+    "name": "galleryItemGap",
+    "label": "Gallery item spacing",
+    "group": "Gallery",
+    "note": "You can use the --baseline variable and multiply it, but you can also use other values like px or rem.",
+    "value": "calc(var(--baseline) * 1.5)",
+    "type": "text"
+  },
+  {
+    "name": "backToTopButton",
+    "group": "Additional",
+    "label": "\"Back to top\" button",
+    "value": true,
+    "type": "checkbox"
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Additional",
+    "size": "small"
+  },
+  {
+    "name": "formatDate",
+    "label": "Date format",
+    "group": "Additional",
+    "value": "MMMM D, YYYY",
+    "type": "select",
+    "options": [
+      {
+        "label": "Nov 1, 2016",
+        "value": "MMM D, YYYY"
+      },
+      {
+        "label": "1 Nov 2016",
+        "value": "D MMM YYYY"
+      },
+      {
+        "label": "November 1, 2016",
+        "value": "MMMM D, YYYY"
+      },
+      {
+        "label": "1 November 2016",
+        "value": "D MMMM YYYY"
+      },
+      {
+        "label": "Sunday, November 1, 2016",
+        "value": "dddd, MMMM D, YYYY"
+      },
+      {
+        "label": "Sunday, 1 November 2016",
+        "value": "dddd, D MMMM YYYY"
+      },
+      {
+        "label": "November 1, 2016 10:02:05",
+        "value": "MMMM D, YYYY HH:mm:ss"
+      },
+      {
+        "label": "1 November 2016 10:02:05",
+        "value": "D MMMM YYYY HH:mm:ss"
+      },
+      {
+        "label": "01/21/2016",
+        "value": "MM/DD/YYYY"
+      },
+      {
+        "label": "21/01/2016",
+        "value": "DD/MM/YYYY"
+      },
+      {
+        "label": "Custom - create your own date format",
+        "value": "custom"
+      }
+    ]
+  },
+  {
+    "name": "formatDateCustom",
+    "group": "Additional",
+    "label": "Create a custom date format",
+    "note": "More details you can find <a href='https://github.com/taylorhakes/fecha' target='_blank'>here.</a>",
+    "value": "HH:mm:ss YY/MM/DD",
+    "type": "text",
+    "dependencies": [
+      {
+        "field": "formatDate",
+        "value": "custom"
+      }
+    ]
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Additional",
+    "size": "small"
+  },
+  {
+    "name": "lazyLoadEffect",
+    "label": "Lazy load effects",
+    "group": "Additional",
+    "note": "This option works only if the 'Media lazy load' option is enabled in the Website Speed tab under Site Settings",
+    "value": "fadein",
+    "type": "select",
+    "options": [
+      {
+        "label": "Fade in",
+        "value": "fadein"
+      },
+      {
+        "label": "None",
+        "value": "none"
+      }
+    ]
+  },
+  {
+    "name": "separator",
+    "type": "separator",
+    "label": "",
+    "group": "Additional",
+    "size": "small"
+  },
+  {
+    "name": "faviconUpload",
+    "label": "Upload favicon file",
+    "group": "Additional",
+    "note": "The ideal size of a favicon is 16x16 pixels. Save your favicon as either favicon.png or favicon.ico",
+    "value": "",
+    "type": "smallupload",
+    "upload": true
+  },
+  {
+    "name": "faviconExtension",
+    "label": "Favicon extension",
+    "group": "Additional",
+    "value": "image/x-icon",
+    "type": "select",
+    "options": [
+      {
+        "label": ".ico",
+        "value": "image/x-icon"
+      },
+      {
+        "label": ".png",
+        "value": "image/png"
+      }
+    ]
+  }
+]

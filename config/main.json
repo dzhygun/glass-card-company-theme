@@ -1,0 +1,283 @@
+{
+  "name": "Card Glass Company Theme",
+  "version": "0.1",
+  "author": "Dzhygun https://www.linkedin.com/in/vladyslav-zolotukhin/",
+  "menus": {
+    "mainMenu": {
+      "desc": "Header navbar menu",
+      "name": "Main menu",
+      "maxLevels": -1
+    }
+  },
+  "renderer": {
+    "relatedPostsNumber": 0,
+    "renderRelatedPosts": false,
+    "renderSimilarPosts": false,
+    "renderPrevNextPosts": false,
+    "createContentStructure": false,
+    "includeFeaturedInPosts": false,
+    "tagsIncludeFeaturedInPosts": false,
+    "authorsIncludeFeaturedInPosts": false,
+    "featuredPostsNumber": 0,
+    "tagsFeaturedPostsNumber": 0,
+    "authorsFeaturedPostsNumber": 0,
+    "create404page": true,
+    "nameFor404page": "404.html",
+    "createSearchPage": true,
+    "createAuthorPages": false,
+    "createTagPages": false,
+    "customHTML": {
+      "afterPost": "After every post"
+    },
+    "includeHandlebarsInHelpers": false
+  },
+  "supportedFeatures": {
+    "authorImages": false,
+    "authorPages": false,
+    "blockEditor": true,
+    "customComments": false,
+    "customSearch": true,
+    "errorPage": true,
+    "embedConsents": true,
+    "searchPage": true,
+    "tagImages": false,
+    "tagPages": false,
+    "tagsList": false,
+    "customThemeOptionsCss": false,
+    "pages": true,
+    "postsPage": false
+  },
+  "pageTemplates": {
+    "empty": "Empty container"
+  },
+  "config": [
+    {
+      "name": "logo",
+      "label": "Website logo",
+      "value": "",
+      "type": "upload",
+      "upload": true
+    },
+    {
+      "name": "excerptLength",
+      "label": "Excerpt length",
+      "value": 45,
+      "type": "number",
+      "note": "How many words are displayed on page preview."
+    }
+  ],
+  "pageConfig": [
+    {
+      "name": "displayDate",
+      "label": "Display date",
+      "value": 0,
+      "type": "select",
+      "pageTemplates": "!empty",
+      "options": [
+        {
+          "label": "Enabled",
+          "value": 1
+        },
+        {
+          "label": "Disabled",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "name": "displayLastUpdatedDate",
+      "label": "Display last updated date",
+      "value": 0,
+      "type": "select",
+      "pageTemplates": "!empty",
+      "options": [
+        {
+          "label": "Enabled",
+          "value": 1
+        },
+        {
+          "label": "Disabled",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "name": "displayChildPages",
+      "label": "Display child pages",
+      "value": 0,
+      "type": "select",
+      "options": [
+        {
+          "label": "Enabled",
+          "value": 1
+        },
+        {
+          "label": "Disabled",
+          "value": 0
+        }
+      ]
+    }
+  ],
+  "files": {
+    "ignoreAssets": [
+      "scss",
+      ".DS_Store"
+    ],
+    "assetsPath": "assets",
+    "useDynamicAssets": true,
+    "partialsPath": "partials",
+    "responsiveImages": {
+      "contentImages": {
+        "sizes": "(max-width: 1920px) 100vw, 1920px",
+        "dimensions": {
+          "xs": {
+            "width": 640,
+            "height": "auto"
+          },
+          "sm": {
+            "width": 768,
+            "height": "auto"
+          },
+          "md": {
+            "width": 1024,
+            "height": "auto"
+          },
+          "lg": {
+            "width": 1366,
+            "height": "auto"
+          },
+          "xl": {
+            "width": 1600,
+            "height": "auto"
+          },
+          "2xl": {
+            "width": 1920,
+            "height": "auto"
+          }
+        }
+      },
+      "featuredImages": {
+        "sizes": {
+          "hero": "88vw"
+        },
+        "dimensions": {
+          "xs": {
+            "width": 640,
+            "height": "auto",
+            "group": "hero"
+          },
+          "sm": {
+            "width": 768,
+            "height": "auto",
+            "group": "hero"
+          },
+          "md": {
+            "width": 1024,
+            "height": "auto",
+            "group": "hero"
+          },
+          "lg": {
+            "width": 1366,
+            "height": "auto",
+            "group": "hero"
+          },
+          "xl": {
+            "width": 1600,
+            "height": "auto",
+            "group": "hero"
+          },
+          "2xl": {
+            "width": 1920,
+            "height": "auto",
+            "group": "hero"
+          }
+        }
+      },
+      "optionImages": {
+        "sizes": "88vw",
+        "dimensions": {
+          "xs": {
+            "width": 640,
+            "height": "auto"
+          },
+          "sm": {
+            "width": 768,
+            "height": "auto"
+          },
+          "md": {
+            "width": 1024,
+            "height": "auto"
+          },
+          "lg": {
+            "width": 1366,
+            "height": "auto"
+          },
+          "xl": {
+            "width": 1600,
+            "height": "auto"
+          },
+          "2xl": {
+            "width": 1920,
+            "height": "auto"
+          }
+        }
+      },
+      "galleryImages": {
+        "sizes": "",
+        "dimensions": {
+          "thumbnail": {
+            "width": 720,
+            "height": "auto"
+          }
+        }
+      }
+    }
+  },
+  "customElements": [
+    {
+      "label": "Ordered list",
+      "cssClasses": "ordered-list",
+      "selector": "ol"
+    },
+    {
+      "label": "Drop cap",
+      "cssClasses": "dropcap",
+      "selector": "p"
+    },
+    {
+      "label": "Info",
+      "cssClasses": "msg msg--info",
+      "selector": "p"
+    },
+    {
+      "label": "Highlight",
+      "cssClasses": "msg msg--highlight ",
+      "selector": "p"
+    },
+    {
+      "label": "Success",
+      "cssClasses": "msg msg--success",
+      "selector": "p"
+    },
+    {
+      "label": "Warning",
+      "cssClasses": "msg msg--warning",
+      "selector": "p"
+    },
+    {
+      "label": "Table bordered",
+      "cssClasses": "table-bordered",
+      "selector": "table"
+    },
+    {
+      "label": "Table striped",
+      "cssClasses": "table-striped",
+      "selector": "table"
+    },
+    {
+      "label": "Table title",
+      "cssClasses": "table-title",
+      "selector": "table"
+    }
+  ]
+}
