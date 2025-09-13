@@ -1,0 +1,141 @@
+[
+    {
+        "name": "backToTopButton",
+        "group": "Additional",
+        "label": "\"Back to top\" button",
+        "value": true,
+        "type": "checkbox"
+    },
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "",
+        "group": "Additional",
+        "size": "small"
+    },
+    {
+        "name": "formatDate",
+        "label": "Date format",
+        "group": "Additional",
+        "value": "MMMM D, YYYY",
+        "type": "select",
+        "options": [
+            {
+                "label": "Nov 1, 2016",
+                "value": "MMM D, YYYY"
+            },
+            {
+                "label": "1 Nov 2016",
+                "value": "D MMM YYYY"
+            },
+            {
+                "label": "November 1, 2016",
+                "value": "MMMM D, YYYY"
+            },
+            {
+                "label": "1 November 2016",
+                "value": "D MMMM YYYY"
+            },
+            {
+                "label": "Sunday, November 1, 2016",
+                "value": "dddd, MMMM D, YYYY"
+            },
+            {
+                "label": "Sunday, 1 November 2016",
+                "value": "dddd, D MMMM YYYY"
+            },
+            {
+                "label": "November 1, 2016 10:02:05",
+                "value": "MMMM D, YYYY HH:mm:ss"
+            },
+            {
+                "label": "1 November 2016 10:02:05",
+                "value": "D MMMM YYYY HH:mm:ss"
+            },
+            {
+                "label": "01/21/2016",
+                "value": "MM/DD/YYYY"
+            },
+            {
+                "label": "21/01/2016",
+                "value": "DD/MM/YYYY"
+            },
+            {
+                "label": "Custom - create your own date format",
+                "value": "custom"
+            }
+        ]
+    },
+    {
+        "name": "formatDateCustom",
+        "group": "Additional",
+        "label": "Create a custom date format",
+        "note": "More details you can find <a href='https://github.com/taylorhakes/fecha' target='_blank'>here.</a>",
+        "value": "HH:mm:ss YY/MM/DD",
+        "type": "text",
+        "dependencies": [
+            {
+                "field": "formatDate",
+                "value": "custom"
+            }
+        ]
+    },
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "",
+        "group": "Additional",
+        "size": "small"
+    },
+    {
+        "name": "lazyLoadEffect",
+        "label": "Lazy load effects",
+        "group": "Additional",
+        "note": "This option works only if the 'Media lazy load' option is enabled in the Website Speed tab under Site Settings",
+        "value": "fadein",
+        "type": "select",
+        "options": [
+            {
+                "label": "Fade in",
+                "value": "fadein"
+            },
+            {
+                "label": "None",
+                "value": "none"
+            }
+        ]
+    },
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "",
+        "group": "Additional",
+        "size": "small"
+    },
+    {
+        "name": "faviconUpload",
+        "label": "Upload favicon file",
+        "group": "Additional",
+        "note": "The ideal size of a favicon is 16x16 pixels. Save your favicon as either favicon.png or favicon.ico",
+        "value": "",
+        "type": "smallupload",
+        "upload": true
+    },
+    {
+        "name": "faviconExtension",
+        "label": "Favicon extension",
+        "group": "Additional",
+        "value": "image/x-icon",
+        "type": "select",
+        "options": [
+            {
+                "label": ".ico",
+                "value": "image/x-icon"
+            },
+            {
+                "label": ".png",
+                "value": "image/png"
+            }
+        ]
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "",
+        "group": "Gallery",
+        "note": "To use the gallery functionality, you need to install the appropriate plugin. Please check the available gallery plugins in the <a rel=\"noopener noreferrer\" href=\"https://marketplace.getpublii.com/plugins/\" target=\"_blank\">Publii Marketplace</a>.",
+        "size": "no-line"
+    },
+    {
+        "name": "galleryItemGap",
+        "label": "Gallery item spacing",
+        "group": "Gallery",
+        "note": "You can use the --baseline variable and multiply it, but you can also use other values like px or rem.",
+        "value": "calc(var(--baseline) * 1.5)",
+        "type": "text"
+    }
+]

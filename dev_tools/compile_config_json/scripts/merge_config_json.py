@@ -4,6 +4,9 @@ from __future__ import annotations
 import copy
 import json
 import logging
+import shutil
+import tempfile
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -15,6 +18,11 @@ OrderingDataType = list[str]
 LOG_FILE_NAME = "compile_config_json.log"
 
 logger = logging.getLogger("__name__")
+
+class SortingGroupDoesNotExist(Exception):
+    def __init__(self, group_name:str, *args):
+        self.group_name=group_name
+        super().__init__(*args)
 
 
 def setup_logging() -> None:
@@ -45,10 +53,16 @@ class CustomConfigSorter:
         self._ordering_data = ordering_data
 
     def get_sorted_custom_config(self) -> CustomConfigType:
+        missing_groups=set()
         for group_name_1, group_name_2 in zip(self._ordering_data, self._ordering_data[1:]):
-            group_2 = self._pop_group_2(group_name_2=group_name_2)
-            self._insert_group_2_after_group_1(group_name_1=group_name_1, group_2=group_2)
-        logger.info("Sorted custom config groups: %s", ", ".join(self._ordering_data))
+            try:
+                group_2 = self._pop_group_2(group_name_2=group_name_2)
+                self._insert_group_2_after_group_1(group_name_1=group_name_1, group_2=group_2)
+            except SortingGroupDoesNotExist as e:
+                missing_groups.add(e.group_name)
+        sorted_groups =set(self._ordering_data).difference(missing_groups)
+        sorted_groups=[group_name for group_name in self._ordering_data if group_name in sorted_groups]
+        logger.info("Sorted custom config groups: %s", ", ".join(sorted_groups))
         return self._custom_config
 
     def _pop_group_2(self, group_name_2: str) -> CustomConfigType:
@@ -81,31 +95,35 @@ class CustomConfigSorter:
             if data_obj_group == group_name:
                 group_ordering_data_item.last_item_index = i
         if not group_ordering_data_item.is_found:
-            raise ValueError(f"Group '{group_name}' is not found in custom config' ")
+            logger.warning("Group '%s' is not found in custom config", group_name)
+            raise SortingGroupDoesNotExist(group_name=group_name)
         return group_ordering_data_item
 
 
-class JsonMerger:
+class JsonCompiler:
     _ORDERING_KEYS = ["place_before", "place_after"]
 
     def __init__(self) -> None:
         self._root_dir = self._get_theme_root()
         self._config_dir = self._root_dir / "config"
         self._custom_config_dir = self._config_dir / "custom"
+        self._custom_config_groups_dir = self._custom_config_dir / "groups"
+        self._main_config_file_path = self._config_dir / "main.json"
+        self._group_order_file_path = self._custom_config_dir / "group_order" / "order.json"
 
+        self._ordering_data:OrderingDataType=[]
         self._main_config: MainConfigType = {}
         self._custom_config: CustomConfigType = []
 
-        logger.info("Theme root: %s", self._root_dir)
 
     def run(self) -> None:
         self._load_main_config()
         self._load_custom_config()
         self._sort_custom_config()
+        self._recreate_custom_config_files()
         config = self._get_joined_main_and_custom_config()
         self._replace_config_in_root(config)
 
-    # ---------------- private helpers ----------------
 
     @staticmethod
     def _get_theme_root() -> Path:
@@ -113,30 +131,29 @@ class JsonMerger:
         for candidate in [cwd] + list(cwd.parents):
             cfg = candidate / ".publii_theme_root"
             if cfg.is_file():
+                logger.info("Theme root: %s", candidate)
                 return candidate
         raise FileNotFoundError(
             "Unable to locate theme root (expected a '.publii_theme_root' file in some parent)."
         )
 
     def _load_main_config(self) -> None:
-        main_path = self._config_dir / "main.json"
-        if not main_path.is_file():
-            raise FileNotFoundError(f"Missing main config: {main_path}")
-        with main_path.open("r") as fh:
+        if not self._main_config_file_path.is_file():
+            raise FileNotFoundError(f"Missing main config: {self._main_config_file_path}")
+        with self._main_config_file_path.open("r") as fh:
             self._main_config = json.load(fh)
         if not isinstance(self._main_config, dict):
             raise TypeError(
                 f"JSON in config/custom_main.json must be an object (dict), got {type(self._main_config).__name__}")
-        logger.info("Loaded main config: %s", main_path)
+        logger.info("Loaded main config: %s", self._main_config_file_path)
 
     def _load_custom_config(self) -> None:
-        if not self._custom_config_dir.exists():
-            logger.info("No custom directory found: %s (skipping)", self._custom_config_dir)
+        if not self._custom_config_groups_dir.exists():
+            logger.info("No custom directory found: %s (skipping)", self._custom_config_groups_dir)
             return
-
-        custom_config_files = sorted(self._custom_config_dir.glob("*.json"))
+        custom_config_files = sorted(self._custom_config_groups_dir.glob("*.json"))
         if not custom_config_files:
-            logger.info("No custom JSON files in: %s", self._custom_config_dir)
+            logger.info("No custom JSON files in: %s", self._custom_config_groups_dir)
             return
 
         for file in custom_config_files:
@@ -148,20 +165,67 @@ class JsonMerger:
             logger.info("Loaded custom config: %s", file)
 
     def _sort_custom_config(self):
-        group_order_file = self._custom_config_dir / "group_order" / "order.json"
-        if not group_order_file.is_file():
-            logger.info("Group order json is not found: %s (skipping)", group_order_file)
+        if not self._group_order_file_path.is_file():
+            logger.info("Group order json is not found: %s (skipping)", self._group_order_file_path)
             return
-        with group_order_file.open("r") as fh:
-            ordering_data: OrderingDataType = json.load(fh)
-        if len(ordering_data) == 0:
+        with self._group_order_file_path.open("r") as fh:
+            self._ordering_data: OrderingDataType = json.load(fh)
+        if len(self._ordering_data) == 0:
             logger.info("Group order json is empty (skipping)")
             return
-        if len(ordering_data) < 2:
+        if len(self._ordering_data) < 2:
             raise ValueError("Group order json must have at least 2 group names")
 
         self._custom_config = CustomConfigSorter(custom_config=self._custom_config,
-                                                 ordering_data=ordering_data).get_sorted_custom_config()
+                                                 ordering_data=self._ordering_data).get_sorted_custom_config()
+
+    def _recreate_custom_config_files(self):
+        groups = defaultdict(list)
+        for config_obj in self._custom_config:
+            groups[config_obj["group"]].append(config_obj)
+
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            groups_tmp_dir = Path(tmp_dir) / "groups"
+            groups_tmp_dir.mkdir()
+            group_order_tmp_dir = Path(tmp_dir) / "group_order"
+            group_order_tmp_dir.mkdir()
+            group_order_file_path = group_order_tmp_dir/"order.json"
+            for group_name, group_obj in groups.items():
+                group_file = groups_tmp_dir/f"{group_name}.json"
+                with group_file.open("w") as fh:
+                    json.dump(group_obj, fh, indent=4, ensure_ascii=False) # type: ignore
+            with group_order_file_path.open("w") as fh:
+                json.dump(list(groups),fh, indent=4, ensure_ascii=False) # type: ignore
+
+            if len(removed_groups := set(self._ordering_data).difference(list(groups))) > 0:
+                logger.info("Removed groups: %s", ", ".join(removed_groups))
+            if len(new_groups := set(list(groups)).difference(self._ordering_data)) > 0:
+                logger.info("New groups: %s", ", ".join(new_groups))
+
+            backup_dir = Path(tmp_dir)/"backup"
+            backup_dir.mkdir()
+            backup_groups_tmp_dir = Path(backup_dir) / "groups"
+            backup_group_order_tmp_dir = Path(backup_dir) / "group_order"
+            backup_group_order_tmp_dir.mkdir()
+            backup_group_order_file_path = backup_group_order_tmp_dir/"order.json"
+            shutil.copy(self._group_order_file_path,backup_group_order_file_path)
+            shutil.copytree(self._custom_config_groups_dir, backup_groups_tmp_dir)
+
+            try:
+                shutil.copy(group_order_file_path, self._group_order_file_path)
+                if self._custom_config_groups_dir.exists():
+                    shutil.rmtree(self._custom_config_groups_dir)
+                shutil.copytree(groups_tmp_dir, self._custom_config_groups_dir )
+            except Exception:
+                logger.error("Some exception occurred, during recreating custom config files. Restoring custom config files from backup...")
+                shutil.copy(backup_group_order_file_path, self._group_order_file_path)
+                if self._custom_config_groups_dir.exists():
+                    shutil.rmtree(self._custom_config_groups_dir)
+                shutil.copytree(backup_groups_tmp_dir, self._custom_config_groups_dir )
+                raise
+
+        logger.info("Recreated config/custom/groups and config/custom/group_order/order.json with fresh data")
+
 
     def _get_joined_main_and_custom_config(self) -> JSONType:
         merged = copy.deepcopy(self._main_config)
@@ -182,7 +246,7 @@ class JsonMerger:
 
 if __name__ == "__main__":
     setup_logging()
-    JsonMerger().run()
+    JsonCompiler().run()
     logger.info("Successfully recompiled config.json and updated in the theme root.")
     print(f"Logs are saved in {LOG_FILE_NAME}")
     try:

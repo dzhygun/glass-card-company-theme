@@ -1,0 +1,62 @@
+[
+    {
+        "name": "colorScheme",
+        "label": "Select color scheme",
+        "group": "Colors",
+        "note": "<br>The auto color scheme feature automatically adjusts the color scheme of the interface to match the user's operating system settings. If the operating system does not support this feature, the light version of the color scheme is used instead",
+        "value": "auto",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Light",
+                "value": "light"
+            },
+            {
+                "label": "Dark",
+                "value": "dark"
+            },
+            {
+                "label": "Auto",
+                "value": "auto"
+            }
+        ]
+    },
+    {
+        "name": "pageBgLight",
+        "label": "Page Container Background Color (Light)",
+        "group": "Colors",
+        "value": "#FFFFFF",
+        "type": "colorpicker"
+    },
+    {
+        "name": "pageBgDark",
+        "label": "Page Container Background Color (Dark)",
+        "group": "Colors",
+        "value": "#181818",
+        "type": "colorpicker"
+    },
+    {
+        "name": "primaryColor",
+        "label": "Primary color (Light mode)",
+        "group": "Colors",
+        "value": "#D73A42",
+        "type": "colorpicker"
+    },
+    {
+        "name": "primaryDarkColor",
+        "label": "Primary color (Dark mode)",
+        "group": "Colors",
+        "value": "#FFC074",
+        "type": "colorpicker"
+    },
+    {
+        "name": "mainPageContainerAlpha",
+        "label": "Main Page Container transparency",
+        "group": "Colors",
+        "value": "0.8",
+        "type": "range",
+        "min": 0,
+        "max": 1,
+        "step": 0.1
+    }
+]

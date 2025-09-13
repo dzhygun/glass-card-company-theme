@@ -1,0 +1,81 @@
+[
+    {
+        "name": "navbarHeight",
+        "group": "Navbar",
+        "label": "Navbar height",
+        "value": "6rem",
+        "type": "text"
+    },
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "Dropdown menu",
+        "group": "Navbar",
+        "size": "big"
+    },
+    {
+        "name": "submenu",
+        "label": "Width",
+        "group": "Navbar",
+        "value": "auto",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Auto",
+                "value": "auto"
+            },
+            {
+                "label": "Custom",
+                "value": "custom"
+            }
+        ]
+    },
+    {
+        "name": "submenuWidth",
+        "group": "Navbar",
+        "note": "The submenu width in PX unit",
+        "label": "",
+        "value": "240",
+        "type": "range",
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "dependencies": [
+            {
+                "field": "submenu",
+                "value": "custom"
+            }
+        ]
+    },
+    {
+        "name": "separator",
+        "type": "separator",
+        "label": "Mobile menu",
+        "group": "Navbar",
+        "size": "big"
+    },
+    {
+        "name": "mobilemenu",
+        "label": "Type",
+        "group": "Navbar",
+        "value": "sidebar",
+        "type": "radio",
+        "options": [
+            {
+                "label": "Sidebar",
+                "value": "sidebar"
+            },
+            {
+                "label": "Overlay",
+                "value": "overlay"
+            }
+        ]
+    },
+    {
+        "name": "mobilemenuExpandableSubmenus",
+        "label": "Expandable submenus",
+        "group": "Navbar",
+        "value": true,
+        "type": "checkbox"
+    }
+]
