@@ -206,9 +206,10 @@
         }
       },
       "optionImages": {
-        "sizes":
-        {"backgroundImage":"100vw",
-        "other":"(max-width: 3840) 100vw, 3840"},
+        "sizes": {
+          "backgroundImage": "100vw",
+          "other": "(max-width: 3840) 100vw, 3840"
+        },
         "dimensions": {
           "1920": {
             "width": 1920,
