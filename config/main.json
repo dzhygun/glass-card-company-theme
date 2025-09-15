@@ -26,9 +26,6 @@
     "createSearchPage": true,
     "createAuthorPages": false,
     "createTagPages": false,
-    "customHTML": {
-      "afterPost": "After every post"
-    },
     "includeHandlebarsInHelpers": false
   },
   "supportedFeatures": {
@@ -46,9 +43,6 @@
     "customThemeOptionsCss": false,
     "pages": true,
     "postsPage": false
-  },
-  "pageTemplates": {
-    "empty": "Empty container"
   },
   "config": [
     {
