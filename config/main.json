@@ -1,5 +1,5 @@
 {
-  "name": "card-glass-company-theme",
+  "name": "publii-card-glass-company-theme",
   "version": "0.1",
   "author": "Dzhygun https://www.linkedin.com/in/vladyslav-zolotukhin/",
   "menus": {
@@ -206,7 +206,7 @@
         }
       },
       "optionImages": {
-        "sizes": 
+        "sizes":
         {"backgroundImage":"100vw",
         "other":"(max-width: 3840) 100vw, 3840"},
         "dimensions": {
