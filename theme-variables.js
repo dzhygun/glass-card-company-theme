@@ -469,7 +469,7 @@ var generateThemeVariables = function (params) {
   output += `    
     :root {
       --main-page-container-margin: ${params.mainPageContainerMargin};
-      --main-page-container-alpha: ${params.mainPageContainerAlpha};
+      --main-page-container-alpha: ${params.pageContainerBgAlpha};
       --page-margin:        ${params.pageMargin};
       --page-width:         ${params.pageWidth};
       --entry-width:        ${params.entryWidth}; 
@@ -505,8 +505,8 @@ var generateThemeVariables = function (params) {
         --gray:               #57585a;
         --light:              #CACBCF;
         --lighter:            #F3F3F3;
-        --page-bg:            ${params.pageBgLight};
-        --page-bg-rgb:        ${hexToRgb(params.pageBgLight)};
+        --page-bg:            ${params.pageContainerBgColorLight};
+        --page-bg-rgb:        ${hexToRgb(params.pageContainerBgColorLight)};
         --color:              ${params.primaryColor};   
         --text-color:         #000000;
         --headings-color:     #000000;
@@ -530,8 +530,8 @@ var generateThemeVariables = function (params) {
         --gray:               #373737;
         --light:              #9D9D9D;
         --lighter:            #CECBCB;
-        --page-bg:            ${params.pageBgDark};
-        --page-bg-rgb:        ${hexToRgb(params.pageBgDark)};
+        --page-bg:            ${params.pageContainerBgColorDark};
+        --page-bg-rgb:        ${hexToRgb(params.pageContainerBgColorDark)};
         --color:              ${params.primaryDarkColor};   
         --text-color:         #ffffff;
         --headings-color:     #ffffff;

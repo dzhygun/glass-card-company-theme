@@ -217,14 +217,14 @@
     ]
   },
   {
-    "name": "pageBgLight",
+    "name": "pageContainerBgColorLight",
     "label": "Page Container Background Color (Light)",
     "group": "Colors",
     "value": "#FFFFFF",
     "type": "colorpicker"
   },
   {
-    "name": "pageBgDark",
+    "name": "pageContainerBgColorDark",
     "label": "Page Container Background Color (Dark)",
     "group": "Colors",
     "value": "#181818",
@@ -245,7 +245,7 @@
     "type": "colorpicker"
   },
   {
-    "name": "mainPageContainerAlpha",
+    "name": "pageContainerBgAlpha",
     "label": "Main Page Container transparency",
     "group": "Colors",
     "value": "0.8",
