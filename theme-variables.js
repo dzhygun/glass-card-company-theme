@@ -493,7 +493,7 @@ var generateThemeVariables = function (params) {
       --headings-line-height: ${params.fontHeadingsLineHeight};
       --hero-height:        ${params.heightHero};
       --feed-image-size:    ${params.feedFeaturedImageSize}rem;
-                          
+      --backgroundImage:    ${params.backgroundImage}
     `;
 
   if (params.colorScheme !== 'dark') {

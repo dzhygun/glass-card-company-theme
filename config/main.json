@@ -1,5 +1,5 @@
 {
-  "name": "Card Glass Company Theme",
+  "name": "card-glass-company-theme",
   "version": "0.1",
   "author": "Dzhygun https://www.linkedin.com/in/vladyslav-zolotukhin/",
   "menus": {
@@ -51,6 +51,24 @@
     "empty": "Empty container"
   },
   "config": [
+    {
+      "name": "postsPerPage",
+      "label": "Posts per page (disabled)",
+      "value": 0,
+      "type": "number"
+    },
+    {
+      "name": "tagsPostsPerPage",
+      "label": "Tags posts per page (disabled)",
+      "value": 0,
+      "type": "number"
+    },
+    {
+      "name": "authorsPostsPerPage",
+      "label": "Authors posts per page (disabled)",
+      "value": 0,
+      "type": "number"
+    },
     {
       "name": "logo",
       "label": "Website logo",
@@ -194,30 +212,20 @@
         }
       },
       "optionImages": {
-        "sizes": "88vw",
+        "sizes": 
+        {"backgroundImage":"100vw",
+        "other":"(max-width: 3840) 100vw, 3840"},
         "dimensions": {
-          "xs": {
-            "width": 640,
-            "height": "auto"
-          },
-          "sm": {
-            "width": 768,
-            "height": "auto"
-          },
-          "md": {
-            "width": 1024,
-            "height": "auto"
-          },
-          "lg": {
-            "width": 1366,
-            "height": "auto"
-          },
-          "xl": {
-            "width": 1600,
-            "height": "auto"
-          },
-          "2xl": {
+          "1920": {
             "width": 1920,
+            "height": "auto"
+          },
+          "2560": {
+            "width": 2560,
+            "height": "auto"
+          },
+          "3840": {
+            "width": 3840,
             "height": "auto"
           }
         }

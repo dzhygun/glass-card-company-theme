@@ -5,17 +5,17 @@
       <div class="hero">
          <header class="hero__content {{#checkIf @config.custom.alignHero '==' "center" }}hero__content--centered{{/checkIf}}">
             <div class="wrapper">
-               <h1>{{ translate 'error.404' }}</h1>
+               <h1>HTTP 404</h1>
 
                <div class="page__desc">
-                  <p>{{ translate 'error.message' }}</p>
+                  <p>Posts feature is disabled in this theme.</p>
                </div>
                
                <a href="{{@website.url}}" class="btn hero__cta btn--icon">
                   <svg width="18" height="18" aria-hidden="true">
                      <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-prev"/>
                   </svg>
-                  <span>{{ translate 'error.button' }}</span>
+                  <span>Go back</span>
                </a>
             </div>
          </header>
