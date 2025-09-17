@@ -2,7 +2,7 @@
     @import "custom/base.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/layout.css";
+    @import "custom/body.css";
     @import "custom/navbar.css";
         
     :root {
@@ -35,10 +35,10 @@
       --success-color:      #00A563;
       --warning-color:      #EE4E4E;
     
-        --page-bg-rgb:        255,255,255;
         --text-color:         #000000;
         --text-color-hover:   rgba(0,0,0,.7);
-        --logo-color:         #000000;
+        --logo-text-color:    #000000;
+        --glass-card-bg-rgb:  255,255,255;
         --glass-card-opacity: 0.6;
         --glass-card-blur:    blur(30px);
         --glass-card-blicks-color-rgb: 255,255,255;
@@ -54,10 +54,10 @@
       @media (prefers-color-scheme: dark) {
         :root {                
            
-        --page-bg-rgb:        0,0,0;
         --text-color:         #FFFFFF;
         --text-color-hover:   rgba(255,255,255,.7);   
-        --logo-color:         #FFFFFF;
+        --logo-text-color:    #FFFFFF;
+        --glass-card-bg-rgb:  0,0,0;
         --glass-card-opacity: 0.3;
         --glass-card-blur:    blur(30px);
         --glass-card-blicks-color-rgb: 255,255,255;
@@ -65,69 +65,7 @@
     
         }        
       }
-    .msg {
-  background-color: var(--highlight-element-bg-color);
-  border-left: 3px solid var(--text-color-mute-lvl-1);
-  font-size: 0.9374999997rem;
-  padding: calc(var(--baseline) * 4) calc(var(--baseline) * 6);
-  position: relative;
-}
-
-.msg--highlight {
-  border-left-color: var(--highlight-color);
-}
-
-.msg--info {
-  border-left-color: var(--info-color);
-}
-
-.msg--success {
-  border-left-color: var(--success-color);
-}
-
-.msg--warning {
-  border-left-color: var(--warning-color);
-}
-
-.pec-wrapper {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-
-.pec-overlay {
-  align-items: center;
-  background-color: rgb(var(--page-bg-rgb));
-  font-size: 14px;
-  display: none;
-  height: inherit;
-  justify-content: center;
-  line-height: 1.4;
-  padding: 1rem;
-  position: relative;
-  text-align: center;
-}
-
-@media all and (min-width: 37.5em) {
-  .pec-overlay {
-    font-size: 16px;
-    line-height: var(--line-height);
-    padding: 1rem 2rem;
-  }
-}
-
-.pec-overlay.is-active {
-  display: flex;
-}
-
-.pec-overlay-inner p {
-  margin: 0 0 1rem;
-}
-
-
-
+    /* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
       
         input[type=checkbox]:checked + label:before{
                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3e%3cpolygon points='9.53 0 4.4 5.09 1.47 2.18 0 3.64 2.93 6.54 4.4 8 5.87 6.54 11 1.46 9.53 0' fill='%23000000'/%3e%3c/svg%3e");

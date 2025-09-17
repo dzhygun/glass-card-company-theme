@@ -561,11 +561,14 @@
             "group": "Colors",
             "value": "rgba(224, 255, 255, 0.63)",
             "outputFormat": "RGBA",
-                        "dependencies": [{
-                "field":"backgroundColorGradientOverlayTopEnabled",
-                "value":true
-            }]
-        },        {
+            "dependencies": [
+                {
+                    "field": "backgroundColorGradientOverlayTopEnabled",
+                    "value": true
+                }
+            ]
+        },
+        {
             "name": "backgroundColorGradientOverlayMiddleEnabled",
             "label": "Enable background  color gradient overlay - Middle",
             "group": "Colors",
@@ -579,12 +582,14 @@
             "group": "Colors",
             "value": "",
             "outputFormat": "RGBA",
-            "dependencies": [{
-                "field":"backgroundColorGradientOverlayMiddleEnabled",
-                "value":true
-            }]
-
-        },        {
+            "dependencies": [
+                {
+                    "field": "backgroundColorGradientOverlayMiddleEnabled",
+                    "value": true
+                }
+            ]
+        },
+        {
             "name": "backgroundColorGradientOverlayBottomEnabled",
             "label": "Enable background  color gradient overlay - Bottom",
             "group": "Colors",
@@ -598,11 +603,12 @@
             "group": "Colors",
             "value": "rgba(69, 22, 33, 0.64)",
             "outputFormat": "RGBA",
-                                    "dependencies": [{
-                "field":"backgroundColorGradientOverlayBottomEnabled",
-                "value":true
-            }]
-
+            "dependencies": [
+                {
+                    "field": "backgroundColorGradientOverlayBottomEnabled",
+                    "value": true
+                }
+            ]
         },
         {
             "name": "separator",

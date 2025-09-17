@@ -414,7 +414,7 @@ var generateThemeVariables = function (params) {
     @import "custom/base.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/layout.css";
+    @import "custom/body.css";
     @import "custom/navbar.css";
     `;
   let loadedFonts = new Set();

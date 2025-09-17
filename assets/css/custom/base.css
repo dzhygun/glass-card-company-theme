@@ -14,13 +14,13 @@
   --glass-card-bg-color-highlight-lvl-1: rgb(from color-mix(in srgb,
         rgb(var(--glass-card-bg-rgb)) calc(100% - var(--supp-step-1)),
         var(--text-color) var(--supp-step-1)) r g b / var(--glass-card-opacity));
-  --glass-card-bg-color-highlight-lvl-2:rgb(from color-mix(in srgb,
+  --glass-card-bg-color-highlight-lvl-2: rgb(from color-mix(in srgb,
         rgb(var(--glass-card-bg-rgb)) calc(100% - var(--supp-step-2)),
         var(--text-color) var(--supp-step-2)) r g b / var(--glass-card-opacity));
   --element-bg-color-disabled: var(--glass-card-bg-color-highlight-lvl-2);
   --input-bg-color: color-mix(in srgb,
-        rgb(var(--glass-card-bg-rgb)) 10%,
-        var(--text-color) 90%);
+      rgb(var(--glass-card-bg-rgb)) 10%,
+      var(--text-color) 90%);
 }
 
 *,
@@ -30,38 +30,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-article,
-aside,
-footer,
-header,
-hgroup,
-main,
-nav,
-section {
-  display: block;
-}
-
-li {
-  list-style: none;
-}
-
-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: top;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-address {
-  font-style: normal;
 }
 
 ::-moz-selection {
@@ -121,6 +89,38 @@ main {
   margin-bottom: calc(var(--baseline) * 12 + 1vw);
   margin-inline: var(--glass-card-margin);
   padding-bottom: var(--viewport-baseline);
+}
+
+article,
+aside,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+address {
+  font-style: normal;
 }
 
 a {
@@ -389,6 +389,7 @@ button {
 }
 
 @media all and (max-width: 19.9375em) {
+
   .btn,
   [type=button],
   [type=submit],
@@ -423,6 +424,7 @@ button:focus {
 }
 
 @media all and (min-width: 20em) {
+
   .btn+.btn,
   [type=button]+.btn,
   [type=submit]+.btn,

@@ -2,29 +2,29 @@
 {{> navbar}}
 <main class="page glass-card">
    {{#page}}
-      <article class="content">
-         <div class="hero {{#checkIfNone featuredImage.url}}hero--noimage{{/checkIfNone}}">
-            <header class="hero__content">
-               <div class="wrapper">
-                  <h1>{{title}}</h1>
-                   {{#if @config.page.displayDate}}
-                     <div class="feed__meta content__meta>
+   <article class="content">
+      <div class="hero {{#checkIfNone featuredImage.url}}hero--noimage{{/checkIfNone}}">
+         <header class="hero__content">
+            <div class="wrapper">
+               <h1>{{title}}</h1>
+               {{#if @config.page.displayDate}}
+               <div class="feed__meta content__meta>
                            <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="feed__date">
-                              {{#checkIf @config.custom.formatDate '!=' 'custom'}}
-                                 {{date createdAt @config.custom.formatDate}}
-                              {{else}}
-                                 {{date createdAt @config.custom.formatDateCustom}}
-                              {{/checkIf}}
-                           </time>
-                     </div>
-                  {{/if}}
-                </div>
-            </header>
+                  {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                  {{date createdAt @config.custom.formatDate}}
+                  {{else}}
+                  {{date createdAt @config.custom.formatDateCustom}}
+                  {{/checkIf}}
+                  </time>
+               </div>
+               {{/if}}
+            </div>
+         </header>
 
-            {{#featuredImage}}
-               {{#if url}}
-                  <figure class="hero__image"> 
-                     <div class="hero__image-wrapper">                     
+         {{#featuredImage}}
+         {{#if url}}
+         <figure class="hero__image">
+            <div class="hero__image-wrapper">
                         <img
                            src="{{url}}"
                            {{#if @config.site.responsiveImages}}                           
@@ -33,66 +33,66 @@
                            {{ lazyload "eager" }}
                            height="{{height}}"
                            width="{{width}}"
-                           alt="{{alt}}">
-                        </div>
-                      
-                     {{#checkIfAny caption credits}}
-                        <figcaption>
-                           {{caption}}
-                           {{credits}}
-                        </figcaption>                      
-                     {{/checkIfAny}}                      
-                  </figure>
+                  alt="{{alt}}">
+            </div>
+
+            {{#checkIfAny caption credits}}
+            <figcaption>
+               {{caption}}
+               {{credits}}
+            </figcaption>
+            {{/checkIfAny}}
+         </figure>
+         {{/if}}
+         {{/featuredImage}}
+      </div>
+
+      <div class="entry-wrapper content__entry">
+         {{{text}}}
+      </div>
+
+      {{#if @config.page.displayLastUpdatedDate }}
+      <footer class="content__footer">
+         <div class="entry-wrapper">
+            <div class="content__actions">
+               {{#if @config.page.displayLastUpdatedDate}}
+               {{#if modifiedAt}}
+               <p class="content__updated">
+                  {{ translate 'post.lastUpdatedDate' }}
+                  {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                  {{date modifiedAt @config.custom.formatDate}}
+                  {{else}}
+                  {{date modifiedAt @config.custom.formatDateCustom}}
+                  {{/checkIf}}
+               </p>
                {{/if}}
-            {{/featuredImage}}     
-         </div>
-
-         <div class="entry-wrapper content__entry">           
-            {{{text}}}            
-         </div>
-
-         {{#if @config.page.displayLastUpdatedDate }}
-            <footer class="content__footer">
-               <div class="entry-wrapper">
-                     <div class="content__actions">
-                        {{#if @config.page.displayLastUpdatedDate}}
-                           {{#if modifiedAt}}
-                              <p class="content__updated">
-                                 {{ translate 'post.lastUpdatedDate' }}
-                                 {{#checkIf @config.custom.formatDate '!=' 'custom'}}
-                                    {{date modifiedAt @config.custom.formatDate}}
-                                 {{else}}
-                                    {{date modifiedAt @config.custom.formatDateCustom}}
-                                 {{/checkIf}}
-                              </p>
-                           {{/if}}
-                        {{/if}}
-                     </div>
-               </div>
-            </footer>
-         {{/if}}
-      </article>
-
-      {{#if @config.page.displayChildPages}}
-         {{#if subpages}}
-            <div class="subpages">
-               <div class="entry-wrapper">
-                  <h2 class="h6 subpages__title">{{ translate 'page.childPages' }}</h2>
-                  <ul class="subpages__list">
-                     {{> subpages-list}}
-                  </ul>
-               </div>
-            </div>
-         {{/if}}
-      {{/if}}
-
-      {{#if @customHTML.afterPage}}
-         <div class="banner banner--after-content">
-            <div class="wrapper">
-               {{{@customHTML.afterPage}}}
+               {{/if}}
             </div>
          </div>
+      </footer>
       {{/if}}
+   </article>
+
+   {{#if @config.page.displayChildPages}}
+   {{#if subpages}}
+   <div class="subpages">
+      <div class="entry-wrapper">
+         <h2 class="h6 subpages__title">{{ translate 'page.childPages' }}</h2>
+         <ul class="subpages__list">
+            {{> subpages-list}}
+         </ul>
+      </div>
+   </div>
+   {{/if}}
+   {{/if}}
+
+   {{#if @customHTML.afterPage}}
+   <div class="banner banner--after-content">
+      <div class="wrapper">
+         {{{@customHTML.afterPage}}}
+      </div>
+   </div>
+   {{/if}}
 
    {{/page}}
 </main>
