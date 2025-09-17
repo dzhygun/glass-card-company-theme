@@ -468,8 +468,11 @@ var generateThemeVariables = function (params) {
 
   output += `    
     :root {
-      --main-page-container-margin: ${params.mainPageContainerMargin};
-      --main-page-container-alpha: ${params.pageContainerBgAlpha};
+      --glass-card-margin:  ${params.glassCardMargin};
+      --glass-card-opacity: ${params.glassCardOpacity};
+      --glass-card-blur:    blur(${params.glassCardBlur}px);
+      --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColor)};
+      --glass-card-depth:   ${params.glassCardDepth};
       --page-margin:        ${params.pageMargin};
       --page-width:         ${params.pageWidth};
       --entry-width:        ${params.entryWidth}; 
@@ -493,21 +496,22 @@ var generateThemeVariables = function (params) {
       --headings-line-height: ${params.fontHeadingsLineHeight};
       --hero-height:        ${params.heightHero};
       --feed-image-size:    ${params.feedFeaturedImageSize}rem;
-      --backgroundImage:    ${params.backgroundImage}
+      --white:              #FFFFFF;
+      --black:              #000000;
+      --helper:             #f5f5f5ff;
+      --dark:               #1e1e1e;
+      --gray:               #525252ff;
+      --light:              #9D9D9D;
+      --lighter:            #CECBCB;
+      --highlight-color:    #FFC700;
+      --info-color:         #67B1F3;
+      --success-color:      #00A563;
+      --warning-color:      #EE4E4E;
     `;
 
   if (params.colorScheme !== 'dark') {
-    output += ` 
-        --white:              #FFFFFF;
-        --black:              #000000;
-        --helper:             #FFFFFF;
-        --dark:               #17181E;
-        --gray:               #57585a;
-        --light:              #CACBCF;
-        --lighter:            #F3F3F3;
-        --page-bg:            ${params.pageContainerBgColorLight};
-        --page-bg-rgb:        ${hexToRgb(params.pageContainerBgColorLight)};
-        --color:              ${params.primaryColor};   
+    output += `
+        --page-bg-rgb:        ${hexToRgb(params.glassCardBgColorLight)};
         --text-color:         #000000;
         --headings-color:     #000000;
         --link-color:         rgba(0, 0, 0, 1);
@@ -515,24 +519,12 @@ var generateThemeVariables = function (params) {
         --nav-link-color:     rgba(0,0,0,1);
         --nav-link-color-hover: rgba(0,0,0,.7);  
         --logo-color:         #000000;   
-        --highlight-color:    #FFC700;
-        --info-color:         #67B1F3;
-        --success-color:      #00A563;
-        --warning-color:      #EE4E4E;
+
     `;
   }
 
   const darkScheme = ` 
-        --white:              #FFFFFF;
-        --black:              #000000;
-        --helper:             #ffffff;
-        --dark:               #1e1e1e;
-        --gray:               #373737;
-        --light:              #9D9D9D;
-        --lighter:            #CECBCB;
-        --page-bg:            ${params.pageContainerBgColorDark};
-        --page-bg-rgb:        ${hexToRgb(params.pageContainerBgColorDark)};
-        --color:              ${params.primaryDarkColor};   
+        --page-bg-rgb:        ${hexToRgb(params.glassCardBgColorDark)};
         --text-color:         #ffffff;
         --headings-color:     #ffffff;
         --link-color:         rgba(255,255,255,1);
@@ -540,10 +532,6 @@ var generateThemeVariables = function (params) {
         --nav-link-color:     rgba(255,255,255,1);
         --nav-link-color-hover: rgba(255,255,255,.7);  
         --logo-color:         #FFFFFF;   
-        --highlight-color:    #F6DC90;
-        --info-color:         #5B9ED5;
-        --success-color:      #54A468;
-        --warning-color:      #FB6762;
     `;
 
   if (params.colorScheme === 'dark') {

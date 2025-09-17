@@ -1,5 +1,5 @@
 {
-    "name": "publii-card-glass-company-theme",
+    "name": "glass-card-company-theme",
     "version": "0.1",
     "author": "Dzhygun https://www.linkedin.com/in/vladyslav-zolotukhin/",
     "menus": {
@@ -206,10 +206,7 @@
                 }
             },
             "optionImages": {
-                "sizes": {
-                    "backgroundImage": "100vw",
-                    "other": "(max-width: 3840) 100vw, 3840"
-                },
+                "sizes": "(max-width: 3840px) 100vw, 3840px",
                 "dimensions": {
                     "1920": {
                         "width": 1920,
@@ -285,8 +282,8 @@
     ],
     "customConfig": [
         {
-            "name": "mainPageContainerMargin",
-            "label": "Main Page Container margin",
+            "name": "glassCardMargin",
+            "label": "Glass card margin",
             "group": "Layout",
             "value": "20vw",
             "type": "text",
@@ -436,18 +433,120 @@
             ]
         },
         {
-            "name": "primaryColor",
-            "label": "Primary color (Light mode)",
+            "name": "separator",
+            "type": "separator",
+            "label": "Light color scheme",
             "group": "Colors",
-            "value": "#D73A42",
+            "size": "small"
+        },
+        {
+            "name": "textColorLight",
+            "label": "Text color",
+            "group": "Colors",
+            "value": "#000000",
             "type": "colorpicker"
         },
         {
-            "name": "primaryDarkColor",
-            "label": "Primary color (Dark mode)",
+            "name": "glassCardBgColorLight",
+            "label": "Glass card background color",
             "group": "Colors",
-            "value": "#FFC074",
+            "value": "#FFFFFF",
             "type": "colorpicker"
+        },
+        {
+            "name": "glassCardBlicksColorLight",
+            "label": "Glass card blicks color",
+            "group": "Colors",
+            "value": "#FFFFFF",
+            "type": "colorpicker"
+        },
+        {
+            "name": "glassCardOpacityLight",
+            "label": "Glass card background opacity",
+            "group": "Colors",
+            "value": "0.6",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01
+        },
+        {
+            "name": "glassCardBlurLight",
+            "label": "Glass card background blur",
+            "group": "Colors",
+            "value": "30",
+            "type": "range",
+            "min": 0,
+            "max": 60,
+            "step": 1
+        },
+        {
+            "name": "glassCardDepthLight",
+            "label": "Glass card depth",
+            "group": "Colors",
+            "value": "3",
+            "type": "range",
+            "min": 0,
+            "max": 15,
+            "step": 1
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Dark color scheme",
+            "group": "Colors",
+            "size": "small"
+        },
+        {
+            "name": "textColorDark",
+            "label": "Text color",
+            "group": "Colors",
+            "value": "#FFFFFF",
+            "type": "colorpicker"
+        },
+        {
+            "name": "glassCardBgColorDark",
+            "label": "Glass card background color",
+            "group": "Colors",
+            "value": "#181818",
+            "type": "colorpicker"
+        },
+        {
+            "name": "glassCardBlicksColorDark",
+            "label": "Glass card blicks color",
+            "group": "Colors",
+            "value": "#FFFFFF",
+            "type": "colorpicker"
+        },
+        {
+            "name": "glassCardOpacityDark",
+            "label": "Glass card background opacity",
+            "group": "Colors",
+            "value": "0.6",
+            "type": "range",
+            "min": 0,
+            "max": 1,
+            "step": 0.01
+        },
+        {
+            "name": "glassCardBlurDark",
+            "label": "Glass card background blur",
+            "group": "Colors",
+            "value": "30",
+            "type": "range",
+            "min": 0,
+            "max": 60,
+            "step": 1
+        },
+        {
+            "name": "glassCardDepthDark",
+            "label": "Glass card depth",
+            "group": "Colors",
+            "value": "3",
+            "type": "range",
+            "min": 0,
+            "max": 15,
+            "step": 1
         },
         {
             "name": "separator",
@@ -457,36 +556,61 @@
             "size": "small"
         },
         {
-            "name": "pageContainerBgColorLight",
-            "label": "Page Container Background Color (Light)",
-            "group": "Colors",
-            "value": "#FFFFFF",
-            "type": "colorpicker"
-        },
-        {
-            "name": "pageContainerBgColorDark",
-            "label": "Page Container Background Color (Dark)",
-            "group": "Colors",
-            "value": "#181818",
-            "type": "colorpicker"
-        },
-        {
-            "name": "pageContainerBgAlpha",
-            "label": "Page Container Background Opacity",
-            "group": "Colors",
-            "value": "0.8",
-            "type": "range",
-            "min": 0,
-            "max": 1,
-            "step": 0.1
-        },
-        {
             "name": "backgroundImage",
             "label": "Background image",
             "value": "",
             "type": "upload",
             "group": "Colors",
             "upload": true
+        },
+        {
+            "name": "backgroundColorGradientOverlayTopEnabled",
+            "label": "Enable background  color gradient overlay - Top",
+            "group": "Colors",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "backgroundColorGradientOverlayTop",
+            "label": "Background  color gradient overlay - Top",
+            "type": "colorpicker",
+            "group": "Colors",
+            "value": "rgba(224, 255, 255, 0.63)",
+            "outputFormat": "RGBA"
+        },        {
+            "name": "backgroundColorGradientOverlayMiddleEnabled",
+            "label": "Enable background  color gradient overlay - Middle",
+            "group": "Colors",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "backgroundColorGradientOverlayMiddle",
+            "label": "Background  color gradient overlay - Middle",
+            "type": "colorpicker",
+            "group": "Colors",
+            "value": "",
+            "outputFormat": "RGBA",
+            "dependencies": [{
+                "field":"backgroundColorGradientOverlayMiddleEnabled",
+                "value":true
+            }]
+
+        },        {
+            "name": "backgroundColorGradientOverlayBottomEnabled",
+            "label": "Enable background  color gradient overlay - Bottom",
+            "group": "Colors",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "backgroundColorGradientOverlayBottom",
+            "label": "Background  color gradient overlay - Bottom",
+            "type": "colorpicker",
+            "group": "Colors",
+            "value": "rgba(69, 22, 33, 0.64)",
+            "outputFormat": "RGBA"
+
         },
         {
             "name": "separator",
@@ -1582,7 +1706,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p>Powered by Publii.</p><br><p>Copyright by Dzyhgun 2025. MIT License.</p>",
+            "value": "<p>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
             "type": "wysiwyg"
         },
         {
