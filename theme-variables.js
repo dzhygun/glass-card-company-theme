@@ -1,10 +1,10 @@
 /*
  * Custom function used to generate the output of the theme variables
  */
- 
+
 function hexToRgb(hex) {
   var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+  hex = hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   });
 
@@ -469,10 +469,6 @@ var generateThemeVariables = function (params) {
   output += `    
     :root {
       --glass-card-margin:  ${params.glassCardMargin};
-      --glass-card-opacity: ${params.glassCardOpacity};
-      --glass-card-blur:    blur(${params.glassCardBlur}px);
-      --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColor)};
-      --glass-card-depth:   ${params.glassCardDepth};
       --page-margin:        ${params.pageMargin};
       --page-width:         ${params.pageWidth};
       --entry-width:        ${params.entryWidth}; 
@@ -512,26 +508,33 @@ var generateThemeVariables = function (params) {
   if (params.colorScheme !== 'dark') {
     output += `
         --page-bg-rgb:        ${hexToRgb(params.glassCardBgColorLight)};
-        --text-color:         #000000;
-        --headings-color:     #000000;
-        --link-color:         rgba(0, 0, 0, 1);
-        --link-color-hover:   rgba(0,0,0,.7);   
-        --nav-link-color:     rgba(0,0,0,1);
-        --nav-link-color-hover: rgba(0,0,0,.7);  
-        --logo-color:         #000000;   
-
+        --text-color:         ${params.textColorLight};
+        --headings-color:     ${params.textColorLight};
+        --link-color:         rgba(${hexToRgb(params.textColorLight)},1);
+        --link-color-hover:   rgba(${hexToRgb(params.textColorLight)},.7);   
+        --nav-link-color:     rgba(${hexToRgb(params.textColorLight)},1);
+        --nav-link-color-hover: rgba(${hexToRgb(params.textColorLight)},.7);  
+        --logo-color:         ${params.textColorLight};
+        --glass-card-opacity: ${params.glassCardOpacityLight};
+        --glass-card-blur:    blur(${params.glassCardBlurLight}px);
+        --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorLight)};
+        --glass-card-depth:   ${params.glassCardDepthLight};
     `;
   }
 
   const darkScheme = ` 
         --page-bg-rgb:        ${hexToRgb(params.glassCardBgColorDark)};
-        --text-color:         #ffffff;
-        --headings-color:     #ffffff;
-        --link-color:         rgba(255,255,255,1);
-        --link-color-hover:   rgba(255,255,255,.7);   
-        --nav-link-color:     rgba(255,255,255,1);
-        --nav-link-color-hover: rgba(255,255,255,.7);  
-        --logo-color:         #FFFFFF;   
+        --text-color:         ${params.textColorDark};
+        --headings-color:     ${params.textColorDark};
+        --link-color:         rgba(${hexToRgb(params.textColorDark)},1);
+        --link-color-hover:   rgba(${hexToRgb(params.textColorDark)},.7);   
+        --nav-link-color:     rgba(${hexToRgb(params.textColorDark)},1);
+        --nav-link-color-hover: rgba(${hexToRgb(params.textColorDark)},.7);  
+        --logo-color:         ${params.textColorDark};
+        --glass-card-opacity: ${params.glassCardOpacityDark};
+        --glass-card-blur:    blur(${params.glassCardBlurDark}px);
+        --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorDark)};
+        --glass-card-depth:   ${params.glassCardDepthDark};
     `;
 
   if (params.colorScheme === 'dark') {

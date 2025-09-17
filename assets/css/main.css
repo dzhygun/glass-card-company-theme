@@ -1001,6 +1001,8 @@ textarea {
 .navbar .navbar__menu>li:hover>a,
 .navbar .navbar__menu>li:hover>span[aria-haspopup=true] {
   color: var(--nav-link-color-hover);
+  scale: 1.2;
+  transition: scale 0.3s ease-out;
 }
 
 .navbar .has-submenu:active>.navbar__submenu,
@@ -1106,6 +1108,8 @@ textarea {
 .navbar .navbar__submenu li:hover>a,
 .navbar .navbar__submenu li:hover>span[aria-haspopup=true] {
   color: var(--nav-link-color);
+  scale: 1.2;
+  transition: scale 0.3s ease-out;
 }
 
 .navbar .navbar__toggle {
