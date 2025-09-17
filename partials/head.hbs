@@ -18,14 +18,6 @@
 		{{#if @config.custom.faviconUpload}}
 	        <link rel="shortcut icon" href="{{@config.custom.faviconUpload}}" type="{{@config.custom.faviconExtension}}" />
         {{/if}}
-        {{#if @pagination}}
-            {{#if @pagination.previousPage}}
-                <link rel="prev" href="{{@pagination.previousPageUrl }}">
-            {{/if}}
-            {{#if @pagination.nextPage}}
-                <link rel="next" href="{{@pagination.nextPageUrl }}">
-            {{/if}}
-        {{/if}}
         {{> fonts}}
         <link rel="stylesheet" href="{{css "style.css" }}">
         {{jsonLD}}
@@ -38,7 +30,7 @@
         </noscript>	
         {{{@headCustomCode}}}
     </head>
-    <body class="{{#is "index"}}home-template{{/is}}{{#is "index-pagination"}} pagination-template{{/is}}{{#is "blogindex"}}blogindex-template{{/is}}{{#is "tag"}}tag-template{{/is}}{{#is "tag-pagination"}} pagination-template{{/is}}{{#is "tags"}}tags-template{{/is}}{{#is "page"}}page-template{{/is}}{{#is "post"}}post-template{{/is}}{{#is "author"}}author-template{{/is}}{{#is "author-pagination"}} pagination-template{{/is}}{{#is "404"}}error-template{{/is}}{{#is "search"}}search-template{{/is}}">
+    <body class="{{#is "index"}}home-template{{/is}}{{#is "blogindex"}}blogindex-template{{/is}}{{#is "tag"}}tag-template{{/is}}{{#is "tag-pagination"}} pagination-template{{/is}}{{#is "tags"}}tags-template{{/is}}{{#is "page"}}page-template{{/is}}{{#is "post"}}post-template{{/is}}{{#is "author"}}author-template{{/is}}{{#is "author-pagination"}} pagination-template{{/is}}{{#is "404"}}error-template{{/is}}{{#is "search"}}search-template{{/is}}">
         {{{@bodyCustomCode}}}
 
     <div class="page-bg-wrapper">

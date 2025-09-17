@@ -21,9 +21,8 @@
         "featuredPostsNumber": 0,
         "tagsFeaturedPostsNumber": 0,
         "authorsFeaturedPostsNumber": 0,
-        "create404page": true,
-        "nameFor404page": "404.html",
-        "createSearchPage": true,
+        "create404page": false,
+        "createSearchPage": false,
         "createAuthorPages": false,
         "createTagPages": false,
         "includeHandlebarsInHelpers": false
@@ -33,10 +32,10 @@
         "authorPages": false,
         "blockEditor": true,
         "customComments": false,
-        "customSearch": true,
-        "errorPage": true,
-        "embedConsents": true,
-        "searchPage": true,
+        "customSearch": false,
+        "errorPage": false,
+        "embedConsents": false,
+        "searchPage": false,
         "tagImages": false,
         "tagPages": false,
         "tagsList": false,
@@ -263,21 +262,6 @@
             "label": "Warning",
             "cssClasses": "msg msg--warning",
             "selector": "p"
-        },
-        {
-            "label": "Table bordered",
-            "cssClasses": "table-bordered",
-            "selector": "table"
-        },
-        {
-            "label": "Table striped",
-            "cssClasses": "table-striped",
-            "selector": "table"
-        },
-        {
-            "label": "Table title",
-            "cssClasses": "table-title",
-            "selector": "table"
         }
     ],
     "customConfig": [
@@ -1524,76 +1508,6 @@
             "name": "separator",
             "type": "separator",
             "label": "",
-            "group": "Share Buttons",
-            "note": "This section allows you to choose your preferred share buttons for various platforms. If you wish to add more, you can install the <a href='https://marketplace.getpublii.com/plugins/social-sharing/' target='_blank'>Social Sharing plugin</a> available on the Publii Marketplace.",
-            "size": "no-line"
-        },
-        {
-            "name": "shareFacebook",
-            "group": "Share Buttons",
-            "label": "Facebook",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareTwitter",
-            "group": "Share Buttons",
-            "label": "X (formerly Twitter)",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareTwitterName",
-            "group": "Share Buttons",
-            "note": "Enter your X account's handle here; it will be used when the X share button is clicked on your site e.g. 'via @XHandle'. If left blank, the default username of @SiteName will be used",
-            "value": "",
-            "type": "text",
-            "dependencies": [
-                {
-                    "field": "shareTwitter",
-                    "value": "true"
-                }
-            ]
-        },
-        {
-            "name": "sharePinterest",
-            "group": "Share Buttons",
-            "label": "Pinterest",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareMix",
-            "group": "Share Buttons",
-            "label": "Mix (formerly StumbleUpon)",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareLinkedin",
-            "group": "Share Buttons",
-            "label": "LinkedIn",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareBuffer",
-            "group": "Share Buttons",
-            "label": "Buffer",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "shareWhatsApp",
-            "group": "Share Buttons",
-            "label": "WhatsApp",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "separator",
-            "type": "separator",
-            "label": "",
             "group": "Footer",
             "note": "This section allows you to add follow buttons for various social media platforms. If you want to expand the available options, you can install the <a href='https://marketplace.getpublii.com/plugins/follow-buttons/' target='_blank'>Follow Buttons plugin</a> available on the Publii Marketplace.",
             "size": "no-line"
@@ -1716,22 +1630,6 @@
             "group": "Footer",
             "value": "<p>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
             "type": "wysiwyg"
-        },
-        {
-            "name": "searchFeature",
-            "label": "Search",
-            "group": "Search",
-            "note": "Enable / disable the search box, which is usually located next to the top menu. In order to use the search function, you also need to install the search plugin.",
-            "value": false,
-            "type": "checkbox"
-        },
-        {
-            "name": "createSearchPage",
-            "label": "Search subpage",
-            "group": "Search",
-            "note": "Enabling this option will create an additional search.html page which may be required by some search plugins to display the search results on a separate page.",
-            "value": false,
-            "type": "checkbox"
         },
         {
             "name": "separator",
