@@ -8,7 +8,7 @@
     @import "custom/after.css";
         
     :root {
-      --initial-color-scheme: dark;
+      --predefined-theme:   dark;
       --glass-card-margin:  20vw;
       --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
       --page-bg-overlay-blur: blur(5px);

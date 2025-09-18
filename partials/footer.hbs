@@ -76,7 +76,14 @@
         {{/if}}
     </div>
 </footer>
-<button id="color-scheme-switch" aria-label="Color scheme switch" title="Color scheme switch" class="glass-card nav-hover"></button>
+
+<div class="theme-switch-wrapper glass-card">
+    <div class="theme-switch-container">
+        <span>Theme</span>
+        <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
+            class="nav-hover"></button>
+    </div>
+</div>
 <script defer src="{{js 'scripts.js'}}"></script>
 
 <script>window.publiiThemeMenuConfig={mobileMenuMode:'{{@config.custom.mobilemenu}}',animationSpeed:300,submenuWidth: {{#checkIf @config.custom.submenu '==' "auto" }}'auto'{{else}}{{@config.custom.submenuWidth}}{{/checkIf}},doubleClickTime:500,mobileMenuExpandableSubmenus:{{@config.custom.mobilemenuExpandableSubmenus}},relatedContainerForOverlayMenuSelector:'.top'};</script>
@@ -102,6 +109,7 @@
 {{/if}}
 {{{@footerCustomCode}}}
 {{{ publiiFooter }}}
+</div>
 </body>
 
 </html>

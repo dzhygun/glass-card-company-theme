@@ -91,8 +91,6 @@ body {
 
 main {
   opacity: 0;
-  animation: contentFadeIn 1s ease-in-out forwards;
-  animation-delay: 0.5s;
   border-radius: var(--glass-card-border-radius);
   margin-bottom: calc(var(--baseline) * 12 + 1vw);
   margin-inline: var(--glass-card-margin);

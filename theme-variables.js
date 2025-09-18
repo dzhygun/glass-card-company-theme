@@ -488,7 +488,7 @@ var generateThemeVariables = function (params) {
 
   output += `    
     :root {
-      --initial-color-scheme: ${params.colorScheme};
+      --predefined-theme:   ${params.colorScheme};
       --glass-card-margin:  ${params.glassCardMargin};
       --page-bg-overlay-background: ${pageBgOverlayBackground};
       --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);

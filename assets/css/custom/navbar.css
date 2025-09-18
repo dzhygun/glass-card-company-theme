@@ -23,6 +23,18 @@
     animation-delay: 0.5s;
 }
 
+@keyframes headerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(calc(var(--navbar-height) * -1));
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .top.slide-down-boost {
     animation-duration: 0.5s;
     animation-delay: 0s;
