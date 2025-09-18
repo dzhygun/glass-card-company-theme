@@ -112,28 +112,28 @@
     transition: all 0.24s ease-out;
 }
 
-.navbar .navbar__menu li:not(.active):not(.active-parent) a,
-.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true] {
+.navbar .navbar__menu li a,
+.navbar .navbar__menu li span[aria-haspopup=true] {
     color: var(--text-color);
 
 }
 
-.navbar .navbar__menu li:not(.active):not(.active-parent) a:active,
-.navbar .navbar__menu li:not(.active):not(.active-parent) a:focus,
-.navbar .navbar__menu li:not(.active):not(.active-parent) a:hover,
-.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:active,
-.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:focus,
-.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:hover {
+.navbar .navbar__menu li a:active,
+.navbar .navbar__menu li a:focus,
+.navbar .navbar__menu li a:hover,
+.navbar .navbar__menu li span[aria-haspopup=true]:active,
+.navbar .navbar__menu li span[aria-haspopup=true]:focus,
+.navbar .navbar__menu li span[aria-haspopup=true]:hover {
     color: var(--text-color-hover);
 }
 
-.navbar .navbar__menu li:not(.active):not(.active-parent) span {
+.navbar .navbar__menu li span {
     cursor: default;
     display: block;
     padding: 0 0.6rem;
 }
 
-.navbar .navbar__menu li:not(.active):not(.active-parent) span {
+.navbar .navbar__menu li span {
     color: var(--text-color);
 }
 
@@ -221,18 +221,18 @@
     transition: all 0.24s ease;
 }
 
-.navbar .navbar__submenu li:not(.active):not(.active-parent) a,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true] {
+.navbar .navbar__submenu li a,
+.navbar .navbar__submenu li span[aria-haspopup=true] {
     color: var(--text-color);
 
 }
 
-.navbar .navbar__submenu li:not(.active):not(.active-parent) a:active,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) a:focus,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) a:hover,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:active,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:focus,
-.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:hover {
+.navbar .navbar__submenu li a:active,
+.navbar .navbar__submenu li a:focus,
+.navbar .navbar__submenu li a:hover,
+.navbar .navbar__submenu li span[aria-haspopup=true]:active,
+.navbar .navbar__submenu li span[aria-haspopup=true]:focus,
+.navbar .navbar__submenu li span[aria-haspopup=true]:hover {
     background: rgb(var(--glass-card-bg-rgb));
     color: var(--text-color-hover);
 }
@@ -241,7 +241,7 @@
     padding: 0.5rem 1rem;
 }
 
-.navbar .navbar__submenu li:not(.active):not(.active-parent) span {
+.navbar .navbar__submenu li span {
     color: var(--text-color) !important;
 }
 
@@ -406,18 +406,18 @@
     position: relative;
 }
 
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span {
+.navbar_mobile_overlay .navbar__menu li a,
+.navbar_mobile_overlay .navbar__menu li span {
     color: var(--text-color);
 
 }
 
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:active,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:focus,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:hover,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:active,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:focus,
-.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:hover {
+.navbar_mobile_overlay .navbar__menu li a:active,
+.navbar_mobile_overlay .navbar__menu li a:focus,
+.navbar_mobile_overlay .navbar__menu li a:hover,
+.navbar_mobile_overlay .navbar__menu li span:active,
+.navbar_mobile_overlay .navbar__menu li span:focus,
+.navbar_mobile_overlay .navbar__menu li span:hover {
     color: var(--text-color-hover);
 }
 
@@ -497,18 +497,18 @@
     position: relative;
 }
 
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator {
+.navbar_mobile_sidebar .navbar__menu li a,
+.navbar_mobile_sidebar .navbar__menu li .is-separator {
     color: var(--text-color);
 
 }
 
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:active,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:focus,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:hover,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:active,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:focus,
-.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:hover {
+.navbar_mobile_sidebar .navbar__menu li a:active,
+.navbar_mobile_sidebar .navbar__menu li a:focus,
+.navbar_mobile_sidebar .navbar__menu li a:hover,
+.navbar_mobile_sidebar .navbar__menu li .is-separator:active,
+.navbar_mobile_sidebar .navbar__menu li .is-separator:focus,
+.navbar_mobile_sidebar .navbar__menu li .is-separator:hover {
     color: var(--text-color-hover);
 }
 
