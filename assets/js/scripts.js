@@ -39,58 +39,59 @@ window.addEventListener('scroll', () => {
 }, false);
 
 class ThemeManager {
-    static lightTheme = "light";
-    static darkTheme = "dark"
+    static #lightTheme = "light";
+    static #darkTheme = "dark"
 
-    static root = document.documentElement;
+    static #root = document.documentElement;
     static buttonThemeSwitchIdDesktop = "theme-switch"
     static buttonThemeSwitchIdMobile = "theme-switch-mobile"
+    static isThemeSwitchEnabled = !!(document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop))
 
-    constructor(buttonThemeSwitchId) {
-        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
-        if (this.isThemeSwitchEnabled) {
-            const theme = this.#getCurrentTheme()
-            this.#setTheme(theme)
-        }
+    static initColorTheme() {
+        const theme = ThemeManager.#getCurrentTheme()
+        ThemeManager.#activateAndStoreTheme(theme)
     }
-    get isThemeSwitchEnabled() {
-        return !!(this.buttonThemeSwitch)
-    }
-    #getCurrentTheme() {
-        let storedTheme = localStorage.getItem("theme");
-        if (storedTheme) {
-            return storedTheme;
+    static #getCurrentTheme() {
+        if (ThemeManager.isThemeSwitchEnabled) {
+            let storedTheme = localStorage.getItem("theme");
+            if (storedTheme) {
+                return storedTheme;
+            }
         }
 
-        let initialTheme = getComputedStyle(ThemeManager.root).getPropertyValue('--predefined-theme').trim();
+        let initialTheme = getComputedStyle(ThemeManager.#root).getPropertyValue('--predefined-theme').trim();
         if (initialTheme === 'auto') {
-            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.darkTheme})`).matches ? ThemeManager.darkTheme : ThemeManager.lightTheme
+            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.#darkTheme})`).matches ? ThemeManager.#darkTheme : ThemeManager.#lightTheme
         }
 
         return initialTheme;
     }
-    #setTheme = (newTheme) => {
-        this.buttonThemeSwitch.innerText = newTheme;
-        ThemeManager.root.dataset.theme = newTheme;
+    static #activateAndStoreTheme = (newTheme) => {
+        ThemeManager.#root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
+    }
+
+    constructor(buttonThemeSwitchId) {
+        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
     }
     run() {
         this.buttonThemeSwitch.addEventListener("click", this.#updateTheme)
     }
     #updateTheme = () => {
-        const theme = this.#getCurrentTheme()
-        const newTheme = theme === ThemeManager.darkTheme ? ThemeManager.lightTheme : ThemeManager.darkTheme
-        this.#setTheme(newTheme)
+        const theme = ThemeManager.#getCurrentTheme()
+        const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
+        ThemeManager.#activateAndStoreTheme(newTheme)
+        this.buttonThemeSwitch.innerText = newTheme;
     }
-
 }
+ThemeManager.initColorTheme()
 
 document.addEventListener('DOMContentLoaded', () => {
     const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop);
-    if (themeManager.isThemeSwitchEnabled) 
-        { themeManager.run(); 
+    if (themeManager.isThemeSwitchEnabled) {
+        themeManager.run();
 
-        }
+    }
 });
 
 
@@ -177,9 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
         clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
         document.addEventListener('DOMContentLoaded', () => {
             const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile);
-            if (themeManager.isThemeSwitchEnabled) { 
+            if (themeManager.isThemeSwitchEnabled) {
                 themeManager.run();
-             }
+            }
         });
         return clone.outerHTML;
     }

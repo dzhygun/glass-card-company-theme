@@ -1,4 +1,6 @@
 # Changelog
+## [1.1] - 18-09-2025
+- Fixed layouting, added option to hide theme switch.
 
 ## [1.0] - 18-09-2025
 - The theme is done.
