@@ -97,20 +97,23 @@
     padding-inline: 0.6rem;
     padding-block: 0.4rem;
 }
+
 @media all and (min-width: 56.25em) {
     .theme-switch-wrapper {
         display: -webkit-box;
     }
-    
-}
-.navbar_mobile_sidebar:not(.is-hidden) .theme-switch-wrapper{
-         display: -webkit-box;   
-}
-.navbar_mobile_overlay:not(.is-hidden) .theme-switch-wrapper{
-         display: -webkit-box;   
+
 }
 
-.theme-switch-container{
+.navbar_mobile_sidebar:not(.is-hidden) .theme-switch-wrapper {
+    display: -webkit-box;
+}
+
+.navbar_mobile_overlay:not(.is-hidden) .theme-switch-wrapper {
+    display: -webkit-box;
+}
+
+.theme-switch-container {
     display: grid;
     position: relative;
     align-content: center;
