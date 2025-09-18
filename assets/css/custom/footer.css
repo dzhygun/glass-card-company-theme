@@ -105,14 +105,18 @@
 
 }
 
-.navbar_mobile_sidebar:not(.is-hidden) .theme-switch-wrapper {
+
+.navbar_mobile_overlay .theme-switch-wrapper {
     display: -webkit-box;
 }
-
-.navbar_mobile_overlay:not(.is-hidden) .theme-switch-wrapper {
+.navbar_mobile_sidebar .theme-switch-wrapper {
     display: -webkit-box;
+}.navbar_mobile_overlay.is-hidden .theme-switch-wrapper {
+    display: none;
 }
-
+.navbar_mobile_sidebar.is-hidden .theme-switch-wrapper {
+    display: none;
+}
 .theme-switch-container {
     display: grid;
     position: relative;
