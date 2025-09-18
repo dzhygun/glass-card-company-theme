@@ -39,49 +39,59 @@ window.addEventListener('scroll', () => {
 }, false);
 
 class ThemeManager {
-    static lightTheme = "light";
-    static darkTheme = "dark"
+    static #lightTheme = "light";
+    static #darkTheme = "dark"
 
-    static root = document.documentElement;
+    static #root = document.documentElement;
     static buttonThemeSwitchIdDesktop = "theme-switch"
     static buttonThemeSwitchIdMobile = "theme-switch-mobile"
+    static isThemeSwitchEnabled = !!(document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop))
 
-    constructor(buttonThemeSwitchId) {
-        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
-        const theme = this.#getCurrentTheme()
-        this.#setTheme(theme)
+    static initColorTheme() {
+        const theme = ThemeManager.#getCurrentTheme()
+        ThemeManager.#activateAndStoreTheme(theme)
     }
-    #getCurrentTheme() {
-        let storedTheme = localStorage.getItem("theme");
-        if (storedTheme) {
-            return storedTheme;
+    static #getCurrentTheme() {
+        if (ThemeManager.isThemeSwitchEnabled) {
+            let storedTheme = localStorage.getItem("theme");
+            if (storedTheme) {
+                return storedTheme;
+            }
         }
 
-        let initialTheme = getComputedStyle(ThemeManager.root).getPropertyValue('--predefined-theme').trim();
+        let initialTheme = getComputedStyle(ThemeManager.#root).getPropertyValue('--predefined-theme').trim();
         if (initialTheme === 'auto') {
-            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.darkTheme})`).matches ? ThemeManager.darkTheme : ThemeManager.lightTheme
+            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.#darkTheme})`).matches ? ThemeManager.#darkTheme : ThemeManager.#lightTheme
         }
 
         return initialTheme;
     }
-    #setTheme = (newTheme) => {
-        this.buttonThemeSwitch.innerText = newTheme;
-        ThemeManager.root.dataset.theme = newTheme;
+    static #activateAndStoreTheme = (newTheme) => {
+        ThemeManager.#root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
+    }
+
+    constructor(buttonThemeSwitchId) {
+        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
     }
     run() {
         this.buttonThemeSwitch.addEventListener("click", this.#updateTheme)
     }
     #updateTheme = () => {
-        const theme = this.#getCurrentTheme()
-        const newTheme = theme === ThemeManager.darkTheme ? ThemeManager.lightTheme : ThemeManager.darkTheme
-        this.#setTheme(newTheme)
+        const theme = ThemeManager.#getCurrentTheme()
+        const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
+        ThemeManager.#activateAndStoreTheme(newTheme)
+        this.buttonThemeSwitch.innerText = newTheme;
     }
-
 }
+ThemeManager.initColorTheme()
 
 document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop).run();
+    const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop);
+    if (themeManager.isThemeSwitchEnabled) {
+        themeManager.run();
+
+    }
 });
 
 
@@ -158,14 +168,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    function getThemeSwitchClone() {
+    function getThemeSwitchCloneOuterHTML() {
         const src = document.querySelector(config.themeSwitchWrapper);
+        if (!src) {
+            return ``;
+        }
+
         const clone = src.cloneNode(true);
         clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
         document.addEventListener('DOMContentLoaded', () => {
-            new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile).run()
+            const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile);
+            if (themeManager.isThemeSwitchEnabled) {
+                themeManager.run();
+            }
         });
-        return clone;
+        return clone.outerHTML;
     }
 
     /**
@@ -253,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchClone().outerHTML;
+        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
         document.body.appendChild(menuWrapper);
 
@@ -307,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchClone().outerHTML;
+        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
 
         var menuOverlay = document.createElement('div');
