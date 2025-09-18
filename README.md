@@ -19,3 +19,4 @@ https://publii-glass-card-company-theme.zolotukhin.ch/
     
 # TODO
 - Missing css implementation to limit animations, transparency etc
+- Figure out why .svg are duplicated in .js and .svg file

@@ -1,4 +1,7 @@
 # Changelog
+## [1.3] - 18-09-2025
+- Added github svg to .svg file in order to fix missing icon on remote host. Strange, that the theme has 2 sources of truth for svg.
+
 ## [1.2] - 18-09-2025
 - Github follow; removed some translations; scaled follow buttons; fixed missing switch text
 
