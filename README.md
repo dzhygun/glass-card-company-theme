@@ -1,11 +1,14 @@
 # Glass Card Company Theme - for Publii
 "Glass Card Company Theme" - for Publii
 
+<img width="1280" height="640" alt="Screenshot from 2025-09-18 10-52-47" src="https://github.com/user-attachments/assets/90fbfd81-6ef6-4ffe-8a8e-7608fc0131d7" />
+
 The theme is intended to be used for "visit-card" websites by private individuals or companies.
 Therefore the theme is cleaned up from all unnecessary features, like posts, tags, search etc.
 
 ## Supported features
 - Pages
+- Light/Dark theme toggle
 
 # Credits
 - This theme is based on [Publii Simple Theme v.3.1.3.0](https://marketplace.getpublii.com/themes/simple/).
