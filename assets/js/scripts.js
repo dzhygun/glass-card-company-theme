@@ -44,12 +44,13 @@ class ThemeManager {
 
     static #root = document.documentElement;
     static buttonThemeSwitchIdDesktop = "theme-switch"
+    static buttonThemeSwitchDesktop = document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop)
     static buttonThemeSwitchIdMobile = "theme-switch-mobile"
-    static isThemeSwitchEnabled = !!(document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop))
+    static isThemeSwitchEnabled = !!(ThemeManager.buttonThemeSwitchDesktop)
 
     static initColorTheme() {
         const theme = ThemeManager.#getCurrentTheme()
-        ThemeManager.#activateAndStoreTheme(theme)
+        ThemeManager.#activateAndStoreTheme(theme, ThemeManager.buttonThemeSwitchDesktop)
     }
     static #getCurrentTheme() {
         if (ThemeManager.isThemeSwitchEnabled) {
@@ -66,9 +67,12 @@ class ThemeManager {
 
         return initialTheme;
     }
-    static #activateAndStoreTheme = (newTheme) => {
+    static #activateAndStoreTheme = (newTheme, buttonThemeSwitch) => {
         ThemeManager.#root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
+        if (buttonThemeSwitch) {
+            buttonThemeSwitch.innerText = newTheme;
+        }
     }
 
     constructor(buttonThemeSwitchId) {
@@ -80,8 +84,7 @@ class ThemeManager {
     #updateTheme = () => {
         const theme = ThemeManager.#getCurrentTheme()
         const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
-        ThemeManager.#activateAndStoreTheme(newTheme)
-        this.buttonThemeSwitch.innerText = newTheme;
+        ThemeManager.#activateAndStoreTheme(newTheme, buttonThemeSwitch)
     }
 }
 ThemeManager.initColorTheme()
