@@ -12,7 +12,17 @@
   object-position: center top;
   filter: none;
   opacity: 1;
-  animation: fadeIn 3s ease-in-out forwards;
+  animation: pageBgFadeIn 3s ease-in-out forwards;
+}
+
+@keyframes pageBgFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .page-bg-overlay {
@@ -38,17 +48,13 @@
   border: 1px solid rgba(var(--glass-card-blicks-color-rgb), 0.3);
 }
 
-@keyframes fadeIn {
-  from {
+.body-content-fade-in > * {
     opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+    animation: bodyContentFadeIn 1s ease-in-out forwards;
+    animation-delay: 0.5s;
 }
 
-@keyframes contentFadeIn {
+@keyframes bodyContentFadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -58,20 +64,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-@keyframes headerFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(calc(var(--navbar-height) * -1));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.pcb {
-  position: fixed;
 }

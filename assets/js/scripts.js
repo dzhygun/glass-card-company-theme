@@ -38,6 +38,53 @@ window.addEventListener('scroll', () => {
     }
 }, false);
 
+class ThemeManager {
+    static lightTheme = "light";
+    static darkTheme = "dark"
+
+    static root = document.documentElement;
+    static buttonThemeSwitchIdDesktop = "theme-switch"
+    static buttonThemeSwitchIdMobile = "theme-switch-mobile"
+
+    constructor(buttonThemeSwitchId) {
+        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
+        const theme = this.#getCurrentTheme()
+        this.#setTheme(theme)
+    }
+    #getCurrentTheme() {
+        let storedTheme = localStorage.getItem("theme");
+        if (storedTheme) {
+            return storedTheme;
+        }
+
+        let initialTheme = getComputedStyle(ThemeManager.root).getPropertyValue('--predefined-theme').trim();
+        if (initialTheme === 'auto') {
+            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.darkTheme})`).matches ? ThemeManager.darkTheme : ThemeManager.lightTheme
+        }
+
+        return initialTheme;
+    }
+    #setTheme = (newTheme) => {
+        this.buttonThemeSwitch.innerText = newTheme;
+        ThemeManager.root.dataset.theme = newTheme;
+        localStorage.setItem("theme", newTheme);
+    }
+    run() {
+        this.buttonThemeSwitch.addEventListener("click", this.#updateTheme)
+    }
+    #updateTheme = () => {
+        const theme = this.#getCurrentTheme()
+        const newTheme = theme === ThemeManager.darkTheme ? ThemeManager.lightTheme : ThemeManager.darkTheme
+        this.#setTheme(newTheme)
+    }
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop).run();
+});
+
+
 // Dropdown menu
 (function (menuConfig) {
     /**
@@ -59,6 +106,7 @@ window.addEventListener('scroll', () => {
         mobileMenuSidebarLogoSelector: null,
         mobileMenuSidebarLogoUrl: null,
         relatedContainerForOverlayMenuSelector: null,
+        themeSwitchWrapper: ".theme-switch-wrapper",
         // attributes 
         ariaButtonAttribute: 'aria-haspopup',
         // CSS classes
@@ -73,7 +121,7 @@ window.addEventListener('scroll', () => {
         hiddenElementClass: 'is-hidden',
         openedMenuClass: 'is-active',
         noScrollClass: 'no-scroll',
-        relatedContainerForOverlayMenuClass: 'is-visible'
+        relatedContainerForOverlayMenuClass: 'is-visible',
     };
 
     var config = {};
@@ -103,13 +151,22 @@ window.addEventListener('scroll', () => {
         } else if (config.mobileMenuMode === 'sidebar') {
             initMobileMenuSidebar();
         }
-
         initClosingMenuOnClickLink();
 
         if (!config.isHoverMenu) {
             initAriaAttributes();
         }
     };
+
+    function getThemeSwitchClone() {
+        const src = document.querySelector(config.themeSwitchWrapper);
+        const clone = src.cloneNode(true);
+        clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
+        document.addEventListener('DOMContentLoaded', () => {
+            new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile).run()
+        });
+        return clone;
+    }
 
     /**
      * Function responsible for the submenu positions
@@ -196,6 +253,7 @@ window.addEventListener('scroll', () => {
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
+        menuContentHTML += getThemeSwitchClone().outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
         document.body.appendChild(menuWrapper);
 
@@ -249,6 +307,7 @@ window.addEventListener('scroll', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
+        menuContentHTML += getThemeSwitchClone().outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
 
         var menuOverlay = document.createElement('div');
