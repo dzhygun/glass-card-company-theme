@@ -411,7 +411,7 @@ button:hover,
 .btn:active,
 [type=button]:active,
 [type=submit]:active,
-button:active{
+button:active {
   color: var(--text-color-hover);
   border-color: var(--text-color-hover);
 }

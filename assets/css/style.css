@@ -5,7 +5,6 @@
     @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/after.css";
         
     :root {
       --predefined-theme:   dark;
