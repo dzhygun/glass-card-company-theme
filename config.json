@@ -417,6 +417,14 @@
             ]
         },
         {
+            "name": "showThemeSwitch",
+            "label": "Select color scheme",
+            "group": "Colors",
+            "note": "Show a button (toggle) on the website, that switches the color scheme (theme).",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
             "name": "separator",
             "type": "separator",
             "label": "Light color scheme",

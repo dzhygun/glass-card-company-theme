@@ -48,8 +48,13 @@ class ThemeManager {
 
     constructor(buttonThemeSwitchId) {
         this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
-        const theme = this.#getCurrentTheme()
-        this.#setTheme(theme)
+        if (this.isThemeSwitchEnabled) {
+            const theme = this.#getCurrentTheme()
+            this.#setTheme(theme)
+        }
+    }
+    get isThemeSwitchEnabled() {
+        return !!(this.buttonThemeSwitch)
     }
     #getCurrentTheme() {
         let storedTheme = localStorage.getItem("theme");
@@ -81,7 +86,11 @@ class ThemeManager {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop).run();
+    const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop);
+    if (themeManager.isThemeSwitchEnabled) 
+        { themeManager.run(); 
+
+        }
 });
 
 
@@ -158,14 +167,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    function getThemeSwitchClone() {
+    function getThemeSwitchCloneOuterHTML() {
         const src = document.querySelector(config.themeSwitchWrapper);
+        if (!src) {
+            return ``;
+        }
+
         const clone = src.cloneNode(true);
         clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
         document.addEventListener('DOMContentLoaded', () => {
-            new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile).run()
+            const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile);
+            if (themeManager.isThemeSwitchEnabled) { 
+                themeManager.run();
+             }
         });
-        return clone;
+        return clone.outerHTML;
     }
 
     /**
@@ -253,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchClone().outerHTML;
+        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
         document.body.appendChild(menuWrapper);
 
@@ -307,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchClone().outerHTML;
+        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
 
         var menuOverlay = document.createElement('div');
