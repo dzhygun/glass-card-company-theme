@@ -560,8 +560,7 @@ var generateThemeVariables = function (params) {
               }
             `;
 
-  output += ` :root[data-theme="auto"]{}
-              :root[data-theme="light"]{${lightScheme}}
+  output += ` :root[data-theme="light"]{${lightScheme}}
               :root[data-theme="dark"]{${darkScheme}}`
 
   return output;
