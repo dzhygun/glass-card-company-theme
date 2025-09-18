@@ -17,49 +17,49 @@
         <div class="footer__social">
             {{#if @config.custom.socialFacebook}}
             <a href="{{@config.custom.socialFacebook}}" aria-label="{{ translate 'partials.footer.followFacebook' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#facebook"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialTwitter}}
             <a href="{{@config.custom.socialTwitter}}" aria-label="{{ translate 'partials.footer.followX' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#twitter"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialInstagram}}
             <a href="{{@config.custom.socialInstagram}}" aria-label="{{ translate 'partials.footer.followInstagram' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#instagram"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialLinkedin}}
             <a href="{{@config.custom.socialLinkedin}}" aria-label="{{ translate 'partials.footer.followLinkedIn' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#linkedin"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialVimeo}}
             <a href="{{@config.custom.socialVimeo}}" aria-label="{{ translate 'partials.footer.followVimeo' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#vimeo"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialPinterest}}
             <a href="{{@config.custom.socialPinterest}}" aria-label="{{ translate 'partials.footer.followPinterest' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#pinterest"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialYoutube}}
             <a href="{{@config.custom.socialYoutube}}" aria-label="{{ translate 'partials.footer.followYoutube' }}">
-                <svg class="nav-hover-button">
+                <svg class="nav-hover">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#youtube"/>
                 </svg>
             </a>
@@ -68,7 +68,7 @@
         {{/if}}
 
         {{#if @config.custom.backToTopButton}}
-            <button id="backToTop" class="footer__bttop nav-hover-button" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
+            <button id="backToTop" class="footer__bttop nav-hover" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
             <svg width="20" height="20">
                     <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#toparrow"/>
             </svg>
@@ -76,7 +76,7 @@
         {{/if}}
     </div>
 </footer>
-
+<button id="color-scheme-switch" aria-label="Color scheme switch" title="Color scheme switch" class="glass-card nav-hover"></button>
 <script defer src="{{js 'scripts.js'}}"></script>
 
 <script>window.publiiThemeMenuConfig={mobileMenuMode:'{{@config.custom.mobilemenu}}',animationSpeed:300,submenuWidth: {{#checkIf @config.custom.submenu '==' "auto" }}'auto'{{else}}{{@config.custom.submenuWidth}}{{/checkIf}},doubleClickTime:500,mobileMenuExpandableSubmenus:{{@config.custom.mobilemenuExpandableSubmenus}},relatedContainerForOverlayMenuSelector:'.top'};</script>

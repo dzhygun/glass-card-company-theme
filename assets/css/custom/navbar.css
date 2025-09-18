@@ -94,27 +94,35 @@
 
 .navbar .navbar__menu li a,
 .navbar .navbar__menu li span[aria-haspopup=true] {
-    color: var(--text-color);
     display: block;
     padding: 0 0.6rem;
     -webkit-transition: all 0.24s ease-out;
     transition: all 0.24s ease-out;
 }
 
-.navbar .navbar__menu li a:active,
-.navbar .navbar__menu li a:focus,
-.navbar .navbar__menu li a:hover,
-.navbar .navbar__menu li span[aria-haspopup=true]:active,
-.navbar .navbar__menu li span[aria-haspopup=true]:focus,
-.navbar .navbar__menu li span[aria-haspopup=true]:hover {
+.navbar .navbar__menu li:not(.active):not(.active-parent) a,
+.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true] {
+    color: var(--text-color);
+
+}
+
+.navbar .navbar__menu li:not(.active):not(.active-parent) a:active,
+.navbar .navbar__menu li:not(.active):not(.active-parent) a:focus,
+.navbar .navbar__menu li:not(.active):not(.active-parent) a:hover,
+.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:active,
+.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:focus,
+.navbar .navbar__menu li:not(.active):not(.active-parent) span[aria-haspopup=true]:hover {
     color: var(--text-color-hover);
 }
 
-.navbar .navbar__menu li span {
-    color: var(--text-color);
+.navbar .navbar__menu li:not(.active):not(.active-parent) span {
     cursor: default;
     display: block;
     padding: 0 0.6rem;
+}
+
+.navbar .navbar__menu li:not(.active):not(.active-parent) span {
+    color: var(--text-color);
 }
 
 .navbar .has-submenu:active>.navbar__submenu,
@@ -196,25 +204,33 @@
 .navbar .navbar__submenu li a,
 .navbar .navbar__submenu li span[aria-haspopup=true] {
     border-radius: calc(var(--border-radius) * 3);
-    color: var(--text-color);
     padding: 0.5rem 1rem;
     -webkit-transition: all 0.24s ease;
     transition: all 0.24s ease;
 }
 
-.navbar .navbar__submenu li a:active,
-.navbar .navbar__submenu li a:focus,
-.navbar .navbar__submenu li a:hover,
-.navbar .navbar__submenu li span[aria-haspopup=true]:active,
-.navbar .navbar__submenu li span[aria-haspopup=true]:focus,
-.navbar .navbar__submenu li span[aria-haspopup=true]:hover {
+.navbar .navbar__submenu li:not(.active):not(.active-parent) a,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true] {
+    color: var(--text-color);
+
+}
+
+.navbar .navbar__submenu li:not(.active):not(.active-parent) a:active,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) a:focus,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) a:hover,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:active,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:focus,
+.navbar .navbar__submenu li:not(.active):not(.active-parent) span[aria-haspopup=true]:hover {
     background: rgb(var(--glass-card-bg-rgb));
     color: var(--text-color-hover);
 }
 
 .navbar .navbar__submenu li span {
-    color: var(--text-color) !important;
     padding: 0.5rem 1rem;
+}
+
+.navbar .navbar__submenu li:not(.active):not(.active-parent) span {
+    color: var(--text-color) !important;
 }
 
 .navbar .navbar__toggle {
@@ -373,18 +389,23 @@
 
 .navbar_mobile_overlay .navbar__menu li a,
 .navbar_mobile_overlay .navbar__menu li span {
-    color: var(--text-color);
     display: block;
     padding: calc(var(--baseline) * 2);
     position: relative;
 }
 
-.navbar_mobile_overlay .navbar__menu li a:active,
-.navbar_mobile_overlay .navbar__menu li a:focus,
-.navbar_mobile_overlay .navbar__menu li a:hover,
-.navbar_mobile_overlay .navbar__menu li span:active,
-.navbar_mobile_overlay .navbar__menu li span:focus,
-.navbar_mobile_overlay .navbar__menu li span:hover {
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span {
+    color: var(--text-color);
+
+}
+
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:active,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:focus,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) a:hover,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:active,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:focus,
+.navbar_mobile_overlay .navbar__menu li:not(.active):not(.active-parent) span:hover {
     color: var(--text-color-hover);
 }
 
@@ -459,18 +480,23 @@
 
 .navbar_mobile_sidebar .navbar__menu li a,
 .navbar_mobile_sidebar .navbar__menu li .is-separator {
-    color: var(--text-color);
     display: block;
     padding: 10px 20px 10px 0;
     position: relative;
 }
 
-.navbar_mobile_sidebar .navbar__menu li a:active,
-.navbar_mobile_sidebar .navbar__menu li a:focus,
-.navbar_mobile_sidebar .navbar__menu li a:hover,
-.navbar_mobile_sidebar .navbar__menu li .is-separator:active,
-.navbar_mobile_sidebar .navbar__menu li .is-separator:focus,
-.navbar_mobile_sidebar .navbar__menu li .is-separator:hover {
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator {
+    color: var(--text-color);
+
+}
+
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:active,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:focus,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) a:hover,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:active,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:focus,
+.navbar_mobile_sidebar .navbar__menu li:not(.active):not(.active-parent) .is-separator:hover {
     color: var(--text-color-hover);
 }
 
@@ -528,7 +554,17 @@
     pointer-events: none;
 }
 
-.navbar_mobile_sidebar .nav-hover-text:hover {
-    scale: 1;
-    transition: none;
+.navbar_mobile_sidebar .nav-hover:hover,
+.navbar_mobile_overlay .nav-hover:hover {
+    scale: 1.05;
+}
+
+.navbar_mobile_sidebar .nav-hover:active,
+.navbar_mobile_overlay .nav-hover:active {
+    scale: 0.95;
+}
+
+.navbar_mobile_sidebar .nav-hover:focus,
+.navbar_mobile_overlay .nav-hover:focus {
+    scale: 0.95;
 }

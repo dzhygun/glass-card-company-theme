@@ -83,3 +83,13 @@
 .footer__copyright>*:first-child {
     margin: 0;
 }
+
+#color-scheme-switch {
+    display: -webkit-box;
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    width: auto;
+    margin: 1rem;
+    text-transform: capitalize;
+}

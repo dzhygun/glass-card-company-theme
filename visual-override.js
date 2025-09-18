@@ -35,24 +35,24 @@ var generateOverride = function (params) {
         }`;
        }
 
-       if (params.colorScheme !== 'dark' && textColorLightInput !== null) {
-              output += textColorLightInput
-       }
-
-       if (textColorDarkInput !== null) {
-              if (params.colorScheme === 'auto') {
-                     output += ` 
-      @media (prefers-color-scheme: dark) {
-        :root {                
-          ${textColorDarkInput}
-        }        
-      }
-    `;
-              } else if (params.colorScheme === 'dark') {
-                     output += textColorDarkInput
+       if (params.colorScheme === 'dark') {
+              if (textColorDarkInput !== null) {
+                     output += textColorDarkInput;
+              }
+       } else {
+              if (textColorLightInput !== null) {
+                     output += textColorLightInput;
+                     if (params.colorScheme === 'auto') {
+                            output +=     ` 
+                                          @media (prefers-color-scheme: dark) {
+                                                 :root {                
+                                                 ${textColorDarkInput}
+                                                 }        
+                                          }
+                                          `;
+                     }
               }
        }
-
 
        if (params.submenu === 'custom') {
               output += `

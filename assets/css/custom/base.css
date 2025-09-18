@@ -413,11 +413,7 @@ button:hover,
 .btn:active,
 [type=button]:active,
 [type=submit]:active,
-button:active,
-.btn:focus,
-[type=button]:focus,
-[type=submit]:focus,
-button:focus {
+button:active{
   color: var(--text-color-hover);
   border-color: var(--text-color-hover);
 }
@@ -651,16 +647,4 @@ select[multiple]:focus {
 select[multiple]:disabled {
   background-color: var(--element-bg-color-disabled);
   cursor: not-allowed;
-}
-
-.nav-hover-text:hover {
-  color: var(--text-color-hover);
-  scale: 1.1;
-  transition: scale 0.3s ease-out;
-}
-
-.nav-hover-button:hover {
-  color: var(--text-color-hover);
-  scale: 1.2;
-  transition: scale 0.3s ease-out;
 }

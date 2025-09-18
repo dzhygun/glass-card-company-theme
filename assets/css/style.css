@@ -5,8 +5,10 @@
     @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
+    @import "custom/after.css";
         
     :root {
+      --initial-color-scheme: dark;
       --glass-card-margin:  20vw;
       --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
       --page-bg-overlay-blur: blur(5px);
@@ -38,7 +40,15 @@
       --info-color:         #67B1F3;
       --success-color:      #00A563;
       --warning-color:      #EE4E4E;
-    
+       
+              @media all and (min-width: 56.25em) {
+                :root {
+                  --navbar-height: 6rem;
+                }
+              } 
+            @media (prefers-color-scheme: light) {
+                :root {                
+                   
         --text-color:         #000000;
         --text-color-hover:   rgba(0,0,0,.7);
         --logo-text-color:    #000000;
@@ -48,16 +58,11 @@
         --glass-card-blicks-color-rgb: 255,255,255;
         --glass-card-depth:   3;
     
-  } 
-      @media all and (min-width: 56.25em) {
-        :root {
-          --navbar-height: 6rem;
-        }
-      } 
-   
-      @media (prefers-color-scheme: dark) {
-        :root {                
-           
+                }        
+              }
+            @media (prefers-color-scheme: dark) {
+                :root {                
+                   
         --text-color:         #FFFFFF;
         --text-color-hover:   rgba(255,255,255,.7);   
         --logo-text-color:    #FFFFFF;
@@ -66,23 +71,30 @@
         --glass-card-blur:    blur(30px);
         --glass-card-blicks-color-rgb: 220,220,220;
         --glass-card-depth:   3;
-    
-        }        
-      }
-    /* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
-      
-        input[type=checkbox]:checked + label:before{
-               background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3e%3cpolygon points='9.53 0 4.4 5.09 1.47 2.18 0 3.64 2.93 6.54 4.4 8 5.87 6.54 11 1.46 9.53 0' fill='%23000000'/%3e%3c/svg%3e");
-        }
-
-        input[type=radio]:checked + label:before {
-               background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3ccircle cx='4' cy='4' r='4' fill='%23000000'/%3e%3c/svg%3e");
-        
-
-        } 
-      @media (prefers-color-scheme: dark) {
-        :root {                
-          
+}
+                }        
+              }
+             :root[data-theme="auto"]{}
+              :root[data-theme="light"]{ 
+        --text-color:         #000000;
+        --text-color-hover:   rgba(0,0,0,.7);
+        --logo-text-color:    #000000;
+        --glass-card-bg-rgb:  255,255,255;
+        --glass-card-opacity: 0.6;
+        --glass-card-blur:    blur(30px);
+        --glass-card-blicks-color-rgb: 255,255,255;
+        --glass-card-depth:   3;
+    }
+              :root[data-theme="dark"]{ 
+        --text-color:         #FFFFFF;
+        --text-color-hover:   rgba(255,255,255,.7);   
+        --logo-text-color:    #FFFFFF;
+        --glass-card-bg-rgb:  0,0,0;
+        --glass-card-opacity: 0.3;
+        --glass-card-blur:    blur(30px);
+        --glass-card-blicks-color-rgb: 220,220,220;
+        --glass-card-depth:   3;
+}}/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
       
         input[type=checkbox]:checked + label:before{
                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3e%3cpolygon points='9.53 0 4.4 5.09 1.47 2.18 0 3.64 2.93 6.54 4.4 8 5.87 6.54 11 1.46 9.53 0' fill='%23FFFFFF'/%3e%3c/svg%3e");
@@ -92,10 +104,7 @@
                background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3ccircle cx='4' cy='4' r='4' fill='%23FFFFFF'/%3e%3c/svg%3e");
         
 
-        }
-        }        
-      }
-     
+        } 
          img[loading] {
                opacity: 0;
          }

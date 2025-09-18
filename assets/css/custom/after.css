@@ -1,0 +1,27 @@
+.nav-hover:hover,
+.hav-hover:focus:hover {
+    color: var(--text-color-hover);
+    scale: 1.1;
+    transition: all 0.24s ease-out;
+}
+
+.nav-hover:active {
+    color: var(--text-color-hover);
+    border-color: var(--text-color-hover);
+    scale: 0.9;
+    transition: all 0.24s ease-out;
+}
+
+.active .nav-hover,
+.active-parent .nav-hover {
+    color: var(--text-color-hover);
+    border-color: var(--text-color-hover);
+    scale: 0.9;
+    transition: all 0.24s ease-out;
+}
+
+.active .nav-hover:hover,
+.active-parent .nav-hover:focus:hover {
+    color: var(--text-color);
+    scale: 1.0;
+}

@@ -417,6 +417,7 @@ var generateThemeVariables = function (params) {
     @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
+    @import "custom/after.css";
     `;
   let loadedFonts = new Set();
 
@@ -487,6 +488,7 @@ var generateThemeVariables = function (params) {
 
   output += `    
     :root {
+      --initial-color-scheme: ${params.colorScheme};
       --glass-card-margin:  ${params.glassCardMargin};
       --page-bg-overlay-background: ${pageBgOverlayBackground};
       --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);
@@ -518,10 +520,9 @@ var generateThemeVariables = function (params) {
       --info-color:         #67B1F3;
       --success-color:      #00A563;
       --warning-color:      #EE4E4E;
-    `;
+      `;
 
-  if (params.colorScheme !== 'dark') {
-    output += `
+  const lightScheme = ` 
         --text-color:         ${params.textColorLight};
         --text-color-hover:   rgba(${hexToRgb(params.textColorLight)},.7);
         --logo-text-color:    ${params.textColorLight};
@@ -531,8 +532,6 @@ var generateThemeVariables = function (params) {
         --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorLight)};
         --glass-card-depth:   ${params.glassCardDepthLight};
     `;
-  }
-
   const darkScheme = ` 
         --text-color:         ${params.textColorDark};
         --text-color-hover:   rgba(${hexToRgb(params.textColorDark)},.7);   
@@ -542,32 +541,29 @@ var generateThemeVariables = function (params) {
         --glass-card-blur:    blur(${params.glassCardBlurDark}px);
         --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorDark)};
         --glass-card-depth:   ${params.glassCardDepthDark};
-    `;
-
-  if (params.colorScheme === 'dark') {
-    output += darkScheme;
-  }
-
-  output += `
-  }`;
+}`;
 
   output += ` 
-      @media all and (min-width: 56.25em) {
-        :root {
-          --navbar-height: ${params.navbarHeight};
-        }
-      } 
-  `;
-
-  if (params.colorScheme === 'auto') {
-    output += ` 
-      @media (prefers-color-scheme: dark) {
-        :root {                
-          ${darkScheme}
-        }        
-      }
-    `;
-  }
+              @media all and (min-width: 56.25em) {
+                :root {
+                  --navbar-height: ${params.navbarHeight};
+                }
+              } 
+            @media (prefers-color-scheme: light) {
+                :root {                
+                  ${lightScheme}
+                }        
+              }
+            @media (prefers-color-scheme: dark) {
+                :root {                
+                  ${darkScheme}
+                }        
+              }
+            `;
+    
+  output += ` :root[data-theme="auto"]{}
+              :root[data-theme="light"]{${lightScheme}}
+              :root[data-theme="dark"]{${darkScheme}}`
 
   return output;
 }
