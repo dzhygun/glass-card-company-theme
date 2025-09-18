@@ -417,7 +417,6 @@ var generateThemeVariables = function (params) {
     @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/after.css";
     `;
   let loadedFonts = new Set();
 
@@ -560,7 +559,7 @@ var generateThemeVariables = function (params) {
                 }        
               }
             `;
-    
+
   output += ` :root[data-theme="auto"]{}
               :root[data-theme="light"]{${lightScheme}}
               :root[data-theme="dark"]{${darkScheme}}`

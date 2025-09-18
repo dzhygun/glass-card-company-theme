@@ -48,10 +48,15 @@
   border: 1px solid rgba(var(--glass-card-blicks-color-rgb), 0.3);
 }
 
-.body-content-fade-in > * {
-    opacity: 0;
-    animation: bodyContentFadeIn 1s ease-in-out forwards;
-    animation-delay: 0.5s;
+.body-content-fade-in {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.body-content-fade-in>* {
+  opacity: 0;
+  animation: bodyContentFadeIn 1s ease-in-out forwards;
+  animation-delay: 0.5s;
 }
 
 @keyframes bodyContentFadeIn {

@@ -1,6 +1,6 @@
 {
     "name": "glass-card-company-theme",
-    "version": "0.2",
+    "version": "1.0",
     "author": "Dzhygun https://www.linkedin.com/in/vladyslav-zolotukhin/",
     "menus": {
         "mainMenu": {
@@ -547,7 +547,7 @@
             "group": "Colors",
             "upload": true
         },
-                {
+        {
             "name": "backgroundImageBlur",
             "label": "Background image blur",
             "group": "Colors",
@@ -557,7 +557,7 @@
             "max": 20,
             "step": 1
         },
-                        {
+        {
             "name": "backgroundImageSaturation",
             "label": "Background image saturation",
             "group": "Colors",
