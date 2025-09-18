@@ -43,6 +43,13 @@
                 </svg>
             </a>
             {{/if}}
+            {{#if @config.custom.socialGitHub}}
+            <a href="{{@config.custom.socialGitHub}}" aria-label="{{ translate 'partials.footer.followGitHub' }}">
+                <svg class="nav-hover">
+                            <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#github"/>
+                </svg>
+            </a>
+            {{/if}}
             {{#if @config.custom.socialVimeo}}
             <a href="{{@config.custom.socialVimeo}}" aria-label="{{ translate 'partials.footer.followVimeo' }}">
                 <svg class="nav-hover">

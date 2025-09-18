@@ -7,7 +7,7 @@
     @import "custom/footer.css";
         
     :root {
-      --predefined-theme:   light;
+      --predefined-theme:   auto;
       --glass-card-margin:  20vw;
       --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
       --page-bg-overlay-blur: blur(5px);
@@ -104,6 +104,22 @@
         
 
         } 
+                                          @media (prefers-color-scheme: dark) {
+                                                 :root {                
+                                                 
+      
+        input[type=checkbox]:checked + label:before{
+               background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3e%3cpolygon points='9.53 0 4.4 5.09 1.47 2.18 0 3.64 2.93 6.54 4.4 8 5.87 6.54 11 1.46 9.53 0' fill='%23FFFFFF'/%3e%3c/svg%3e");
+        }
+
+        input[type=radio]:checked + label:before {
+               background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3ccircle cx='4' cy='4' r='4' fill='%23FFFFFF'/%3e%3c/svg%3e");
+        
+
+        }
+                                                 }        
+                                          }
+                                           
          img[loading] {
                opacity: 0;
          }

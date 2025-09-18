@@ -1,4 +1,7 @@
 # Changelog
+## [1.2] - 18-09-2025
+- Github follow; removed some translations; scaled follow buttons; fixed missing switch text
+
 ## [1.1] - 18-09-2025
 - Fixed layouting, added option to hide theme switch.
 

@@ -1610,6 +1610,20 @@
             ]
         },
         {
+            "name": "socialGitHub",
+            "label": "GitHub",
+            "group": "Footer",
+            "placeholder": "Please enter your GitHub URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
             "name": "socialVimeo",
             "label": "Vimeo",
             "group": "Footer",
