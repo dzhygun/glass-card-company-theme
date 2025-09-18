@@ -38,14 +38,16 @@ window.addEventListener('scroll', () => {
     }
 }, false);
 
-class ColorSchemeManager {
+class ThemeManager {
     static lightTheme = "light";
     static darkTheme = "dark"
 
     static root = document.documentElement;
-    static buttonThemeSwitch = document.getElementById("theme-switch");
+    static buttonThemeSwitchIdDesktop = "theme-switch"
+    static buttonThemeSwitchIdMobile = "theme-switch-mobile"
 
-    constructor() {
+    constructor(buttonThemeSwitchId) {
+        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
         const theme = this.#getCurrentTheme()
         this.#setTheme(theme)
     }
@@ -55,32 +57,31 @@ class ColorSchemeManager {
             return storedTheme;
         }
 
-        let initialTheme = getComputedStyle(ColorSchemeManager.root).getPropertyValue('--predefined-theme').trim();
+        let initialTheme = getComputedStyle(ThemeManager.root).getPropertyValue('--predefined-theme').trim();
         if (initialTheme === 'auto') {
-            return window.matchMedia(`(prefers-color-scheme: ${ColorSchemeManager.darkTheme})`).matches ? ColorSchemeManager.darkTheme : ColorSchemeManager.lightTheme
+            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.darkTheme})`).matches ? ThemeManager.darkTheme : ThemeManager.lightTheme
         }
 
         return initialTheme;
     }
     #setTheme = (newTheme) => {
-        ColorSchemeManager.buttonThemeSwitch.innerText = newTheme;
-        ColorSchemeManager.root.dataset.theme = newTheme;
+        this.buttonThemeSwitch.innerText = newTheme;
+        ThemeManager.root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
     }
     run() {
-        ColorSchemeManager.buttonThemeSwitch.addEventListener("click", this.#updateTheme)
+        this.buttonThemeSwitch.addEventListener("click", this.#updateTheme)
     }
     #updateTheme = () => {
         const theme = this.#getCurrentTheme()
-        const newTheme = theme === ColorSchemeManager.darkTheme ? ColorSchemeManager.lightTheme : ColorSchemeManager.darkTheme
+        const newTheme = theme === ThemeManager.darkTheme ? ThemeManager.lightTheme : ThemeManager.darkTheme
         this.#setTheme(newTheme)
     }
 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const colorSchemeManager = new ColorSchemeManager();
-    colorSchemeManager.run()
+    new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop).run();
 });
 
 
@@ -105,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuSidebarLogoSelector: null,
         mobileMenuSidebarLogoUrl: null,
         relatedContainerForOverlayMenuSelector: null,
+        themeSwitchWrapper: ".theme-switch-wrapper",
         // attributes 
         ariaButtonAttribute: 'aria-haspopup',
         // CSS classes
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenElementClass: 'is-hidden',
         openedMenuClass: 'is-active',
         noScrollClass: 'no-scroll',
-        relatedContainerForOverlayMenuClass: 'is-visible'
+        relatedContainerForOverlayMenuClass: 'is-visible',
     };
 
     var config = {};
@@ -149,13 +151,22 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (config.mobileMenuMode === 'sidebar') {
             initMobileMenuSidebar();
         }
-
         initClosingMenuOnClickLink();
 
         if (!config.isHoverMenu) {
             initAriaAttributes();
         }
     };
+
+    function getThemeSwitchClone() {
+        const src = document.querySelector(config.themeSwitchWrapper);
+        const clone = src.cloneNode(true);
+        clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
+        document.addEventListener('DOMContentLoaded', () => {
+            new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile).run()
+        });
+        return clone;
+    }
 
     /**
      * Function responsible for the submenu positions
@@ -242,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
+        menuContentHTML += getThemeSwitchClone().outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
         document.body.appendChild(menuWrapper);
 
@@ -295,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
+        menuContentHTML += getThemeSwitchClone().outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
 
         var menuOverlay = document.createElement('div');
