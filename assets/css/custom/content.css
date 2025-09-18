@@ -5,6 +5,7 @@
 
 .img-ul li {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
@@ -16,6 +17,10 @@
   height: 1.5em;
   flex: 0 0 1.5em;
   display: block;
+}
+
+.contacts-ul-margin {
+  margin: 0px
 }
 
 
@@ -57,7 +62,7 @@
 .dropcap:first-letter {
   color: var(--text-color);
   float: left;
-  font-size: 3.6355864383rem;
+  font-size: 3.6rem;
   line-height: 0.7;
   margin-right: 0.6rem;
   padding: calc(var(--baseline) * 2) calc(var(--baseline) * 2) calc(var(--baseline) * 2) 0;
@@ -104,11 +109,11 @@
 }
 
 .hero__content {
-  padding-bottom: calc(var(--baseline) * 6 + 1.5vw);
+  padding-bottom: var(--baseline);
 }
 
 .hero__content h1>sup {
-  font-size: 1.066666667rem;
+  font-size: 1.1rem;
   vertical-align: top;
 }
 
@@ -160,7 +165,7 @@
   align-items: center;
   color: var(--text-color-mute-lvl-1);
   display: flex;
-  font-size: 0.8239746086rem;
+  font-size: 0.8rem;
   margin-bottom: calc(var(--baseline) * 3);
 }
 
@@ -207,7 +212,7 @@
 
 .content__updated {
   color: var(--text-color-mute-lvl-1);
-  font-size: 0.8789062495rem;
+  font-size: 0.8rem;
   font-style: italic;
 }
 
@@ -560,7 +565,7 @@
 .msg {
   background-color: var(--glass-card-bg-color-highlight-lvl-1);
   border-left: 3px solid var(--text-color-mute-lvl-1);
-  font-size: 0.9374999997rem;
+  font-size: 1rem;
   padding: calc(var(--baseline) * 4) calc(var(--baseline) * 6);
   position: relative;
 }
@@ -592,7 +597,7 @@
 .pec-overlay {
   align-items: center;
   background-color: rgb(var(--glass-card-bg-rgb));
-  font-size: 14px;
+  font-size: 0.9rem;
   display: none;
   height: inherit;
   justify-content: center;
@@ -604,7 +609,7 @@
 
 @media all and (min-width: 37.5em) {
   .pec-overlay {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: var(--line-height);
     padding: 1rem 2rem;
   }

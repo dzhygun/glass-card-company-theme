@@ -1,7 +1,7 @@
 {{#unless level}}
    <nav class="navbar js-navbar">
       <button
-         class="navbar__toggle js-toggle"
+         class="navbar__toggle js-toggle nav-hover-button"
          aria-label="{{ translate 'partials.menu.label' }}"
          aria-haspopup="true"
          aria-expanded="false">
@@ -12,9 +12,9 @@
    {{/unless}}
     <ul{{#if level}} class="navbar__submenu level-{{level}}" aria-hidden="true" {{else}} class="navbar__menu"{{/if}}>
         {{#each items}}
-             <li{{menuItemClasses}}>
+             <li {{menuItemClasses}}>
             {{#if link}}
-               <a
+               <a class="nav-hover-text"
                   href="{{menuUrl}}"
                   {{#if title}}
                      title="{{title}}"
@@ -32,7 +32,7 @@
               </a>
             {{else}}
                <span 
-                  class="is-separator"
+                  class="is-separator nav-hover-text"
                   {{#if title}}
                      title="{{title}}"
                   {{/if}} 

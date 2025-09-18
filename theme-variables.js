@@ -412,10 +412,11 @@ var generateThemeVariables = function (params) {
 
   let output = `
     @import "custom/base.css";
+    @import "custom/background.css";
+    @import "custom/navbar.css";
+    @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/body.css";
-    @import "custom/navbar.css";
     `;
   let loadedFonts = new Set();
 
@@ -471,10 +472,25 @@ var generateThemeVariables = function (params) {
   const fontSizeRange = maxFontSize - minFontSize;
   const fontSizeValue = `clamp(${minFontSize}rem, ${minFontSize}rem + (${fontSizeRange} * ((100vw - ${minScreen}rem) / ${screenRange})), ${maxFontSize}rem)`;
 
+  const pageBgOverlayBackgroundColorLevels = ["Top", "Middle", "Bottom"]
+  const pageBgOverlayBackgroundColors = [];
+  pageBgOverlayBackgroundColorLevels.forEach((levelName, i) => {
+    if (params[`backgroundColorGradientOverlay${levelName}Enabled`] === true && params[`backgroundColorGradientOverlay${levelName}`] !== "") {
+      pageBgOverlayBackgroundColors.push(params[`backgroundColorGradientOverlay${levelName}`])
+    }
+  })
+
+  let pageBgOverlayBackground = "none";
+  if (pageBgOverlayBackgroundColors.length !== 0) {
+    pageBgOverlayBackground = `linear-gradient(${pageBgOverlayBackgroundColors.join(", ")})`;
+  }
 
   output += `    
     :root {
       --glass-card-margin:  ${params.glassCardMargin};
+      --page-bg-overlay-background: ${pageBgOverlayBackground};
+      --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);
+      --page-bg-overlay-saturation: saturate(${params.backgroundImageSaturation}%);
       --page-margin:        ${params.pageMargin};
       --page-width:         ${params.pageWidth};
       --entry-width:        ${params.entryWidth}; 

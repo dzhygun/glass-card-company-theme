@@ -13,6 +13,9 @@
     margin-inline: auto;
     border-radius: 0 0 var(--glass-card-border-radius) var(--glass-card-border-radius);
     border-bottom: 1px solid rgb(var(--glass-card-blicks-color-rgb));
+    border-top: none;
+    --glass-card-box-shadow-depth-top: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value)
 }
 
 .top.slide-down {
@@ -39,11 +42,17 @@
 
 .logo {
     color: var(--logo-text-color) !important;
-    font-size: 1.2136296308rem;
+    font-size: 1.4rem;
     font-family: var(--logo-font);
     font-variation-settings: "wght" var(--font-weight-bold);
     margin-right: auto;
     order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: clamp(1.4rem, 4vw, 1.25rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .logo>img {
@@ -75,7 +84,7 @@
 .navbar .navbar__menu li {
     font-family: var(--menu-font);
     display: block;
-    font-size: 0.8789062495rem;
+    font-size: 1.2rem;
     line-height: var(--line-height);
     font-variation-settings: "wght" 500;
     padding: 0;
@@ -106,13 +115,6 @@
     cursor: default;
     display: block;
     padding: 0 0.6rem;
-}
-
-.navbar .navbar__menu>li:hover>a,
-.navbar .navbar__menu>li:hover>span[aria-haspopup=true] {
-    color: var(--text-color-hover);
-    scale: 1.2;
-    transition: scale 0.3s ease-out;
 }
 
 .navbar .has-submenu:active>.navbar__submenu,
@@ -188,13 +190,13 @@
 
 .navbar .navbar__submenu li {
     line-height: 1.5;
-    font-size: 0.8789062495rem;
+    font-size: 1.1rem;
 }
 
 .navbar .navbar__submenu li a,
 .navbar .navbar__submenu li span[aria-haspopup=true] {
     border-radius: calc(var(--border-radius) * 3);
-    color: var(--text-color-hover);
+    color: var(--text-color);
     padding: 0.5rem 1rem;
     -webkit-transition: all 0.24s ease;
     transition: all 0.24s ease;
@@ -207,19 +209,12 @@
 .navbar .navbar__submenu li span[aria-haspopup=true]:focus,
 .navbar .navbar__submenu li span[aria-haspopup=true]:hover {
     background: rgb(var(--glass-card-bg-rgb));
-    color: var(--text-color);
+    color: var(--text-color-hover);
 }
 
 .navbar .navbar__submenu li span {
-    color: var(--text-color-hover) !important;
+    color: var(--text-color) !important;
     padding: 0.5rem 1rem;
-}
-
-.navbar .navbar__submenu li:hover>a,
-.navbar .navbar__submenu li:hover>span[aria-haspopup=true] {
-    color: var(--text-color);
-    scale: 1.2;
-    transition: scale 0.3s ease-out;
 }
 
 .navbar .navbar__toggle {
@@ -243,7 +238,6 @@
     width: 3.2rem;
     height: 2.2rem;
     font-size: 0px;
-
 }
 
 @media all and (min-width: 56.25em) {
@@ -456,7 +450,7 @@
 
 .navbar_mobile_sidebar .navbar__menu li {
     font-family: var(--menu-font);
-    font-size: 16px;
+    font-size: 1rem;
     list-style: none;
     line-height: 1.3;
     margin: 0;
@@ -532,4 +526,9 @@
 .navbar_mobile_sidebar__overlay.is-hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+.navbar_mobile_sidebar .nav-hover-text:hover {
+    scale: 1;
+    transition: none;
 }

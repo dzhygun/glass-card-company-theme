@@ -1,12 +1,16 @@
 
     @import "custom/base.css";
+    @import "custom/background.css";
+    @import "custom/navbar.css";
+    @import "custom/main.css";
     @import "custom/content.css";
     @import "custom/footer.css";
-    @import "custom/body.css";
-    @import "custom/navbar.css";
         
     :root {
       --glass-card-margin:  20vw;
+      --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
+      --page-bg-overlay-blur: blur(5px);
+      --page-bg-overlay-saturation: saturate(120%);
       --page-margin:        6%;
       --page-width:         100%;
       --entry-width:        100%; 
@@ -60,7 +64,7 @@
         --glass-card-bg-rgb:  0,0,0;
         --glass-card-opacity: 0.3;
         --glass-card-blur:    blur(30px);
-        --glass-card-blicks-color-rgb: 255,255,255;
+        --glass-card-blicks-color-rgb: 220,220,220;
         --glass-card-depth:   3;
     
         }        

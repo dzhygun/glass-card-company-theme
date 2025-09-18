@@ -17,49 +17,49 @@
         <div class="footer__social">
             {{#if @config.custom.socialFacebook}}
             <a href="{{@config.custom.socialFacebook}}" aria-label="{{ translate 'partials.footer.followFacebook' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#facebook"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialTwitter}}
             <a href="{{@config.custom.socialTwitter}}" aria-label="{{ translate 'partials.footer.followX' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#twitter"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialInstagram}}
             <a href="{{@config.custom.socialInstagram}}" aria-label="{{ translate 'partials.footer.followInstagram' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#instagram"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialLinkedin}}
             <a href="{{@config.custom.socialLinkedin}}" aria-label="{{ translate 'partials.footer.followLinkedIn' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#linkedin"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialVimeo}}
             <a href="{{@config.custom.socialVimeo}}" aria-label="{{ translate 'partials.footer.followVimeo' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#vimeo"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialPinterest}}
             <a href="{{@config.custom.socialPinterest}}" aria-label="{{ translate 'partials.footer.followPinterest' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#pinterest"/>
                 </svg>
             </a>
             {{/if}}
             {{#if @config.custom.socialYoutube}}
             <a href="{{@config.custom.socialYoutube}}" aria-label="{{ translate 'partials.footer.followYoutube' }}">
-                <svg>
+                <svg class="nav-hover-button">
                             <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#youtube"/>
                 </svg>
             </a>
@@ -68,7 +68,7 @@
         {{/if}}
 
         {{#if @config.custom.backToTopButton}}
-            <button id="backToTop" class="footer__bttop" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
+            <button id="backToTop" class="footer__bttop nav-hover-button" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
             <svg width="20" height="20">
                     <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#toparrow"/>
             </svg>

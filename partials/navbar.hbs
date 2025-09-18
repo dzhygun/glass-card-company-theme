@@ -10,18 +10,4 @@
    {{#if menus.mainMenu}}
    {{> menu menus.mainMenu}}
    {{/if}}
-   {{#if @config.custom.searchFeature}}
-   <div class="search">
-      <div class="search__overlay js-search-overlay">
-         <div class="wrapper search__overlay-inner">
-            {{{@customSearchInput}}}
-         </div>
-      </div>
-      <button class="search__btn btn--icon js-search-btn" aria-label="{{ translate 'search.search' }}">
-         <svg height="18" width="18" role="presentation" focusable="false">
-            <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#search" />
-         </svg>
-      </button>
-   </div>
-   {{/if}}
 </header>
