@@ -79,7 +79,7 @@ class ThemeManager {
         this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
     }
     run() {
-        this.buttonThemeSwitch.addEventListener("click", function() {
+        this.buttonThemeSwitch.addEventListener("click", ()=>{
             const theme = ThemeManager.#getCurrentTheme()
             const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
             ThemeManager.#activateAndStoreTheme(newTheme, this.buttonThemeSwitch)
