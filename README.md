@@ -6,6 +6,9 @@
 The theme is intended to be used for "visit-card" websites by private individuals or companies.
 Therefore the theme is cleaned up from all unnecessary features, like posts, tags, search etc.
 
+## Preview
+https://dzhygun.github.io/glass-card-company-theme/
+
 ## Supported features
 - Pages
 - Light/Dark theme toggle
