@@ -477,7 +477,7 @@
 }
 
 .navbar_mobile_sidebar.is-hidden {
-    left: -400px;
+    left: -600px;
 }
 
 .navbar_mobile_sidebar .navbar__menu {
