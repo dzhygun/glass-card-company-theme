@@ -98,7 +98,7 @@
         {
             "name": "displayLastUpdatedDate",
             "label": "Display last updated date",
-            "value": 0,
+            "value": 1,
             "type": "select",
             "pageTemplates": "!empty",
             "options": [
@@ -1683,7 +1683,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
+            "value": "<p class='align-center'>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
             "type": "wysiwyg"
         },
         {
@@ -1720,7 +1720,7 @@
             "name": "formatDate",
             "label": "Date format",
             "group": "Additional",
-            "value": "MMMM D, YYYY",
+            "value": "D MMMM YYYY",
             "type": "select",
             "options": [
                 {
