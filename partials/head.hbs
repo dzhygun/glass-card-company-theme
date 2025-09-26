@@ -35,8 +35,10 @@
     {{{@bodyCustomCode}}}
 
     <div class="page-bg-wrapper">
-        <img class="page-bg" src="{{@config.custom.backgroundImage}}" {{responsiveImageAttributes
-            @config.custom.backgroundImage}} {{imageDimensions @config.custom.backgroundImage}} {{lazyload "eager" }}
-            alt="" decoding="async">
+        {{#if @config.custom.backgroundImage}}
+            <img class="page-bg" src="{{@config.custom.backgroundImage}}" {{responsiveImageAttributes
+                @config.custom.backgroundImage}} {{imageDimensions @config.custom.backgroundImage}} {{lazyload "eager" }}
+                alt="" decoding="async">
+        {{/if}}
         <div class="page-bg-overlay"></div>
     </div>
