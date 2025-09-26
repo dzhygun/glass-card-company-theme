@@ -16,6 +16,8 @@
   --entry-width:        100%; 
   --navbar-height:      4.4rem; 
   --border-radius:      3px;
+  --glass-card-border-radius: 15px;
+  --glass-card-border-radius-mobile: 15px;
   --baseline:           0.28333rem;
   --gallery-gap:        calc(var(--baseline) * 1.5); 
   --body-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

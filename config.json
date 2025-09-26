@@ -271,7 +271,14 @@
             "group": "Layout",
             "value": "20vw",
             "type": "text",
-            "note": "Defines margin between the left & right screen edges and the main content container."
+            "note": "Defines margin between the left & right screen edges and the main content container. (Desktop only)"
+        },
+        {
+            "name": "roundGlassCardBorderMobile",
+            "label": "Round glass card border on Mobile devices",
+            "group": "Layout",
+            "value": true,
+            "type": "checkbox"
         },
         {
             "name": "pageMargin",

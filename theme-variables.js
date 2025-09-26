@@ -483,6 +483,12 @@ var generateThemeVariables = function (params) {
   if (pageBgOverlayBackgroundColors.length !== 0) {
     pageBgOverlayBackground = `linear-gradient(${pageBgOverlayBackgroundColors.join(", ")})`;
   }
+  let glassCardBorderRadius = params.borderRadius * 5;
+
+  let glassCardBorderRadiusMobile = 0;
+  if (params.roundGlassCardBorderMobile === true){
+    glassCardBorderRadiusMobile = glassCardBorderRadius
+  }
 
   output += `    
 :root {
@@ -496,6 +502,8 @@ var generateThemeVariables = function (params) {
   --entry-width:        ${params.entryWidth}; 
   --navbar-height:      4.4rem; 
   --border-radius:      ${params.borderRadius}px;
+  --glass-card-border-radius: ${glassCardBorderRadius}px;
+  --glass-card-border-radius-mobile: ${glassCardBorderRadiusMobile}px;
   --baseline:           ${params.baseline};
   --gallery-gap:        ${params.galleryItemGap}; 
   --body-font:          ${fontBodyFamily};
