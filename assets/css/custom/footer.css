@@ -121,7 +121,7 @@
     display: -webkit-box;
 }
 
-.navbar_mobile_sidebar .theme-switch-wrapper {
+.navbar_mobile_sidebar__overlay .theme-switch-wrapper {
     display: -webkit-box;
 }
 
@@ -129,7 +129,7 @@
     display: none;
 }
 
-.navbar_mobile_sidebar.is-hidden .theme-switch-wrapper {
+.navbar_mobile_sidebar__overlay.is-hidden .theme-switch-wrapper {
     display: none;
 }
 
