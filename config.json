@@ -399,7 +399,7 @@
             "label": "Select color scheme",
             "group": "Colors",
             "note": "<br>The auto color scheme feature automatically adjusts the color scheme of the interface to match the user's operating system settings. If the operating system does not support this feature, the light version of the color scheme is used instead",
-            "value": "auto",
+            "value": "dark",
             "type": "radio",
             "options": [
                 {
