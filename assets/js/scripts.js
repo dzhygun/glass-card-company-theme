@@ -569,6 +569,24 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', backToTopScrollFunction);
         backToTopButton.addEventListener('click', backToTopFunction);
     }
+    const footer = document.getElementById('footer');
+    const footerContent  = document.getElementById('footerContent');
+    const backToTop  = document.getElementById('backToTop');
+
+    function needsStack(){
+    const cr = footer.getBoundingClientRect();
+    const tr = footerContent.getBoundingClientRect();
+    const br = backToTop.getBoundingClientRect();
+
+    const overlap = !(tr.right <= br.left || tr.left >= br.right);
+    const tooNarrow = (tr.width + br.width) > cr.width;
+
+    backToTop.classList.toggle('inline', overlap || tooNarrow);
+    }
+
+    addEventListener('resize', needsStack, {passive:true});
+    addEventListener('load', needsStack);
+    needsStack();
 });
 
 

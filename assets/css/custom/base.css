@@ -7,6 +7,7 @@
   --glass-card-box-shadow-depth-left: inset calc(var(--glass-card-depth)*1px) 0 calc(var(--glass-card-depth)*1px) calc(var(--glass-card-depth) * -0.5px) rgba(var(--glass-card-blicks-color-rgb), calc(var(--glass-card-depth) / 10));
   --glass-card-box-shadow-depth-right: inset calc(var(--glass-card-depth)*-1px) 0 calc(var(--glass-card-depth)*1px) calc(var(--glass-card-depth) * -0.5px) rgba(var(--glass-card-blicks-color-rgb), calc(var(--glass-card-depth) / 10));
   --glass-card-box-shadow-depth-null-value: inset 0 0 0px 0px rgba(255, 255, 255, 0);
+  --glass-card-width-mobile: 99.83%;
   --supp-step-0-5: 8%;
   --supp-step-1: 16%;
   --supp-step-2: 32%;
@@ -91,7 +92,7 @@ body {
 main {
   opacity: 0;
   border-radius: var(--glass-card-border-radius-mobile);
-  width: 100%;
+  width: var(--glass-card-width-mobile);
   margin-bottom: calc(var(--baseline) * 12 + 1vw);
   margin-inline: 0;
   padding-bottom: var(--viewport-baseline);

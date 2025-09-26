@@ -12,7 +12,7 @@
     margin-inline: auto;
     border-bottom: 1px solid rgb(var(--glass-card-blicks-color-rgb));
     border-top: none;
-    width: 100%;
+    width: var(--glass-card-width-mobile);
     border-radius: 0 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile);
     --glass-card-box-shadow-depth-top: var(--glass-card-box-shadow-depth-null-value);
     --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value)

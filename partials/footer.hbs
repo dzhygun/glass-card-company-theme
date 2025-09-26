@@ -1,6 +1,16 @@
 <div class="empty-space-before-footer"></div>
-<footer class="footer glass-card">
-    <div class="wrapper">
+<footer id="footer" class="footer glass-card">
+
+    {{#if @config.custom.backToTopButton}}
+        <button id="backToTop" class="footer__bttop nav-hover" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
+            <svg width="20" height="20">
+                    <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#toparrow"/>
+            </svg>
+        </button>
+    {{/if}}
+
+    <div id="footerContent" class="wrapper">
+
         {{#if menus.footerMenu}}
         <nav class="footer__nav">
             {{> simple-menu menus.footerMenu}}
@@ -74,13 +84,7 @@
         </div>
         {{/if}}
 
-        {{#if @config.custom.backToTopButton}}
-            <button id="backToTop" class="footer__bttop nav-hover" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
-            <svg width="20" height="20">
-                    <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#toparrow"/>
-            </svg>
-        </button>
-        {{/if}}
+
     </div>
 </footer>
 
