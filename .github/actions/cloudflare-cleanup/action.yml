@@ -1,0 +1,37 @@
+name: Cloudflare Pages Cleanup
+description: Delete old Cloudflare Pages deployments by environment
+
+inputs:
+  environment:
+    required: true
+  keep_count:
+    required: true
+  project_name:
+    required: true
+  api_token:
+    required: true
+  account_id:
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+        cache-dependency-path: .github/actions/cloudflare-cleanup/scripts/requirements.txt
+    - name: Install python libraries
+      shell: bash
+      run: pip install -r ./.github/actions/cloudflare-cleanup/scripts/requirements.txt
+    - name: Run cleanup – ${{ inputs.environment }}
+      shell: bash
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ inputs.api_token }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ inputs.account_id }}
+        CLOUDFLARE_PROJECT_NAME: ${{ inputs.project_name }}
+      run: |
+        python ./.github/actions/cloudflare-cleanup/scripts/cleanup-deployments.py \
+          --environment "${{ inputs.environment }}" \
+          --count "${{ inputs.keep_count }}"
