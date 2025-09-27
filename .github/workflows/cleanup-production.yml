@@ -17,19 +17,16 @@ jobs:
   cleanup-production:
     name: Cleanup (production)
     runs-on: ubuntu-latest
+
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-production
       cancel-in-progress: true
-
+      
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - run: pip install requests python-dateutil
-
       - name: Run cleanup (production)
         env:
           CLEANUP_ENVIRONMENT: production
