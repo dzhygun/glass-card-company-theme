@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "development-cloudflare-pages"
+      - "cloudflare-pages"
   workflow_dispatch:
     inputs:
       target:
@@ -29,8 +30,15 @@ jobs:
   cleanup:
       name: Cleanup (${{ matrix.env }})
       runs-on: ubuntu-latest
-      # optional: only run when triggered by a schedule
-      # if: github.event_name == 'schedule'
+      if: |
+        (github.event_name == 'push' &&
+          github.ref == 'refs/heads/development-cloudflare-pages' &&
+          matrix.env == 'preview') ||
+        (github.event_name == 'push' &&
+          github.ref == 'refs/heads/cloudflare-pages' &&
+          matrix.env == 'production') ||
+        (github.event_name == 'workflow_dispatch' &&
+          inputs.target == matrix.env)
       strategy:
         matrix:
           include:
