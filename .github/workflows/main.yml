@@ -5,6 +5,7 @@ on:
     branches:
       - "development-cloudflare-pages"
       - "cloudflare-pages"
+      - "dev-cloudflare-deployments-cleanup"
   workflow_dispatch:
     inputs:
       target:
@@ -33,6 +34,9 @@ jobs:
       if: |
         (github.event_name == 'push' &&
           github.ref == 'refs/heads/development-cloudflare-pages' &&
+          matrix.env == 'preview') ||
+        (github.event_name == 'push' &&
+          github.ref == 'refs/heads/dev-cloudflare-deployments-cleanup' &&
           matrix.env == 'preview') ||
         (github.event_name == 'push' &&
           github.ref == 'refs/heads/cloudflare-pages' &&
