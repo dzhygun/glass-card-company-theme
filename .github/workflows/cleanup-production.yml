@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - cloudflare-pages
+      - master
   workflow_dispatch: {}
 
 permissions:
