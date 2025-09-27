@@ -92,6 +92,7 @@ def main():
     keep_count = 0
     for deployment in page_deployments:
         print(f"Deployment ID: {deployment['id']}, created on: {deployment['created_on']}, url: {deployment['url']}, aliases: {deployment['aliases']}")
+        print(deployment)
         if keep_count < count_threshold:
             print(f'Latest {keep_count + 1} page deployment has been kept.')
             keep_count += 1
