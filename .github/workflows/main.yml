@@ -3,9 +3,9 @@ name: Cleanup Cloudflare deployments
 on:
   push:
     branches:
-      - "development-cloudflare-pages"
-      - "cloudflare-pages"
-      - "dev-cloudflare-deployments-cleanup"
+      - "development-cloudflare-pages"        # preview cleanup
+      - "cloudflare-pages"                    # production cleanup
+      - "dev-cloudflare-deployments-cleanup"  # preview cleanup (extra)
   workflow_dispatch:
     inputs:
       target:
@@ -14,60 +14,61 @@ on:
         default: "preview"
         type: choice
         options: ["preview", "production"]
-  
+
 permissions:
   contents: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-  
 env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
   CLOUDFLARE_PROJECT_NAME: publii-glass-card-company-theme
-  
+
 jobs:
   cleanup:
-      name: Cleanup (${{ matrix.env }})
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          include:
-            - env: preview
-              keep_count: 1
-            - env: production
-              keep_count: 1
-      if: |
-        (github.event_name == 'push' &&
-          github.ref == 'refs/heads/development-cloudflare-pages' &&
-          matrix.env == 'preview') ||
-        (github.event_name == 'push' &&
-          github.ref == 'refs/heads/dev-cloudflare-deployments-cleanup' &&
-          matrix.env == 'preview') ||
-        (github.event_name == 'push' &&
-          github.ref == 'refs/heads/cloudflare-pages' &&
-          matrix.env == 'production') ||
-        (github.event_name == 'workflow_dispatch' &&
-          inputs.target == matrix.env)
+    name: Cleanup (${{ matrix.env }})
+    runs-on: ubuntu-latest
 
-    
-      steps:
-        - uses: actions/checkout@v4
-    
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.11'
-    
-        - name: Install deps
-          run: pip install requests python-dateutil
-    
-        - name: Run cleanup
-          env:
-            CLEANUP_ENVIRONMENT: ${{ matrix.env }}
-            CLEANUP_KEEP_COUNT: ${{ matrix.keep_count }}
-          run: |
-            python scripts/cleanup-deployments.py \
-              --environment "${CLEANUP_ENVIRONMENT}" \
-              --count "${CLEANUP_KEEP_COUNT}"
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}-${{ matrix.env }}
+      cancel-in-progress: true
+
+    strategy:
+      matrix:
+        include:
+          - env: preview
+            keep_count: 1
+          - env: production
+            keep_count: 1
+
+    if: |
+      (github.event_name == 'push' &&
+        github.ref == 'refs/heads/development-cloudflare-pages' &&
+        matrix.env == 'preview') ||
+      (github.event_name == 'push' &&
+        github.ref == 'refs/heads/dev-cloudflare-deployments-cleanup' &&
+        matrix.env == 'preview') ||
+      (github.event_name == 'push' &&
+        github.ref == 'refs/heads/cloudflare-pages' &&
+        matrix.env == 'production') ||
+      (github.event_name == 'workflow_dispatch' &&
+        github.event.inputs.target == matrix.env)
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: pip install requests python-dateutil
+
+      - name: Run cleanup
+        env:
+          CLEANUP_ENVIRONMENT: ${{ matrix.env }}
+          CLEANUP_KEEP_COUNT: ${{ matrix.keep_count }}
+        run: |
+          python scripts/cleanup-deployments.py \
+            --environment "${CLEANUP_ENVIRONMENT}" \
+            --count "${CLEANUP_KEEP_COUNT}"
