@@ -79,7 +79,7 @@ class ThemeManager {
         this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
     }
     run() {
-        this.buttonThemeSwitch.addEventListener("click", function() {
+        this.buttonThemeSwitch.addEventListener("click", ()=>{
             const theme = ThemeManager.#getCurrentTheme()
             const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
             ThemeManager.#activateAndStoreTheme(newTheme, this.buttonThemeSwitch)
@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenuSidebarLogoUrl: null,
         relatedContainerForOverlayMenuSelector: null,
         themeSwitchWrapper: ".theme-switch-wrapper",
+        themeSwitchWrapperIdMobile: "theme-switch-wrapper-mobile",
         // attributes 
         ariaButtonAttribute: 'aria-haspopup',
         // CSS classes
@@ -134,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         openedMenuClass: 'is-active',
         noScrollClass: 'no-scroll',
         relatedContainerForOverlayMenuClass: 'is-visible',
+        glassCardClass: "glass-card"
     };
 
     var config = {};
@@ -177,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const clone = src.cloneNode(true);
+        clone.id = config.themeSwitchWrapperIdMobile;
         clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
         document.addEventListener('DOMContentLoaded', () => {
             const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile);
@@ -316,6 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create menu structure
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
+        menuWrapper.classList.add(config.glassCardClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = '';
 
@@ -326,12 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
 
         var menuOverlay = document.createElement('div');
         menuOverlay.classList.add(config.mobileMenuSidebarOverlayClass);
         menuOverlay.classList.add(config.hiddenElementClass);
+        menuOverlay.innerHTML = getThemeSwitchCloneOuterHTML();
 
         document.body.appendChild(menuOverlay);
         document.body.appendChild(menuWrapper);
@@ -345,6 +349,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Menu events
+        const themeSwitchWrapperMobile = document.getElementById(config.themeSwitchWrapperIdMobile);
+        themeSwitchWrapperMobile.addEventListener("click", (e)=>{
+            e.stopPropagation();
+        })
         menuWrapper.addEventListener('click', function (e) {
             e.stopPropagation();
         });
@@ -569,6 +577,24 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', backToTopScrollFunction);
         backToTopButton.addEventListener('click', backToTopFunction);
     }
+    const footer = document.getElementById('footer');
+    const footerContent  = document.getElementById('footerContent');
+    const backToTop  = document.getElementById('backToTop');
+
+    function needsStack(){
+    const cr = footer.getBoundingClientRect();
+    const tr = footerContent.getBoundingClientRect();
+    const br = backToTop.getBoundingClientRect();
+
+    const overlap = !(tr.right <= br.left || tr.left >= br.right);
+    const tooNarrow = (tr.width + br.width) > cr.width;
+
+    backToTop.classList.toggle('inline', overlap || tooNarrow);
+    }
+
+    addEventListener('resize', needsStack, {passive:true});
+    addEventListener('load', needsStack);
+    needsStack();
 });
 
 

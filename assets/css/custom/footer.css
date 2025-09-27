@@ -4,44 +4,55 @@
     max-width: var(--page-width);
     text-align: center;
     opacity: 0;
-    width: calc(100vw - var(--glass-card-margin));
+    width: var(--glass-card-width-mobile);
     margin-inline: auto;
     margin-block: 0;
     padding-top: var(--viewport-baseline);
     padding-bottom: calc(var(--viewport-baseline)*0.5);
     padding-inline: var(--page-margin);
-    border-radius: var(--glass-card-border-radius) var(--glass-card-border-radius) 0 0;
+    border-radius: var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile) 0 0;
     border-bottom: none;
     --glass-card-box-shadow-depth-bottom: var(--glass-card-box-shadow-depth-null-value);
     --glass-card-box-shadow-blick-bottom: var(--glass-card-box-shadow-depth-null-value)
 }
 
+@media all and (min-width: 56.25em) {
+    .footer {
+        width: calc(100% - var(--glass-card-margin));
+        border-radius: var(--glass-card-border-radius) var(--glass-card-border-radius) 0 0;
+    }
+}
+
+#footerContent{
+    display: inline-grid;
+}
+
 .footer__bttop {
-    bottom: calc(var(--baseline) * 5);
     border-radius: 50%;
     border-color: var(--text-color);
     color: var(--text-color);
-    line-height: 1;
+    line-height: calc(var(--baseline) * 2);
     padding: calc(var(--baseline) * 2);
     position: fixed;
     right: 2rem;
     text-align: center;
     width: auto !important;
     visibility: hidden;
+    opacity: 0;
     z-index: 999;
+
+}
+
+.footer__bttop.inline {
+    position: relative;
+    right: 0;
+    justify-self: end;
+    display: block;
 }
 
 .footer__bttop:hover {
     color: var(--text-color-hover);
     border-color: var(--text-color-hover);
-    opacity: 1;
-
-}
-
-@media all and (min-width: 56.25em) {
-    .footer__bttop {
-        bottom: calc(var(--baseline) * 10);
-    }
 }
 
 .footer__bttop.is-visible {
@@ -109,14 +120,19 @@
 .navbar_mobile_overlay .theme-switch-wrapper {
     display: -webkit-box;
 }
-.navbar_mobile_sidebar .theme-switch-wrapper {
+
+.navbar_mobile_sidebar__overlay .theme-switch-wrapper {
     display: -webkit-box;
-}.navbar_mobile_overlay.is-hidden .theme-switch-wrapper {
+}
+
+.navbar_mobile_overlay.is-hidden .theme-switch-wrapper {
     display: none;
 }
-.navbar_mobile_sidebar.is-hidden .theme-switch-wrapper {
+
+.navbar_mobile_sidebar__overlay.is-hidden .theme-switch-wrapper {
     display: none;
 }
+
 .theme-switch-container {
     display: grid;
     position: relative;
@@ -125,6 +141,10 @@
     align-items: center;
     padding: 0;
     justify-items: center;
+}
+
+.theme-switch {
+    text-transform: capitalize;
 }
 
 .nav-hover:hover,

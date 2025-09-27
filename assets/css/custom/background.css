@@ -6,8 +6,8 @@
 }
 
 .page-bg {
-  width: 100vw;
-  height: 100vh;
+  width: 100svw;
+  height: 100svh;
   object-fit: cover;
   object-position: center top;
   filter: none;
@@ -51,6 +51,7 @@
 .body-content-fade-in {
   display: grid;
   grid-template-rows: auto 1fr auto;
+  flex: 1;
 }
 
 .body-content-fade-in>* {
