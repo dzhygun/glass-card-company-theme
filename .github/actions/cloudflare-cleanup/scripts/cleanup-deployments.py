@@ -2,8 +2,6 @@
 
 import os
 import requests
-from datetime import datetime, timedelta, UTC
-from dateutil.parser import parse
 import argparse
 
 def get_environment_variables():
