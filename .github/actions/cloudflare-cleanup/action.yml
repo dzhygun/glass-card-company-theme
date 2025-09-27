@@ -27,6 +27,6 @@ runs:
         CLOUDFLARE_ACCOUNT_ID: ${{ inputs.account_id }}
         CLOUDFLARE_PROJECT_NAME: ${{ inputs.project_name }}
       run: |
-        python scripts/cleanup-deployments.py \
+        python ./.github/actions/cloudflare-cleanup/scripts/cleanup-deployments.py \
           --environment "${{ inputs.environment }}" \
           --count "${{ inputs.keep_count }}"
