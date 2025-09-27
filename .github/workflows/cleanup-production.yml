@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - cloudflare-pages
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -21,17 +22,13 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}-production
       cancel-in-progress: true
-      
+
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: ./.github/actions/cf-cleanup
         with:
-          python-version: '3.11'
-      - name: Run cleanup (production)
-        env:
-          CLEANUP_ENVIRONMENT: production
-          CLEANUP_KEEP_COUNT: "1"
-        run: |
-          python scripts/cleanup-deployments.py \
-            --environment "${CLEANUP_ENVIRONMENT}" \
-            --count "${CLEANUP_KEEP_COUNT}"
+          environment: production
+          keep_count: 1
+          project_name: ${{ env.CLOUDFLARE_PROJECT_NAME }}
+          api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
