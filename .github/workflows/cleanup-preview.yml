@@ -1,4 +1,4 @@
-name: Cleanup Cloudflare deployments
+name: Cleanup Cloudflare deployments - preview
 
 on:
   push:
