@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - development-cloudflare-pages
+      - development
   workflow_dispatch: {}
 
 permissions:
