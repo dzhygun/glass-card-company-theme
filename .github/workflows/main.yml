@@ -1,0 +1,60 @@
+name: Cleanup Cloudflare deployments
+
+on:
+  push:
+    branches:
+      - "development-cloudflare-pages"
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Cleanup target (preview|production)"
+        required: true
+        default: "preview"
+        type: choice
+        options: ["preview", "production"]
+  
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  CLOUDFLARE_PROJECT_NAME: publii-glass-card-company-theme
+  
+jobs:
+  cleanup:
+      name: Cleanup (${{ matrix.env }})
+      runs-on: ubuntu-latest
+      # optional: only run when triggered by a schedule
+      # if: github.event_name == 'schedule'
+      strategy:
+        matrix:
+          include:
+            - env: preview
+              keep_count: 1
+            - env: production
+              keep_count: 2
+    
+      steps:
+        - uses: actions/checkout@v4
+    
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.11'
+    
+        - name: Install deps
+          run: pip install requests python-dateutil
+    
+        - name: Run cleanup
+          env:
+            CLEANUP_ENVIRONMENT: ${{ matrix.env }}
+            CLEANUP_KEEP_COUNT: ${{ matrix.keep_count }}
+          run: |
+            python scripts/cleanup-deployments.py \
+              --environment "${CLEANUP_ENVIRONMENT}" \
+              --count "${CLEANUP_KEEP_COUNT}"
