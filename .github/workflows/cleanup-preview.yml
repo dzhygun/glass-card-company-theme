@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - development-cloudflare-pages
-      - dev-cloudflare-deployments-cleanup
   workflow_dispatch: {}
 
 permissions:
