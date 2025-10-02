@@ -5,13 +5,17 @@
     text-align: center;
     opacity: 0;
     width: var(--glass-card-width-mobile);
-    margin-inline: auto;
+    margin-inline: 0;
     margin-block: 0;
     padding-top: var(--viewport-baseline);
     padding-bottom: calc(var(--viewport-baseline)*0.5);
     padding-inline: var(--page-margin);
     border-radius: var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile) 0 0;
     border-bottom: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;    
     --glass-card-box-shadow-depth-bottom: var(--glass-card-box-shadow-depth-null-value);
     --glass-card-box-shadow-blick-bottom: var(--glass-card-box-shadow-depth-null-value)
 }
@@ -20,6 +24,7 @@
     .footer {
         width: calc(100% - var(--glass-card-margin));
         border-radius: var(--glass-card-border-radius) var(--glass-card-border-radius) 0 0;
+        margin-inline: auto;
     }
 }
 
@@ -97,40 +102,37 @@
 }
 
 .theme-switch-wrapper {
-    display: none;
+    display: -webkit-box;
     position: fixed;
     bottom: 0px;
-    right: 0px;
+    left: 0px;
     width: auto;
-    margin: 1rem;
     text-transform: capitalize;
     border-radius: 40%;
     padding-inline: 0.6rem;
-    padding-block: 0.4rem;
+    margin-bottom: calc(var(--viewport-baseline)*0.5);
+    z-index: 99999;
+}
+.theme-switch-wrapper.inline {
+    position: relative;
+    left: 0;
+    justify-self: start;
+    margin-bottom: 0px;
+    display: block;
 }
 
-@media all and (min-width: 56.25em) {
-    .theme-switch-wrapper {
-        display: -webkit-box;
-    }
-
-}
-
-
-.navbar_mobile_overlay .theme-switch-wrapper {
-    display: -webkit-box;
-}
-
-.navbar_mobile_sidebar__overlay .theme-switch-wrapper {
-    display: -webkit-box;
-}
-
-.navbar_mobile_overlay.is-hidden .theme-switch-wrapper {
+#theme-switch-wrapper-mobile {
+    position: static;
     display: none;
+    pointer-events: none;
+    justify-self: end;
 }
-
-.navbar_mobile_sidebar__overlay.is-hidden .theme-switch-wrapper {
-    display: none;
+#theme-switch-wrapper-mobile.is-visible {
+    display: -webkit-box;
+    pointer-events: auto;
+}
+.navbar_mobile_overlay #theme-switch-wrapper-mobile{
+    justify-self: center;
 }
 
 .theme-switch-container {
