@@ -1,5 +1,15 @@
 <div class="empty-space-before-footer"></div>
 <footer id="footer" class="footer glass-card">
+    
+    {{#if @config.custom.showThemeSwitch}}
+        <div class="theme-switch-wrapper" id="theme-switch-wrapper-desktop">
+            <div class="theme-switch-container">
+                <span>Theme</span>
+                <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
+                    class="theme-switch nav-hover"></button>
+            </div>
+        </div>
+    {{/if}}
 
     {{#if @config.custom.backToTopButton}}
         <button id="backToTop" class="footer__bttop nav-hover" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
@@ -88,15 +98,7 @@
     </div>
 </footer>
 
-{{#if @config.custom.showThemeSwitch}}
-    <div class="theme-switch-wrapper glass-card">
-        <div class="theme-switch-container">
-            <span>Theme</span>
-            <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
-                class="theme-switch nav-hover"></button>
-        </div>
-    </div>
-{{/if}}
+
 <script defer src="{{js 'scripts.js'}}"></script>
 
 <script>window.publiiThemeMenuConfig={mobileMenuMode:'{{@config.custom.mobilemenu}}',animationSpeed:300,submenuWidth: {{#checkIf @config.custom.submenu '==' "auto" }}'auto'{{else}}{{@config.custom.submenuWidth}}{{/checkIf}},doubleClickTime:500,mobileMenuExpandableSubmenus:{{@config.custom.mobilemenuExpandableSubmenus}},relatedContainerForOverlayMenuSelector:'.top'};</script>

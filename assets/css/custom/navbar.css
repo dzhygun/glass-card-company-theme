@@ -372,7 +372,6 @@
 }
 
 .navbar_mobile_overlay {
-    background: rgb(var(--glass-card-bg-rgb));
     height: calc(100svh - 4.4rem);
     left: 0;
     opacity: 1;
@@ -380,15 +379,21 @@
     pointer-events: auto;
     position: fixed;
     top: 4.4rem;
-    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
-    transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
+    -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
+                    top 1s ease-in-out;
+    transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
+                top 1s ease-in-out;
     width: 100%;
     z-index: 1001;
+    border-radius:var(--glass-card-border-radius-mobile);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .navbar_mobile_overlay.is-hidden {
     opacity: 0;
     pointer-events: none;
+    top: 100%;
 }
 
 .navbar_mobile_overlay .navbar__menu {
@@ -480,6 +485,8 @@
     --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value);
     --glass-card-box-shadow-blick-bottom: var(--glass-card-box-shadow-depth-null-value);
     border-radius: 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile) 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .navbar_mobile_sidebar.is-hidden {

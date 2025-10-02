@@ -275,7 +275,7 @@
         },
         {
             "name": "roundGlassCardBorderMobile",
-            "label": "Round glass card border on Mobile devices",
+            "label": "Round glass card border on mobile devices",
             "group": "Layout",
             "value": true,
             "type": "checkbox"
