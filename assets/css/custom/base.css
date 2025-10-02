@@ -96,9 +96,8 @@ main {
   margin-bottom: calc(var(--baseline) * 12 + 1vw);
   margin-inline: 0;
   padding-bottom: var(--viewport-baseline);
-
+  overflow: hidden;
 }
-/*TODO: max-width of container. Test with missing img*/
 
 @media all and (min-width: 56.25em) {
     main {
