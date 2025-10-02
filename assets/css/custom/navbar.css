@@ -9,7 +9,7 @@
     z-index: 2;
     opacity: 0;
     margin-bottom: var(--viewport-baseline);
-    margin-inline: auto;
+    margin-inline: 0;
     border-bottom: 1px solid rgb(var(--glass-card-blicks-color-rgb));
     border-top: none;
     width: var(--glass-card-width-mobile);
@@ -46,6 +46,7 @@
         height: var(--navbar-height);
         width: calc(100% - var(--glass-card-margin));
         border-radius: 0 0 var(--glass-card-border-radius) var(--glass-card-border-radius);
+        margin-inline: auto;
     }
 }
 
@@ -473,6 +474,11 @@
     border-top: none;
     border-left: none;
     border-bottom: none;
+    --glass-card-box-shadow-depth-top: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-depth-left: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-depth-bottom: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-blick-bottom: var(--glass-card-box-shadow-depth-null-value);
     border-radius: 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile) 0;
 }
 

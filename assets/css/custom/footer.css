@@ -5,7 +5,7 @@
     text-align: center;
     opacity: 0;
     width: var(--glass-card-width-mobile);
-    margin-inline: auto;
+    margin-inline: 0;
     margin-block: 0;
     padding-top: var(--viewport-baseline);
     padding-bottom: calc(var(--viewport-baseline)*0.5);
@@ -20,6 +20,7 @@
     .footer {
         width: calc(100% - var(--glass-card-margin));
         border-radius: var(--glass-card-border-radius) var(--glass-card-border-radius) 0 0;
+        margin-inline: auto;
     }
 }
 
