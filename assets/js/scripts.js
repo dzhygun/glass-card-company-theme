@@ -319,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create menu structure
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
-        menuWrapper.classList.add(config.glassCardClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = '';
 
@@ -358,23 +357,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         menuOverlay.addEventListener('click', function () {
-            menuWrapper.classList.add(config.hiddenElementClass);
-            menuOverlay.classList.add(config.hiddenElementClass);
-            button.classList.remove(config.openedMenuClass);
-            button.setAttribute(config.ariaButtonAttribute, false);
-            document.documentElement.classList.remove(config.noScrollClass);
+            toggleSidebarMenu()
         });
 
         // Init button events
         var button = document.querySelector(config.buttonSelector);
 
         button.addEventListener('click', function () {
+            toggleSidebarMenu()
+        });
+
+        function toggleSidebarMenu(){
             menuWrapper.classList.toggle(config.hiddenElementClass);
+            menuWrapper.classList.toggle(config.glassCardClass);
             menuOverlay.classList.toggle(config.hiddenElementClass);
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
             document.documentElement.classList.toggle(config.noScrollClass);
-        });
+        }
     }
 
     /**
