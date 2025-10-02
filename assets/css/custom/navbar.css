@@ -8,12 +8,12 @@
     transition: background 0.5s ease;
     z-index: 2;
     opacity: 0;
-    width: calc(100vw - var(--glass-card-margin));
     margin-bottom: var(--viewport-baseline);
-    margin-inline: auto;
-    border-radius: 0 0 var(--glass-card-border-radius) var(--glass-card-border-radius);
+    margin-inline: 0;
     border-bottom: 1px solid rgb(var(--glass-card-blicks-color-rgb));
     border-top: none;
+    width: var(--glass-card-width-mobile);
+    border-radius: 0 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile);
     --glass-card-box-shadow-depth-top: var(--glass-card-box-shadow-depth-null-value);
     --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value)
 }
@@ -44,6 +44,9 @@
     .top {
         justify-content: space-between;
         height: var(--navbar-height);
+        width: calc(100% - var(--glass-card-margin));
+        border-radius: 0 0 var(--glass-card-border-radius) var(--glass-card-border-radius);
+        margin-inline: auto;
     }
 }
 
@@ -369,23 +372,28 @@
 }
 
 .navbar_mobile_overlay {
-    background: rgb(var(--glass-card-bg-rgb));
-    height: calc(100vh - 4.4rem);
+    height: calc(100svh - 4.4rem);
     left: 0;
     opacity: 1;
     overflow: auto;
     pointer-events: auto;
     position: fixed;
     top: 4.4rem;
-    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
-    transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
+    -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
+                    top 1s ease-in-out;
+    transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
+                top 1s ease-in-out;
     width: 100%;
     z-index: 1001;
+    border-radius:var(--glass-card-border-radius-mobile);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .navbar_mobile_overlay.is-hidden {
     opacity: 0;
     pointer-events: none;
+    top: 100%;
 }
 
 .navbar_mobile_overlay .navbar__menu {
@@ -458,19 +466,27 @@
 }
 
 .navbar_mobile_sidebar {
-    background: rgb(var(--glass-card-bg-rgb));
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
-    height: 100vh;
+    height: 100svh;
     left: 0;
     max-width: 400px;
     overflow: auto;
     position: fixed;
     top: 0;
-    -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
-    transition: all 0.3s cubic-bezier(0, 0, 0.3, 1);
+    -webkit-transition: left 0.3s cubic-bezier(0, 0, 0.3, 1);
+    transition: left 0.3s cubic-bezier(0, 0, 0.3, 1);
     width: 80%;
     z-index: 1001;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    --glass-card-box-shadow-depth-top: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-depth-left: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-depth-bottom: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value);
+    --glass-card-box-shadow-blick-bottom: var(--glass-card-box-shadow-depth-null-value);
+    border-radius: 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile) 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .navbar_mobile_sidebar.is-hidden {

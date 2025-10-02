@@ -1,8 +1,10 @@
 // Sticky header position on page scrolling up
 const header = document.querySelector('.js-header');
 const stickyClass = 'sticky';
-const slideDownClass = 'slide-down'
-const slideDownBoostClass = 'slide-down-boost'
+const slideDownClass = 'slide-down';
+const slideDownBoostClass = 'slide-down-boost';
+const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
+
 let lastScrollTop = 0;
 let isWaiting = false;
 
@@ -79,7 +81,7 @@ class ThemeManager {
         this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
     }
     run() {
-        this.buttonThemeSwitch.addEventListener("click", function() {
+        this.buttonThemeSwitch.addEventListener("click", () => {
             const theme = ThemeManager.#getCurrentTheme()
             const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
             ThemeManager.#activateAndStoreTheme(newTheme, this.buttonThemeSwitch)
@@ -133,7 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
         hiddenElementClass: 'is-hidden',
         openedMenuClass: 'is-active',
         noScrollClass: 'no-scroll',
-        relatedContainerForOverlayMenuClass: 'is-visible',
+        isVisibleElementClass: 'is-visible',
+        glassCardClass: "glass-card"
     };
 
     var config = {};
@@ -170,13 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    function getThemeSwitchCloneOuterHTML() {
+    function getThemeSwitchClone() {
         const src = document.querySelector(config.themeSwitchWrapper);
         if (!src) {
             return ``;
         }
 
         const clone = src.cloneNode(true);
+        clone.id = themeSwitchWrapperIdMobile;
         clone.querySelector(`#${CSS.escape(ThemeManager.buttonThemeSwitchIdDesktop)}`).id = ThemeManager.buttonThemeSwitchIdMobile;
         document.addEventListener('DOMContentLoaded', () => {
             const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdMobile);
@@ -184,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeManager.run();
             }
         });
-        return clone.outerHTML;
+        return clone;
     }
 
     /**
@@ -272,8 +276,10 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
+        menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
+        const themeSwitchWrapperMobile = getThemeSwitchClone();
+        menuWrapper.appendChild(themeSwitchWrapperMobile)
         document.body.appendChild(menuWrapper);
 
         // Init toggle submenus
@@ -290,6 +296,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', function () {
             var relatedContainer = document.querySelector(config.relatedContainerForOverlayMenuSelector);
             menuWrapper.classList.toggle(config.hiddenElementClass);
+            menuWrapper.classList.toggle(config.glassCardClass);
+            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
 
@@ -297,13 +305,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.classList.add(config.noScrollClass);
 
                 if (relatedContainer) {
-                    relatedContainer.classList.add(config.relatedContainerForOverlayMenuClass);
+                    relatedContainer.classList.add(config.isVisibleElementClass);
                 }
             } else {
                 document.documentElement.classList.remove(config.noScrollClass);
 
                 if (relatedContainer) {
-                    relatedContainer.classList.remove(config.relatedContainerForOverlayMenuClass);
+                    relatedContainer.classList.remove(config.isVisibleElementClass);
                 }
             }
         });
@@ -326,9 +334,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         menuContentHTML += document.querySelector(config.menuSelector).outerHTML;
-        menuContentHTML += getThemeSwitchCloneOuterHTML();
         menuWrapper.innerHTML = menuContentHTML;
-
+        menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
+        const themeSwitchWrapperMobile = getThemeSwitchClone();
+        menuWrapper.appendChild(themeSwitchWrapperMobile)
         var menuOverlay = document.createElement('div');
         menuOverlay.classList.add(config.mobileMenuSidebarOverlayClass);
         menuOverlay.classList.add(config.hiddenElementClass);
@@ -345,28 +354,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Menu events
+        themeSwitchWrapperMobile.addEventListener("click", (e) => {
+            e.stopPropagation();
+        })
         menuWrapper.addEventListener('click', function (e) {
             e.stopPropagation();
         });
 
         menuOverlay.addEventListener('click', function () {
-            menuWrapper.classList.add(config.hiddenElementClass);
-            menuOverlay.classList.add(config.hiddenElementClass);
-            button.classList.remove(config.openedMenuClass);
-            button.setAttribute(config.ariaButtonAttribute, false);
-            document.documentElement.classList.remove(config.noScrollClass);
+            toggleSidebarMenu()
         });
 
         // Init button events
         var button = document.querySelector(config.buttonSelector);
 
         button.addEventListener('click', function () {
+            toggleSidebarMenu()
+        });
+
+        function toggleSidebarMenu() {
             menuWrapper.classList.toggle(config.hiddenElementClass);
+            menuWrapper.classList.toggle(config.glassCardClass);
             menuOverlay.classList.toggle(config.hiddenElementClass);
+            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
             document.documentElement.classList.toggle(config.noScrollClass);
-        });
+        }
     }
 
     /**
@@ -569,6 +583,38 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', backToTopScrollFunction);
         backToTopButton.addEventListener('click', backToTopFunction);
     }
+    const footer = document.getElementById('footer');
+    const footerContent = document.getElementById('footerContent');
+    class ElementData {
+        constructor(element, position) {
+            this.element = element;
+            this.position = position;
+        }
+    }
+    const elementsDataToStack = [new ElementData(document.getElementById('backToTop'),"right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
+
+
+    function needsStack() {
+        elementsDataToStack.forEach((elementData) => {
+            const cr = footer.getBoundingClientRect();
+            const tr = footerContent.getBoundingClientRect();
+            const er = elementData.element.getBoundingClientRect();
+            let overlap;
+            if (elementData.position === "right"){
+                overlap = !(tr.right <= er.left || tr.left >= er.right);
+            } else if (elementData.position === "left") {
+                overlap = !(tr.left <= er.right || tr.right >= er.left);
+            } else {
+                throw Error("Unknown position")
+            }
+            const tooNarrow = (tr.width + er.width) > cr.width;
+            elementData.element.classList.toggle('inline', overlap || tooNarrow);
+        })
+    }
+
+    addEventListener('resize', needsStack, { passive: true });
+    addEventListener('load', needsStack);
+    needsStack();
 });
 
 
