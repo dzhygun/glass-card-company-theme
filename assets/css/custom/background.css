@@ -6,13 +6,14 @@
 }
 
 .page-bg {
-  width: 100vw;
-  height: 100vh;
+  width: 100svw;
+  height: 100svh;
   object-fit: cover;
   object-position: center top;
   filter: none;
   opacity: 1;
   animation: pageBgFadeIn 3s ease-in-out forwards;
+  animation-delay: 0.1s;
 }
 
 @keyframes pageBgFadeIn {
@@ -50,19 +51,20 @@
 
 .body-content-fade-in {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto auto 1fr auto;
+  flex: 1;
 }
 
 .body-content-fade-in>* {
   opacity: 0;
   animation: bodyContentFadeIn 1s ease-in-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 1s;
 }
 
 @keyframes bodyContentFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(-20px);
   }
 
   to {

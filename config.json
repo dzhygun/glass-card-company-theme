@@ -98,7 +98,7 @@
         {
             "name": "displayLastUpdatedDate",
             "label": "Display last updated date",
-            "value": 0,
+            "value": 1,
             "type": "select",
             "pageTemplates": "!empty",
             "options": [
@@ -271,7 +271,14 @@
             "group": "Layout",
             "value": "20vw",
             "type": "text",
-            "note": "Defines margin between the left & right screen edges and the main content container."
+            "note": "Defines margin between the left & right screen edges and the main content container. (Desktop only)"
+        },
+        {
+            "name": "roundGlassCardBorderMobile",
+            "label": "Round glass card border on mobile devices",
+            "group": "Layout",
+            "value": true,
+            "type": "checkbox"
         },
         {
             "name": "pageMargin",
@@ -399,7 +406,7 @@
             "label": "Select color scheme",
             "group": "Colors",
             "note": "<br>The auto color scheme feature automatically adjusts the color scheme of the interface to match the user's operating system settings. If the operating system does not support this feature, the light version of the color scheme is used instead",
-            "value": "auto",
+            "value": "dark",
             "type": "radio",
             "options": [
                 {
@@ -1676,7 +1683,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
+            "value": "<p class='align-center'>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
             "type": "wysiwyg"
         },
         {
@@ -1713,7 +1720,7 @@
             "name": "formatDate",
             "label": "Date format",
             "group": "Additional",
-            "value": "MMMM D, YYYY",
+            "value": "D MMMM YYYY",
             "type": "select",
             "options": [
                 {

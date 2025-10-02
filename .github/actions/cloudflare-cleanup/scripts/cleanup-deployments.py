@@ -92,16 +92,17 @@ def main():
     keep_count = 0
     for deployment in page_deployments:
         print(f"Deployment ID: {deployment['id']}, created on: {deployment['created_on']}, url: {deployment['url']}, aliases: {deployment['aliases']}")
-        if keep_count < count_threshold:
-            print(f'Latest {keep_count + 1} page deployment has been kept.')
-            keep_count += 1
-            continue
-        if is_latest_production_page_deployment(deployment):
-            print(f'Page deployment for latest production environment has been skipped.')
-            continue
-        if is_dry_run:
-            print(f'Page deployment for deletion, but has been skipped due to dry run.')
-            continue
+        if not deployment["is_skipped"]:
+            if keep_count < count_threshold:
+                print(f'Latest {keep_count + 1} page deployment has been kept.')
+                keep_count += 1
+                continue
+            if is_latest_production_page_deployment(deployment):
+                print(f'Page deployment for latest production environment has been skipped.')
+                continue
+            if is_dry_run:
+                print(f'Page deployment for deletion, but has been skipped due to dry run.')
+                continue
         delete_page_deployment(deployment['id'], api_token, account_id, project_name)
         deleted_count += 1
 

@@ -410,39 +410,38 @@ var generateThemeVariables = function (params) {
   let fontHeadingsWeight = fontParams[params.fontHeadings]?.weight;
   let fontHeadingsHasItalic = fontParams[params.fontHeadings]?.hasItalic;
 
-  let output = `
-    @import "custom/base.css";
-    @import "custom/background.css";
-    @import "custom/navbar.css";
-    @import "custom/main.css";
-    @import "custom/content.css";
-    @import "custom/footer.css";
-    `;
+  let output = `@import "custom/base.css";
+@import "custom/background.css";
+@import "custom/navbar.css";
+@import "custom/main.css";
+@import "custom/content.css";
+@import "custom/footer.css";
+`;
   let loadedFonts = new Set();
 
   const addFontFace = (key, name, weight, hasItalic) => {
     if (!loadedFonts.has(name)) {
       output += `             
-        @font-face {
-          font-family: '${name}';
-          src: url('../dynamic/fonts/${key}/${key}.woff2') format('woff2');
-          font-weight: ${weight};
-          font-display: swap;
-          font-style: normal;
-        }
-      `;
+@font-face {
+  font-family: '${name}';
+  src: url('../dynamic/fonts/${key}/${key}.woff2') format('woff2');
+  font-weight: ${weight};
+  font-display: swap;
+  font-style: normal;
+}
+`;
       loadedFonts.add(name);
     }
     if (hasItalic && !loadedFonts.has(`${name}-italic`)) {
       output += `             
-        @font-face {
-          font-family: '${name}';
-          src: url('../dynamic/fonts/${key}/${key}-italic.woff2') format('woff2');
-          font-weight: ${weight}; 
-          font-display: swap;
-          font-style: italic;
-        }
-      `;
+@font-face {
+  font-family: '${name}';
+  src: url('../dynamic/fonts/${key}/${key}-italic.woff2') format('woff2');
+  font-weight: ${weight}; 
+  font-display: swap;
+  font-style: italic;
+}
+`;
       loadedFonts.add(`${name}-italic`);
     }
   };
@@ -484,84 +483,101 @@ var generateThemeVariables = function (params) {
   if (pageBgOverlayBackgroundColors.length !== 0) {
     pageBgOverlayBackground = `linear-gradient(${pageBgOverlayBackgroundColors.join(", ")})`;
   }
+  let glassCardBorderRadius = params.borderRadius * 5;
+
+  let glassCardBorderRadiusMobile = 0;
+  if (params.roundGlassCardBorderMobile === true){
+    glassCardBorderRadiusMobile = glassCardBorderRadius
+  }
 
   output += `    
-    :root {
-      --predefined-theme:   ${params.colorScheme};
-      --glass-card-margin:  ${params.glassCardMargin};
-      --page-bg-overlay-background: ${pageBgOverlayBackground};
-      --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);
-      --page-bg-overlay-saturation: saturate(${params.backgroundImageSaturation}%);
-      --page-margin:        ${params.pageMargin};
-      --page-width:         ${params.pageWidth};
-      --entry-width:        ${params.entryWidth}; 
-      --navbar-height:      4.4rem; 
-      --border-radius:      ${params.borderRadius}px;
-      --baseline:           ${params.baseline};
-      --gallery-gap:        ${params.galleryItemGap}; 
-      --body-font:          ${fontBodyFamily};
-      --heading-font:       ${fontHeadingsFamily};
-      --logo-font:          ${params.fontLogo};
-      --menu-font:          ${params.fontMenu};
-      --font-size:          ${fontSizeValue};
-      --font-weight-normal: ${params.fontBodyWeight}; 
-      --font-weight-bold:   ${params.fontBoldWeight}; 
-      --line-height:        ${params.lineHeight};
-      --letter-spacing:     ${params.letterSpacing}em;  
-      --headings-weight:    ${params.fontHeadignsWeight};
-      --headings-transform: ${params.fontHeadingsTransform};
-      --headings-style:     ${params.fontHeadingsStyle};
-      --headings-letter-spacing: ${params.fontHeadingsletterSpacing}em;
-      --headings-line-height: ${params.fontHeadingsLineHeight};
-      --hero-height:        ${params.heightHero};
-      --feed-image-size:    ${params.feedFeaturedImageSize}rem;
-      --highlight-color:    #FFC700;
-      --info-color:         #67B1F3;
-      --success-color:      #00A563;
-      --warning-color:      #EE4E4E;
-      `;
+:root {
+  --predefined-theme:   ${params.colorScheme};
+  --glass-card-margin:  ${params.glassCardMargin};
+  --page-bg-overlay-background: ${pageBgOverlayBackground};
+  --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);
+  --page-bg-overlay-saturation: saturate(${params.backgroundImageSaturation}%);
+  --page-margin:        ${params.pageMargin};
+  --page-width:         ${params.pageWidth};
+  --entry-width:        ${params.entryWidth}; 
+  --navbar-height:      4.4rem; 
+  --border-radius:      ${params.borderRadius}px;
+  --glass-card-border-radius: ${glassCardBorderRadius}px;
+  --glass-card-border-radius-mobile: ${glassCardBorderRadiusMobile}px;
+  --baseline:           ${params.baseline};
+  --gallery-gap:        ${params.galleryItemGap}; 
+  --body-font:          ${fontBodyFamily};
+  --heading-font:       ${fontHeadingsFamily};
+  --logo-font:          ${params.fontLogo};
+  --menu-font:          ${params.fontMenu};
+  --font-size:          ${fontSizeValue};
+  --font-weight-normal: ${params.fontBodyWeight}; 
+  --font-weight-bold:   ${params.fontBoldWeight}; 
+  --line-height:        ${params.lineHeight};
+  --letter-spacing:     ${params.letterSpacing}em;  
+  --headings-weight:    ${params.fontHeadignsWeight};
+  --headings-transform: ${params.fontHeadingsTransform};
+  --headings-style:     ${params.fontHeadingsStyle};
+  --headings-letter-spacing: ${params.fontHeadingsletterSpacing}em;
+  --headings-line-height: ${params.fontHeadingsLineHeight};
+  --hero-height:        ${params.heightHero};
+  --feed-image-size:    ${params.feedFeaturedImageSize}rem;
+  --highlight-color:    #FFC700;
+  --info-color:         #67B1F3;
+  --success-color:      #00A563;
+  --warning-color:      #EE4E4E;
+}
+  `;
 
-  const lightScheme = ` 
-        --text-color:         ${params.textColorLight};
-        --text-color-hover:   rgba(${hexToRgb(params.textColorLight)},.7);
-        --logo-text-color:    ${params.textColorLight};
-        --glass-card-bg-rgb:  ${hexToRgb(params.glassCardBgColorLight)};
-        --glass-card-opacity: ${params.glassCardOpacityLight};
-        --glass-card-blur:    blur(${params.glassCardBlurLight}px);
-        --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorLight)};
-        --glass-card-depth:   ${params.glassCardDepthLight};
-    `;
-  const darkScheme = ` 
-        --text-color:         ${params.textColorDark};
-        --text-color-hover:   rgba(${hexToRgb(params.textColorDark)},.7);   
-        --logo-text-color:    ${params.textColorDark};
-        --glass-card-bg-rgb:  ${hexToRgb(params.glassCardBgColorDark)};
-        --glass-card-opacity: ${params.glassCardOpacityDark};
-        --glass-card-blur:    blur(${params.glassCardBlurDark}px);
-        --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorDark)};
-        --glass-card-depth:   ${params.glassCardDepthDark};
-}`;
+  const lightScheme = 
+`
+  --text-color:         ${params.textColorLight};
+  --text-color-hover:   rgba(${hexToRgb(params.textColorLight)},.7);
+  --logo-text-color:    ${params.textColorLight};
+  --glass-card-bg-rgb:  ${hexToRgb(params.glassCardBgColorLight)};
+  --glass-card-opacity: ${params.glassCardOpacityLight};
+  --glass-card-blur:    blur(${params.glassCardBlurLight}px);
+  --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorLight)};
+  --glass-card-depth:   ${params.glassCardDepthLight};
+`;
+
+  const darkScheme = 
+`
+  --text-color:         ${params.textColorDark};
+  --text-color-hover:   rgba(${hexToRgb(params.textColorDark)},.7);   
+  --logo-text-color:    ${params.textColorDark};
+  --glass-card-bg-rgb:  ${hexToRgb(params.glassCardBgColorDark)};
+  --glass-card-opacity: ${params.glassCardOpacityDark};
+  --glass-card-blur:    blur(${params.glassCardBlurDark}px);
+  --glass-card-blicks-color-rgb: ${hexToRgb(params.glassCardBlicksColorDark)};
+  --glass-card-depth:   ${params.glassCardDepthDark};`;
 
   output += ` 
-              @media all and (min-width: 56.25em) {
-                :root {
-                  --navbar-height: ${params.navbarHeight};
-                }
-              } 
-            @media (prefers-color-scheme: light) {
-                :root {                
-                  ${lightScheme}
-                }        
-              }
-            @media (prefers-color-scheme: dark) {
-                :root {                
-                  ${darkScheme}
-                }        
-              }
-            `;
+@media all and (min-width: 56.25em) {
+  :root {
+    --navbar-height: ${params.navbarHeight};
+  }
+}
 
-  output += ` :root[data-theme="light"]{${lightScheme}}
-              :root[data-theme="dark"]{${darkScheme}}`
+@media (prefers-color-scheme: light) {
+  :root {${lightScheme}
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {${darkScheme}
+  }
+}
+`;
+
+  output += ` 
+:root[data-theme="light"]{${lightScheme}
+}
+
+:root[data-theme="dark"]{${darkScheme}
+}
+
+`
 
   return output;
 }
