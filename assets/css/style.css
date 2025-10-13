@@ -98,7 +98,7 @@
   --glass-card-depth:   3;
 }
 
-:root {
+/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */:root {
   --pcb-width: 42em;
   --pcb-popup-height: 36em;
   --pcb-font-base-size: 17px;
@@ -721,8 +721,6 @@
 .pcb__badge.is-visible {
   visibility: visible;
 }
-
-/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
 
 input[type=checkbox]:checked + label:before{
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3e%3cpolygon points='9.53 0 4.4 5.09 1.47 2.18 0 3.64 2.93 6.54 4.4 8 5.87 6.54 11 1.46 9.53 0' fill='%23FFFFFF'/%3e%3c/svg%3e");
