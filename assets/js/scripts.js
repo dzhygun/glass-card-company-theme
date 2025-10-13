@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })(window.publiiThemeMenuConfig);
 
 
-// Back to top
+// Footer functional buttons
 document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
 

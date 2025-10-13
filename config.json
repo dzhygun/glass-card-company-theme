@@ -7,6 +7,11 @@
             "desc": "Header navbar menu",
             "name": "Main menu",
             "maxLevels": -1
+        },
+        "footerMenu": {
+            "desc": "Footer menu",
+            "name": "Footer menu",
+            "maxLevels": 1
         }
     },
     "renderer": {
