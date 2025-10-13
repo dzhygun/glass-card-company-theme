@@ -34,7 +34,7 @@
         "customComments": false,
         "customSearch": false,
         "errorPage": false,
-        "embedConsents": false,
+        "embedConsents": true,
         "searchPage": false,
         "tagImages": false,
         "tagPages": false,
