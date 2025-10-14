@@ -4,24 +4,9 @@
 The theme is intended to be used for "visit-card" websites by private individuals or companies.
 Therefore the theme is cleaned up from all unnecessary features, like posts, tags, search etc.
 
-## Changelog
-- Added thumbnail.
-- Fixed theme switch button text.
-- Fixed style artifacts, such as glass effects on missing bg picture, shadow from hidden sidebar menu, etc.
-- Changed default theme to dark.
-- Fixed mobile view: 100% width.
-- Added optional straight corners in mobile view.
-- Improved buttons positioning.
-- Updated default values in config.json.
-- Implemented mobile menu overlay type.
-- Added automatic cleanup of Cloudflare Pages deployments.
-- Improved fadeIn animations in order to fix jumping page height on page loading.
-- Fixed sidebar menu style.
-- Fixed missing post img overflow.
-
 ## Preview
 
-- v.1.1: https://publii-glass-card-company-theme.zolotukhin.ch/
+- Master branch: https://publii-glass-card-company-theme.zolotukhin.ch/
 - Development branch: https://development-publii-glass-card-company-theme.zolotukhin.ch/
   - Authorization: all emails are valid.
 
@@ -44,4 +29,6 @@ Therefore the theme is cleaned up from all unnecessary features, like posts, tag
     
 ## TODO
 - Missing css implementation to limit animations, transparency etc
+- Missing cross-browser css implementation
+- iOS 26 Safari - background is not extended to bottom and top limits (below floating browser elements)
 - Figure out why .svg are duplicated in .js and .svg file

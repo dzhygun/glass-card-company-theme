@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2] - 14-10-2025
+- Fixed & enabled cookie banner
+- Enabled footer menu
+- Improved footer content separation
+- Hid badge, on footer/header overlap
+- Faded blicks for mobile
+- Aligned bttop button
+- Fixed tables overflow
+
 ## [1.1] - 02-10-2025
 - Added thumbnail.
 - Fixed theme switch button text.
