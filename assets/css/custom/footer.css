@@ -39,13 +39,16 @@
     line-height: calc(var(--baseline) * 2);
     padding: calc(var(--baseline) * 2);
     position: fixed;
-    right: 2rem;
     text-align: center;
     width: auto !important;
     visibility: hidden;
     opacity: 0;
     z-index: 999;
-
+    display: -webkit-box;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: calc(var(--viewport-baseline) * 0.5);
+    margin-inline: 0.6rem;
 }
 
 .footer__bttop.inline {
@@ -53,6 +56,7 @@
     right: 0;
     justify-self: end;
     display: block;
+    margin-bottom: 0px;
 }
 
 .footer__bttop:hover {
@@ -168,7 +172,7 @@
     transition: all 0.24s ease-out;
 }
 
-.nav-hover:active {
+.nav-hover:not(.is-separator):active {
     color: var(--text-color-hover);
     border-color: var(--text-color-hover);
     scale: 0.9;
