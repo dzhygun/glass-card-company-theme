@@ -93,12 +93,11 @@
   z-index: 1;
 }
 
-.hero--noimage::after {
+.content-separator::after {
   background: var(--text-color-mute-lvl-4);
   content: "";
   display: block;
   height: 3px;
-  bottom: 0;
   width: calc(100% - var(--page-margin) * 2);
   z-index: -1;
   max-width: var(--page-width);
