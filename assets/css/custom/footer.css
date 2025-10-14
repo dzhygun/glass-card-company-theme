@@ -1,5 +1,5 @@
 .footer {
-    border-top: 1px solid rgb(var(--glass-card-blicks-color-rgb));
+    border-top: 1px solid rgba(var(--glass-card-blicks-color-rgb),var(--glass-card-single-blick-opacity));
     font-size: 1rem;
     max-width: var(--page-width);
     text-align: center;
@@ -90,7 +90,7 @@
 
 .footer__copyright {
     font-size: 0.9rem;
-    margin-top: var(--baseline);
+    margin-top: calc(var(--baseline) * 3 + 0.5vw)
 }
 
 .footer__copyright>*:first-child {

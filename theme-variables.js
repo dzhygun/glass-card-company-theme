@@ -504,6 +504,7 @@ var generateThemeVariables = function (params) {
   --border-radius:      ${params.borderRadius}px;
   --glass-card-border-radius: ${glassCardBorderRadius}px;
   --glass-card-border-radius-mobile: ${glassCardBorderRadiusMobile}px;
+  --glass-card-single-blick-opacity: 0.7;
   --baseline:           ${params.baseline};
   --gallery-gap:        ${params.galleryItemGap}; 
   --body-font:          ${fontBodyFamily};
@@ -556,6 +557,7 @@ var generateThemeVariables = function (params) {
 @media all and (min-width: 56.25em) {
   :root {
     --navbar-height: ${params.navbarHeight};
+    --glass-card-single-blick-opacity: 1;
   }
 }
 
