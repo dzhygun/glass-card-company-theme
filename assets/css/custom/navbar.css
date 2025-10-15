@@ -10,7 +10,7 @@
     opacity: 0;
     margin-bottom: var(--viewport-baseline);
     margin-inline: 0;
-    border-bottom: 1px solid rgb(var(--glass-card-blicks-color-rgb));
+    border-bottom: 1px solid rgba(var(--glass-card-blicks-color-rgb),var(--glass-card-single-blick-opacity));
     border-top: none;
     width: var(--glass-card-width-mobile);
     border-radius: 0 0 var(--glass-card-border-radius-mobile) var(--glass-card-border-radius-mobile);

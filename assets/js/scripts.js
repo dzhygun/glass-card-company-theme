@@ -560,7 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })(window.publiiThemeMenuConfig);
 
 
-// Back to top
+// Footer functional buttons
 document.addEventListener('DOMContentLoaded', () => {
     const backToTopButton = document.getElementById('backToTop');
 
@@ -593,7 +593,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const elementsDataToStack = [new ElementData(document.getElementById('backToTop'),"right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
 
-
     function needsStack() {
         elementsDataToStack.forEach((elementData) => {
             const cr = footer.getBoundingClientRect();
@@ -610,6 +609,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const tooNarrow = (tr.width + er.width) > cr.width;
             elementData.element.classList.toggle('inline', overlap || tooNarrow);
         })
+    }
+
+    addEventListener('resize', needsStack, { passive: true });
+    addEventListener('load', needsStack);
+    needsStack();
+});
+
+//Cookie badge
+document.addEventListener('DOMContentLoaded', () => {
+    const pcb__badge = document.getElementsByClassName('pcb__badge')[0];
+    const footer = document.getElementById('footer');
+    
+    function needsStack() {
+            const cr = footer.getBoundingClientRect();
+            const er = pcb__badge.getBoundingClientRect();
+            let overlap=er.right <= cr.left;
+            pcb__badge.classList.toggle('is-visible', overlap);
     }
 
     addEventListener('resize', needsStack, { passive: true });

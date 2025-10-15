@@ -191,6 +191,11 @@ table {
   margin-bottom: calc(var(--baseline) * 6 + 0.5vw);
 }
 
+.group {
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 h1,
 h2,
 h3,
