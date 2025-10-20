@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3] - 20-10-2025
+- Removed blickings on page load
+- Updated default copyright text
+- Fixed mobile menu, when theme switcher is disabled
+- Added optional rounding of cards on desktop
+- Added fade in user configuration
+- Removed sticky navbar
+- Fixed transitions
+- Upd translations, added DE translation
+- Added cross-browser and accessibility css features
+- Removed svg-map.js
+- Other small fixes
+
 ## [1.2] - 14-10-2025
 - Fixed & enabled cookie banner
 - Enabled footer menu
