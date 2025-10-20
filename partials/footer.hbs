@@ -4,9 +4,14 @@
     {{#if @config.custom.showThemeSwitch}}
         <div class="theme-switch-wrapper" id="theme-switch-wrapper-desktop">
             <div class="theme-switch-container">
-                <span>Theme</span>
+                <span>{{ translate 'partials.footer.themeSwitchTitle' }}</span>
                 <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
-                    class="theme-switch nav-hover"></button>
+                    class="theme-switch nav-hover">{{@config.custom.colorScheme}}
+                </button>
+                <script>
+                    const btn = document.getElementById('theme-switch');
+                    btn.textContent = window.appConfig.themeButtonText;
+                </script>
             </div>
         </div>
     {{/if}}
@@ -119,8 +124,8 @@
 {{/if}}
 
 {{#if @renderer.previewMode}}
-<script defer src="{{js 'svg-map.js'}}"></script>
-<script defer src="{{js 'svg-fix.js'}}"></script>
+{{{svg "assets/svg/svg-map.svg"}}}
+<script src="{{js 'svg-fix.js'}}"></script>
 {{/if}}
 {{{@footerCustomCode}}}
 </div>

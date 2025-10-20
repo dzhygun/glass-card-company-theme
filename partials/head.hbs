@@ -20,6 +20,18 @@
     {{/if}}
     {{> fonts}}
     <link rel="stylesheet" href="{{css 'style.css' }}">
+    
+    <script>
+        window.appConfig = {
+            isThemeSwitchEnabled: {{#if @config.custom.showThemeSwitch}}true{{else}}false{{/if}},
+            themeButtonText: null,
+            translations: {
+                themeSwitchValueLight: "{{ translate 'partials.footer.themeSwitchValueLight' }}",
+                themeSwitchValueDark: "{{ translate 'partials.footer.themeSwitchValueDark' }}"
+            }
+        };
+    </script>
+    <script src="{{js 'theme-manager.js'}}"></script>
     {{jsonLD}}
     <noscript>
         <style>
@@ -38,7 +50,7 @@
         {{#if @config.custom.backgroundImage}}
             <img class="page-bg" src="{{@config.custom.backgroundImage}}" {{responsiveImageAttributes
                 @config.custom.backgroundImage}} {{imageDimensions @config.custom.backgroundImage}} {{lazyload "eager" }}
-                alt="" decoding="async">
+                alt="">
         {{/if}}
         <div class="page-bg-overlay"></div>
     </div>

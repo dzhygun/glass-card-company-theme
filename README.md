@@ -28,7 +28,4 @@ Therefore the theme is cleaned up from all unnecessary features, like posts, tag
 - Default background photo `default_bg.jpg` by <a href="https://unsplash.com/@purzlbaum?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Claudio Schwarz</a> on <a href="https://unsplash.com/photos/a-red-bench-sitting-in-the-middle-of-a-courtyard-J_jSmZUakwI?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
     
 ## TODO
-- Missing css implementation to limit animations, transparency etc
-- Missing cross-browser css implementation
 - iOS 26 Safari - background is not extended to bottom and top limits (below floating browser elements)
-- Figure out why .svg are duplicated in .js and .svg file
