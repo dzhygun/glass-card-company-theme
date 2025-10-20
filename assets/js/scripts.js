@@ -505,6 +505,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function needsStack() {
         elementsDataToStack.forEach((elementData) => {
+            if (!elementData.element){
+                return;
+            }
             const cr = footer.getBoundingClientRect();
             const tr = footerContent.getBoundingClientRect();
             const er = elementData.element.getBoundingClientRect();
