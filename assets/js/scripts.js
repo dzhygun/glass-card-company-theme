@@ -644,6 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //Cookie badge
 document.addEventListener('DOMContentLoaded', () => {
+    const pcb__banner = document.getElementsByClassName('pcb__banner')[0];
     const pcb__badge = document.getElementsByClassName('pcb__badge')[0];
     const footer = document.getElementById('footer');
 
@@ -654,9 +655,22 @@ document.addEventListener('DOMContentLoaded', () => {
         pcb__badge.classList.toggle('is-visible', overlap);
     }
 
+    needsStack();
+    
+    const observer = new MutationObserver(() => {
+        if (!pcb__badge.classList.contains('is-visible')) {
+            return;
+        }
+        needsStack();
+        observer.disconnect();
+    });
+    observer.observe(pcb__badge, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
+
     addEventListener('resize', needsStack, { passive: true });
     addEventListener('load', needsStack);
-    needsStack();
 });
 
 
