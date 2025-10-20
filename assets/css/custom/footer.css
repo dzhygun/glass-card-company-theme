@@ -176,6 +176,7 @@
 .hav-hover:focus {
     color: var(--text-color-hover);
     scale: 1.1;
+    -webkit-transition: all 0.24s ease-out;
     transition: all 0.24s ease-out;
 }
 
@@ -183,6 +184,7 @@
     color: var(--text-color-hover);
     border-color: var(--text-color-hover);
     scale: 0.9;
+    -webkit-transition: all 0.24s ease-out;
     transition: all 0.24s ease-out;
 }
 

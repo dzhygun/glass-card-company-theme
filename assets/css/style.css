@@ -104,7 +104,47 @@
   --glass-card-depth:   3;
 }
 
-/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */:root {
+/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
+
+/* === Accessibility & Cross-browser Enhancements (auto-injected) === */
+
+/* Respect users who prefer reduced motion: disable animations, transitions, and smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after,  *:checked, *:hover, *:active, *::marker, *::selection, *:focus, *:empty{
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    scroll-behavior: auto !important;
+  }
+  /* Ensure lazy images are visible even if JS doesn't toggle states */
+  img[loading] { opacity: 1 !important; }
+}
+
+/* Improve contrast / forced colors: remove heavy transparency & blur if needed */
+@media (prefers-contrast: more), (forced-colors: active) {
+  :root {
+    --glass-card-opacity: 1 !important;
+    --glass-card-blur: none !important;
+    --page-bg-overlay-background: #fff !important;
+    --page-bg-overlay-saturation: none !important;
+    --page-bg-overlay-blur: none !important;
+    --text-color: #000 !important;
+    --logo-text-color: #000 !important;
+  }
+}
+
+/* Backdrop-filter cross-browser and graceful fallback */
+@supports not ((backdrop-filter: blur()) or (-webkit-backdrop-filter: blur())) {
+  :root {
+    --glass-card-opacity: 0.95 !important;
+    --glass-card-blur: none !important;
+  }
+}
+
+:root {
   --pcb-width: 42em;
   --pcb-popup-height: 36em;
   --pcb-font-base-size: 17px;
