@@ -2,10 +2,6 @@ class ThemeManager {
     static #lightTheme = "light";
     static #darkTheme = "dark"
 
-    static #themeSwitchValueLightId = "theme-switch-value-light"
-    static #themeSwitchValueDarkId = "theme-switch-value-dark"
-    static #themeSwitchValueIsVisibleClass = "is-visible"
-
     static #root = document.documentElement;
 
     static buttonThemeSwitchIdDesktop = "theme-switch"
@@ -34,20 +30,18 @@ class ThemeManager {
     static #activateAndStoreTheme = (newTheme) => {
         ThemeManager.#root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
+        window.appConfig.themeButtonText = ThemeManager.#getButtonText(newTheme);
     }
-    static #updateButtonText = (newTheme, buttonThemeSwitch) => {
-        const themeSwitchDarkValueEl = buttonThemeSwitch.querySelector(`#${ThemeManager.#themeSwitchValueDarkId}`);
-        const themeSwitchLightValueEl = buttonThemeSwitch.querySelector(`#${ThemeManager.#themeSwitchValueLightId}`);
-
+    static #getButtonText = (newTheme) => {
         if (newTheme === ThemeManager.#darkTheme) {
-            themeSwitchDarkValueEl.classList.add(ThemeManager.#themeSwitchValueIsVisibleClass);
-            themeSwitchLightValueEl.classList.remove(ThemeManager.#themeSwitchValueIsVisibleClass);
+            return window.appConfig.translations.themeSwitchValueDark;
         } else if (newTheme === ThemeManager.#lightTheme) {
-            themeSwitchLightValueEl.classList.add(ThemeManager.#themeSwitchValueIsVisibleClass);
-            themeSwitchDarkValueEl.classList.remove(ThemeManager.#themeSwitchValueIsVisibleClass);
-        } else {
-            throw new Error(`Unknown theme: ${newTheme}`);
+            return window.appConfig.translations.themeSwitchValueLight;
         }
+        throw new Error(`Unknown theme: ${newTheme}`);
+    }
+    static updateButtonText = (newTheme, buttonThemeSwitch) => {
+        buttonThemeSwitch.textContent = this.#getButtonText(newTheme);
     }
 
 
@@ -56,7 +50,7 @@ class ThemeManager {
     }
     run() {
         const theme = ThemeManager.#getCurrentTheme()
-        ThemeManager.#updateButtonText(theme, this.buttonThemeSwitch)
+        ThemeManager.updateButtonText(theme, this.buttonThemeSwitch)
         this.buttonThemeSwitch.addEventListener("click", () => {
             const theme = ThemeManager.#getCurrentTheme()
             const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme

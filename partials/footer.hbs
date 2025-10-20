@@ -6,10 +6,12 @@
             <div class="theme-switch-container">
                 <span>{{ translate 'partials.footer.themeSwitchTitle' }}</span>
                 <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
-                    class="theme-switch nav-hover">
-                    <span id="theme-switch-value-light" class="theme-switch-value">{{ translate 'partials.footer.themeSwitchValueLight' }}</span>
-                    <span id="theme-switch-value-dark" class="theme-switch-value">{{ translate 'partials.footer.themeSwitchValueDark' }}</span>
+                    class="theme-switch nav-hover">{{@config.custom.colorScheme}}
                 </button>
+                <script>
+                    const btn = document.getElementById('theme-switch');
+                    btn.textContent = window.appConfig.themeButtonText;
+                </script>
             </div>
         </div>
     {{/if}}
@@ -122,8 +124,8 @@
 {{/if}}
 
 {{#if @renderer.previewMode}}
-<script defer src="{{js 'svg-map.js'}}"></script>
-<script defer src="{{js 'svg-fix.js'}}"></script>
+<script src="{{js 'svg-map.js'}}"></script>
+<script src="{{js 'svg-fix.js'}}"></script>
 {{/if}}
 {{{@footerCustomCode}}}
 </div>

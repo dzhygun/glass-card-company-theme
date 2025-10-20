@@ -23,7 +23,12 @@
     
     <script>
         window.appConfig = {
-            isThemeSwitchEnabled: {{#if @config.custom.showThemeSwitch}}true{{else}}false{{/if}}
+            isThemeSwitchEnabled: {{#if @config.custom.showThemeSwitch}}true{{else}}false{{/if}},
+            themeButtonText: null,
+            translations: {
+                themeSwitchValueLight: "{{ translate 'partials.footer.themeSwitchValueLight' }}",
+                themeSwitchValueDark: "{{ translate 'partials.footer.themeSwitchValueDark' }}"
+            }
         };
     </script>
     <script src="{{js 'theme-manager.js'}}"></script>

@@ -172,14 +172,6 @@
     text-transform: capitalize;
 }
 
-.theme-switch-value{
-    display: none;
-}
-
-.theme-switch-value.is-visible{
-    display: unset;
-}
-
 .nav-hover:hover,
 .hav-hover:focus {
     color: var(--text-color-hover);
