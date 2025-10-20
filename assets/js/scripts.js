@@ -44,7 +44,12 @@ class ThemeManager {
     static #lightTheme = "light";
     static #darkTheme = "dark"
 
+    static #themeSwitchValueLightId = "theme-switch-value-light"
+    static #themeSwitchValueDarkId = "theme-switch-value-dark"
+    static #themeSwitchValueIsVisibleClass = "is-visible"
+
     static #root = document.documentElement;
+
     static buttonThemeSwitchIdDesktop = "theme-switch"
     static buttonThemeSwitchDesktop = document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop)
     static buttonThemeSwitchIdMobile = "theme-switch-mobile"
@@ -72,10 +77,21 @@ class ThemeManager {
     static #activateAndStoreTheme = (newTheme, buttonThemeSwitch) => {
         ThemeManager.#root.dataset.theme = newTheme;
         localStorage.setItem("theme", newTheme);
-        if (buttonThemeSwitch) {
-            buttonThemeSwitch.innerText = newTheme;
+
+        const themeSwitchDarkValueEl = buttonThemeSwitch.querySelector(`#${ThemeManager.#themeSwitchValueDarkId}`);
+        const themeSwitchLightValueEl = buttonThemeSwitch.querySelector(`#${ThemeManager.#themeSwitchValueLightId}`);
+
+        if (newTheme === ThemeManager.#darkTheme) {
+            themeSwitchDarkValueEl.classList.add(ThemeManager.#themeSwitchValueIsVisibleClass);
+            themeSwitchLightValueEl.classList.remove(ThemeManager.#themeSwitchValueIsVisibleClass);
+        } else if (newTheme === ThemeManager.#lightTheme) {
+            themeSwitchLightValueEl.classList.add(ThemeManager.#themeSwitchValueIsVisibleClass);
+            themeSwitchDarkValueEl.classList.remove(ThemeManager.#themeSwitchValueIsVisibleClass);
+        } else {
+            throw new Error(`Unknown theme: ${newTheme}`);
         }
     }
+
 
     constructor(buttonThemeSwitchId) {
         this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);

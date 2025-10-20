@@ -4,9 +4,12 @@
     {{#if @config.custom.showThemeSwitch}}
         <div class="theme-switch-wrapper" id="theme-switch-wrapper-desktop">
             <div class="theme-switch-container">
-                <span>Theme</span>
+                <span>{{ translate 'partials.footer.themeSwitchTitle' }}</span>
                 <button id="theme-switch" aria-label="Color scheme switch" title="Color scheme switch"
-                    class="theme-switch nav-hover"></button>
+                    class="theme-switch nav-hover">
+                    <span id="theme-switch-value-light" class="theme-switch-value">{{ translate 'partials.footer.themeSwitchValueLight' }}</span>
+                    <span id="theme-switch-value-dark" class="theme-switch-value">{{ translate 'partials.footer.themeSwitchValueDark' }}</span>
+                </button>
             </div>
         </div>
     {{/if}}

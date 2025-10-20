@@ -16,7 +16,10 @@
             "followGitHub": "GitHub",
             "followVimeo": "Vimeo",
             "followPinterest": "Pinterest",
-            "followYoutube": "Youtube"
+            "followYoutube": "Youtube",
+            "themeSwitchTitle": "Theme",
+            "themeSwitchValueDark": "Dark",
+            "themeSwitchValueLight": "Light"
         }
     },
     "post": {
