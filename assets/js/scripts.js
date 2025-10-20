@@ -1,104 +1,4 @@
-// Sticky header position on page scrolling up
-const header = document.querySelector('.js-header');
-const stickyClass = 'sticky';
-const slideDownClass = 'slide-down';
-const slideDownBoostClass = 'slide-down-boost';
 const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
-
-let lastScrollTop = 0;
-let isWaiting = false;
-
-function handleHeaderAnimationEnd(event) {
-    if (event.animationName === "headerFadeIn") {
-        header.classList.add(slideDownBoostClass);
-        header.removeEventListener("animationend", handleHeaderAnimationEnd);
-    }
-}
-
-header.addEventListener("animationend", handleHeaderAnimationEnd);
-
-window.addEventListener('scroll', () => {
-    if (!isWaiting) {
-        window.requestAnimationFrame(() => {
-            let currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop && header.classList.contains(stickyClass)) {
-                header.classList.remove(stickyClass);
-            } else if (currentScroll < lastScrollTop && currentScroll > 0 && !header.classList.contains(stickyClass)) {
-                header.classList.remove(slideDownClass);
-                void header.offsetWidth;
-                header.classList.add(stickyClass);
-                header.classList.add(slideDownClass);
-            } else if (currentScroll <= 0 && header.classList.contains(stickyClass)) {
-                header.classList.remove(stickyClass);
-            }
-
-            lastScrollTop = currentScroll;
-            isWaiting = false;
-        });
-        isWaiting = true;
-    }
-}, false);
-
-class ThemeManager {
-    static #lightTheme = "light";
-    static #darkTheme = "dark"
-
-    static #root = document.documentElement;
-    static buttonThemeSwitchIdDesktop = "theme-switch"
-    static buttonThemeSwitchDesktop = document.getElementById(ThemeManager.buttonThemeSwitchIdDesktop)
-    static buttonThemeSwitchIdMobile = "theme-switch-mobile"
-    static isThemeSwitchEnabled = !!(ThemeManager.buttonThemeSwitchDesktop)
-
-    static initColorTheme() {
-        const theme = ThemeManager.#getCurrentTheme()
-        ThemeManager.#activateAndStoreTheme(theme, ThemeManager.buttonThemeSwitchDesktop)
-    }
-    static #getCurrentTheme() {
-        if (ThemeManager.isThemeSwitchEnabled) {
-            let storedTheme = localStorage.getItem("theme");
-            if (storedTheme) {
-                return storedTheme;
-            }
-        }
-
-        let initialTheme = getComputedStyle(ThemeManager.#root).getPropertyValue('--predefined-theme').trim();
-        if (initialTheme === 'auto') {
-            return window.matchMedia(`(prefers-color-scheme: ${ThemeManager.#darkTheme})`).matches ? ThemeManager.#darkTheme : ThemeManager.#lightTheme
-        }
-
-        return initialTheme;
-    }
-    static #activateAndStoreTheme = (newTheme, buttonThemeSwitch) => {
-        ThemeManager.#root.dataset.theme = newTheme;
-        localStorage.setItem("theme", newTheme);
-        if (buttonThemeSwitch) {
-            buttonThemeSwitch.innerText = newTheme;
-        }
-    }
-
-    constructor(buttonThemeSwitchId) {
-        this.buttonThemeSwitch = document.getElementById(buttonThemeSwitchId);
-    }
-    run() {
-        this.buttonThemeSwitch.addEventListener("click", () => {
-            const theme = ThemeManager.#getCurrentTheme()
-            const newTheme = theme === ThemeManager.#darkTheme ? ThemeManager.#lightTheme : ThemeManager.#darkTheme
-            ThemeManager.#activateAndStoreTheme(newTheme, this.buttonThemeSwitch)
-        })
-    }
-}
-ThemeManager.initColorTheme()
-
-document.addEventListener('DOMContentLoaded', () => {
-    const themeManager = new ThemeManager(ThemeManager.buttonThemeSwitchIdDesktop);
-    if (ThemeManager.isThemeSwitchEnabled) {
-        themeManager.run();
-
-    }
-});
-
-
 // Dropdown menu
 (function (menuConfig) {
     /**
@@ -176,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getThemeSwitchClone() {
         const src = document.querySelector(config.themeSwitchWrapper);
         if (!src) {
-            return ``;
+            return null;
         }
 
         const clone = src.cloneNode(true);
@@ -275,11 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
+        menuWrapper.classList.add(config.glassCardClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
         menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
         const themeSwitchWrapperMobile = getThemeSwitchClone();
-        menuWrapper.appendChild(themeSwitchWrapperMobile)
+        if (themeSwitchWrapperMobile !== null) {
+            menuWrapper.appendChild(themeSwitchWrapperMobile)
+        }
         document.body.appendChild(menuWrapper);
 
         // Init toggle submenus
@@ -296,8 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', function () {
             var relatedContainer = document.querySelector(config.relatedContainerForOverlayMenuSelector);
             menuWrapper.classList.toggle(config.hiddenElementClass);
-            menuWrapper.classList.toggle(config.glassCardClass);
-            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            if (themeSwitchWrapperMobile !== null) {
+                themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            }
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
 
@@ -325,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
         menuWrapper.classList.add(config.hiddenElementClass);
+        menuWrapper.classList.add(config.glassCardClass);
         var menuContentHTML = '';
 
         if (config.mobileMenuSidebarLogoSelector !== null) {
@@ -337,7 +242,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.innerHTML = menuContentHTML;
         menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
         const themeSwitchWrapperMobile = getThemeSwitchClone();
-        menuWrapper.appendChild(themeSwitchWrapperMobile)
+        if (themeSwitchWrapperMobile !== null) {
+            menuWrapper.appendChild(themeSwitchWrapperMobile)
+        }
         var menuOverlay = document.createElement('div');
         menuOverlay.classList.add(config.mobileMenuSidebarOverlayClass);
         menuOverlay.classList.add(config.hiddenElementClass);
@@ -354,9 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Menu events
-        themeSwitchWrapperMobile.addEventListener("click", (e) => {
-            e.stopPropagation();
-        })
+        if (themeSwitchWrapperMobile !== null) {
+            themeSwitchWrapperMobile.addEventListener("click", (e) => {
+                e.stopPropagation();
+            })
+        }
         menuWrapper.addEventListener('click', function (e) {
             e.stopPropagation();
         });
@@ -374,9 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function toggleSidebarMenu() {
             menuWrapper.classList.toggle(config.hiddenElementClass);
-            menuWrapper.classList.toggle(config.glassCardClass);
             menuOverlay.classList.toggle(config.hiddenElementClass);
-            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            if (themeSwitchWrapperMobile !== null) {
+                themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            }
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
             document.documentElement.classList.toggle(config.noScrollClass);
@@ -579,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
         };
-
+        backToTopScrollFunction();
         window.addEventListener('scroll', backToTopScrollFunction);
         backToTopButton.addEventListener('click', backToTopFunction);
     }
@@ -591,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.position = position;
         }
     }
-    const elementsDataToStack = [new ElementData(document.getElementById('backToTop'),"right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
+    const elementsDataToStack = [new ElementData(document.getElementById('backToTop'), "right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
 
     function needsStack() {
         elementsDataToStack.forEach((elementData) => {
@@ -599,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = footerContent.getBoundingClientRect();
             const er = elementData.element.getBoundingClientRect();
             let overlap;
-            if (elementData.position === "right"){
+            if (elementData.position === "right") {
                 overlap = !(tr.right <= er.left || tr.left >= er.right);
             } else if (elementData.position === "left") {
                 overlap = !(tr.left <= er.right || tr.right >= er.left);
@@ -619,18 +529,36 @@ document.addEventListener('DOMContentLoaded', () => {
 //Cookie badge
 document.addEventListener('DOMContentLoaded', () => {
     const pcb__badge = document.getElementsByClassName('pcb__badge')[0];
-    const footer = document.getElementById('footer');
-    
-    function needsStack() {
-            const cr = footer.getBoundingClientRect();
-            const er = pcb__badge.getBoundingClientRect();
-            let overlap=er.right <= cr.left;
-            pcb__badge.classList.toggle('is-visible', overlap);
+    if (pcb__badge === undefined){
+        return;
     }
+
+    const footer = document.getElementById('footer');
+
+    function needsStack() {
+        const cr = footer.getBoundingClientRect();
+        const er = pcb__badge.getBoundingClientRect();
+        let overlap = er.right <= cr.left;
+        pcb__badge.classList.toggle('is-visible', overlap);
+    }
+
+    needsStack();
+    
+    const observer = new MutationObserver(() => {
+        if (!pcb__badge.classList.contains('is-visible')) {
+            return;
+        }
+        needsStack();
+        observer.disconnect();
+    });
+    observer.observe(pcb__badge, {
+        attributes: true,
+        attributeFilter: ['class']
+    });
 
     addEventListener('resize', needsStack, { passive: true });
     addEventListener('load', needsStack);
-    needsStack();
+    document.documentElement.style.setProperty('--pcb__badge__is-visible__value', 'visible');
 });
 
 
