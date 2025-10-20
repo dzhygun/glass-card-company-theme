@@ -28,6 +28,7 @@
   --input-bg-color: color-mix(in srgb,
       rgb(var(--glass-card-bg-rgb)) 10%,
       var(--text-color) 90%);
+  --pcb__badge__is-visible__value: hidden;
 }
 
 *,

@@ -483,28 +483,50 @@ var generateThemeVariables = function (params) {
   if (pageBgOverlayBackgroundColors.length !== 0) {
     pageBgOverlayBackground = `linear-gradient(${pageBgOverlayBackgroundColors.join(", ")})`;
   }
-  let glassCardBorderRadius = params.borderRadius * 5;
-
+  
+  const glassCardBorderRadiusBase = params.borderRadius * 5;
   let glassCardBorderRadiusMobile = 0;
+  let glassCardBorderRadiusDesktop = 0;
   if (params.roundGlassCardBorderMobile === true){
-    glassCardBorderRadiusMobile = glassCardBorderRadius
+    glassCardBorderRadiusMobile = glassCardBorderRadiusBase
   }
+  if (params.roundGlassCardBorderDesktop === true){
+    glassCardBorderRadiusDesktop = glassCardBorderRadiusBase
+  }
+  let backgroundImgFadeInSeconds = 0;
+  let backgroundImgFadeInDelaySeconds = 0;
+  let glassCardFadeInSeconds = 0;
+  let glassCardFadeInDelaySeconds = 0;
+  if (params.backgroundImgFadeInIsEnabled === true){
+    backgroundImgFadeInSeconds=params.backgroundImgFadeInSeconds;
+    backgroundImgFadeInDelaySeconds=params.backgroundImgFadeInDelaySeconds;
+  }
+  if (params.glassCardFadeInIsEnabled===true){
+    glassCardFadeInSeconds=params.glassCardFadeInSeconds;
+    glassCardFadeInDelaySeconds=params.glassCardFadeInDelaySeconds;
+  }
+
+
 
   output += `    
 :root {
   --predefined-theme:   ${params.colorScheme};
   --glass-card-margin:  ${params.glassCardMargin};
+  --background-img-fade-in-duration-seconds: ${backgroundImgFadeInSeconds}s;
+  --background-img-fade-in-delay-seconds: ${backgroundImgFadeInDelaySeconds}s;
+  --glass-card-fade-in-duration-seconds: ${glassCardFadeInSeconds}s;
+  --glass-card-fade-in-delay-seconds: ${glassCardFadeInDelaySeconds}s;
   --page-bg-overlay-background: ${pageBgOverlayBackground};
   --page-bg-overlay-blur: blur(${params.backgroundImageBlur}px);
   --page-bg-overlay-saturation: saturate(${params.backgroundImageSaturation}%);
+  --glass-card-border-radius: ${glassCardBorderRadiusDesktop}px;
+  --glass-card-border-radius-mobile: ${glassCardBorderRadiusMobile}px;
+  --glass-card-single-blick-opacity: 0.7;
   --page-margin:        ${params.pageMargin};
   --page-width:         ${params.pageWidth};
   --entry-width:        ${params.entryWidth}; 
   --navbar-height:      4.4rem; 
   --border-radius:      ${params.borderRadius}px;
-  --glass-card-border-radius: ${glassCardBorderRadius}px;
-  --glass-card-border-radius-mobile: ${glassCardBorderRadiusMobile}px;
-  --glass-card-single-blick-opacity: 0.7;
   --baseline:           ${params.baseline};
   --gallery-gap:        ${params.galleryItemGap}; 
   --body-font:          ${fontBodyFamily};

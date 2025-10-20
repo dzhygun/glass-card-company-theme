@@ -103,8 +103,11 @@
 
 .pcb {
     opacity: 0;
-    animation: pcbFadeIn 1s ease-in-out forwards;
-    animation-delay: 1s;
+    animation-name: pcbFadeIn;
+    animation-duration: var(--glass-card-fade-in-duration-seconds);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: var(--glass-card-fade-in-delay-seconds);
 }
 
 @keyframes pcbFadeIn {
@@ -115,6 +118,10 @@
     to {
         opacity: 1;
     }
+}
+
+.pcb__badge.is-visible {
+  visibility: var(--pcb__badge__is-visible__value) !important; 
 }
 
 .theme-switch-wrapper {

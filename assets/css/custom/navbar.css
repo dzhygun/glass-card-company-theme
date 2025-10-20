@@ -19,8 +19,16 @@
 }
 
 .top.slide-down {
-    animation: headerFadeIn 1s ease-in-out forwards;
-    animation-delay: 0.5s;
+    animation-name: headerFadeIn;
+    animation-duration: var(--glass-card-fade-in-duration-seconds);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: var(--glass-card-fade-in-delay-seconds);
+}
+
+.top.slide-down-boost {
+    animation-duration: calc(var(--glass-card-fade-in-duration-seconds)/2);
+    animation-delay: 0s;
 }
 
 @keyframes headerFadeIn {
@@ -35,10 +43,7 @@
     }
 }
 
-.top.slide-down-boost {
-    animation-duration: 0.5s;
-    animation-delay: 0s;
-}
+
 
 @media all and (min-width: 56.25em) {
     .top {

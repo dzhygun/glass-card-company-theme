@@ -12,8 +12,11 @@
   object-position: center top;
   filter: none;
   opacity: 1;
-  animation: pageBgFadeIn 3s ease-in-out forwards;
-  animation-delay: 0.1s;
+  animation-name: pageBgFadeIn;
+  animation-duration: var(--background-img-fade-in-duration-seconds);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: var(--background-img-fade-in-delay-seconds);
 }
 
 @keyframes pageBgFadeIn {
@@ -57,8 +60,11 @@
 
 .body-content-fade-in>* {
   opacity: 0;
-  animation: bodyContentFadeIn 1s ease-in-out forwards;
-  animation-delay: 1s;
+  animation-name: bodyContentFadeIn;
+  animation-duration: var(--glass-card-fade-in-duration-seconds);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: var(--glass-card-fade-in-delay-seconds);
 }
 
 @keyframes bodyContentFadeIn {
