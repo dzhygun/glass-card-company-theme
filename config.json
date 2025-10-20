@@ -1688,7 +1688,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p class='align-center'>Powered by Publii.<br>Copyright by Dzyhgun 2025. MIT License.</p>",
+            "value": "<p class='align-center'>Powered by Publii.<br>Copyright and design by Dzyhgun 2025. MIT License.</p>",
             "type": "wysiwyg"
         },
         {
