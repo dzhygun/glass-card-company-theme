@@ -4,8 +4,6 @@
     height: var(--navbar-height);
     position: relative;
     padding: 0 var(--page-margin);
-    -webkit-transition: background 0.5s ease;
-    transition: background 0.5s ease;
     z-index: 2;
     opacity: 0;
     margin-bottom: var(--viewport-baseline);
@@ -352,10 +350,10 @@
     pointer-events: auto;
     position: fixed;
     top: 4.4rem;
-    -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
-                    top 1s ease-in-out;
-    transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1),
-                top 1s ease-in-out;
+    -webkit-transition: opacity 1s cubic-bezier(0, 0, 0.3, 1),
+                    top 1s ease-in-out, var(--glass-card-transition);
+    transition: opacity 1s cubic-bezier(0, 0, 0.3, 1),
+                    top 1s ease-in-out, var(--glass-card-transition);
     width: 100%;
     z-index: 1001;
     border-radius:var(--glass-card-border-radius-mobile);
@@ -445,8 +443,8 @@
     overflow: auto;
     position: fixed;
     top: 0;
-    -webkit-transition: left 0.3s cubic-bezier(0, 0, 0.3, 1);
-    transition: left 0.3s cubic-bezier(0, 0, 0.3, 1);
+    -webkit-transition: left 0.3s cubic-bezier(0, 0, 0.3, 1), var(--glass-card-transition);
+    transition: left 0.3s cubic-bezier(0, 0, 0.3, 1), var(--glass-card-transition);
     width: 80%;
     z-index: 1001;
     border-top: none;
@@ -463,7 +461,8 @@
 }
 
 .navbar_mobile_sidebar.is-hidden {
-    left: -400px;
+    left: -450px;
+    box-shadow: none;
 }
 
 .navbar_mobile_sidebar .navbar__menu {

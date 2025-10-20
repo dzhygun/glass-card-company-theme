@@ -175,6 +175,7 @@ const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
+        menuWrapper.classList.add(config.glassCardClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
         menuWrapper.innerHTML = menuContentHTML;
         menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
@@ -198,7 +199,6 @@ const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
         button.addEventListener('click', function () {
             var relatedContainer = document.querySelector(config.relatedContainerForOverlayMenuSelector);
             menuWrapper.classList.toggle(config.hiddenElementClass);
-            menuWrapper.classList.toggle(config.glassCardClass);
             if (themeSwitchWrapperMobile !== null) {
                 themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
             }
@@ -229,6 +229,7 @@ const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
         var menuWrapper = document.createElement('div');
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
         menuWrapper.classList.add(config.hiddenElementClass);
+        menuWrapper.classList.add(config.glassCardClass);
         var menuContentHTML = '';
 
         if (config.mobileMenuSidebarLogoSelector !== null) {
@@ -282,7 +283,6 @@ const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
 
         function toggleSidebarMenu() {
             menuWrapper.classList.toggle(config.hiddenElementClass);
-            menuWrapper.classList.toggle(config.glassCardClass);
             menuOverlay.classList.toggle(config.hiddenElementClass);
             if (themeSwitchWrapperMobile !== null) {
                 themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);

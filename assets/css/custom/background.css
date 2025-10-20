@@ -50,6 +50,8 @@
   backdrop-filter: var(--glass-card-blur);
   -webkit-backdrop-filter: var(--glass-card-blur);
   border: 1px solid rgba(var(--glass-card-blicks-color-rgb), 0.3);
+  -webkit-transition: var(--glass-card-transition);
+  transition: var(--glass-card-transition);
 }
 
 .body-content-fade-in {
