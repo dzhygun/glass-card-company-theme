@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getThemeSwitchClone() {
         const src = document.querySelector(config.themeSwitchWrapper);
         if (!src) {
-            return ``;
+            return null;
         }
 
         const clone = src.cloneNode(true);
@@ -279,7 +279,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.innerHTML = menuContentHTML;
         menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
         const themeSwitchWrapperMobile = getThemeSwitchClone();
-        menuWrapper.appendChild(themeSwitchWrapperMobile)
+        if (themeSwitchWrapperMobile !== null) {
+            menuWrapper.appendChild(themeSwitchWrapperMobile)
+        }
         document.body.appendChild(menuWrapper);
 
         // Init toggle submenus
@@ -297,7 +299,9 @@ document.addEventListener('DOMContentLoaded', () => {
             var relatedContainer = document.querySelector(config.relatedContainerForOverlayMenuSelector);
             menuWrapper.classList.toggle(config.hiddenElementClass);
             menuWrapper.classList.toggle(config.glassCardClass);
-            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            if (themeSwitchWrapperMobile !== null) {
+                themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            }
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
 
@@ -337,7 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
         menuWrapper.innerHTML = menuContentHTML;
         menuWrapper.innerHTML += '<div class="empty-space-before-footer"></div>';
         const themeSwitchWrapperMobile = getThemeSwitchClone();
-        menuWrapper.appendChild(themeSwitchWrapperMobile)
+        if (themeSwitchWrapperMobile !== null) {
+            menuWrapper.appendChild(themeSwitchWrapperMobile)
+        }
         var menuOverlay = document.createElement('div');
         menuOverlay.classList.add(config.mobileMenuSidebarOverlayClass);
         menuOverlay.classList.add(config.hiddenElementClass);
@@ -354,9 +360,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Menu events
-        themeSwitchWrapperMobile.addEventListener("click", (e) => {
-            e.stopPropagation();
-        })
+        if (themeSwitchWrapperMobile !== null) {
+            themeSwitchWrapperMobile.addEventListener("click", (e) => {
+                e.stopPropagation();
+            })
+        }
         menuWrapper.addEventListener('click', function (e) {
             e.stopPropagation();
         });
@@ -376,7 +384,9 @@ document.addEventListener('DOMContentLoaded', () => {
             menuWrapper.classList.toggle(config.hiddenElementClass);
             menuWrapper.classList.toggle(config.glassCardClass);
             menuOverlay.classList.toggle(config.hiddenElementClass);
-            themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            if (themeSwitchWrapperMobile !== null) {
+                themeSwitchWrapperMobile.classList.toggle(config.isVisibleElementClass);
+            }
             button.classList.toggle(config.openedMenuClass);
             button.setAttribute(config.ariaButtonAttribute, button.classList.contains(config.openedMenuClass));
             document.documentElement.classList.toggle(config.noScrollClass);
@@ -591,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.position = position;
         }
     }
-    const elementsDataToStack = [new ElementData(document.getElementById('backToTop'),"right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
+    const elementsDataToStack = [new ElementData(document.getElementById('backToTop'), "right"), new ElementData(document.getElementById("theme-switch-wrapper-desktop"), "left")]
 
     function needsStack() {
         elementsDataToStack.forEach((elementData) => {
@@ -599,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = footerContent.getBoundingClientRect();
             const er = elementData.element.getBoundingClientRect();
             let overlap;
-            if (elementData.position === "right"){
+            if (elementData.position === "right") {
                 overlap = !(tr.right <= er.left || tr.left >= er.right);
             } else if (elementData.position === "left") {
                 overlap = !(tr.left <= er.right || tr.right >= er.left);
@@ -620,12 +630,12 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const pcb__badge = document.getElementsByClassName('pcb__badge')[0];
     const footer = document.getElementById('footer');
-    
+
     function needsStack() {
-            const cr = footer.getBoundingClientRect();
-            const er = pcb__badge.getBoundingClientRect();
-            let overlap=er.right <= cr.left;
-            pcb__badge.classList.toggle('is-visible', overlap);
+        const cr = footer.getBoundingClientRect();
+        const er = pcb__badge.getBoundingClientRect();
+        let overlap = er.right <= cr.left;
+        pcb__badge.classList.toggle('is-visible', overlap);
     }
 
     addEventListener('resize', needsStack, { passive: true });
