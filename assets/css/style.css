@@ -8,10 +8,10 @@
 :root {
   --predefined-theme:   dark;
   --glass-card-margin:  20vw;
-  --background-img-fade-in-duration-seconds: 0s;
-  --background-img-fade-in-delay-seconds: 0s;
-  --glass-card-fade-in-duration-seconds: 0s;
-  --glass-card-fade-in-delay-seconds: 0s;
+  --background-img-fade-in-duration-seconds: 3s;
+  --background-img-fade-in-delay-seconds: 0.1s;
+  --glass-card-fade-in-duration-seconds: 1s;
+  --glass-card-fade-in-delay-seconds: 1s;
   --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
   --page-bg-overlay-blur: blur(5px);
   --page-bg-overlay-saturation: saturate(120%);

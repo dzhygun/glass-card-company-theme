@@ -18,33 +18,6 @@
     --glass-card-box-shadow-blick-top: var(--glass-card-box-shadow-depth-null-value)
 }
 
-.top.slide-down {
-    animation-name: headerFadeIn;
-    animation-duration: var(--glass-card-fade-in-duration-seconds);
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-    animation-delay: var(--glass-card-fade-in-delay-seconds);
-}
-
-.top.slide-down-boost {
-    animation-duration: calc(var(--glass-card-fade-in-duration-seconds)/2);
-    animation-delay: 0s;
-}
-
-@keyframes headerFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(calc(var(--navbar-height) * -1));
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
 @media all and (min-width: 56.25em) {
     .top {
         justify-content: space-between;
@@ -53,11 +26,6 @@
         border-radius: 0 0 var(--glass-card-border-radius) var(--glass-card-border-radius);
         margin-inline: auto;
     }
-}
-
-.top.sticky {
-    position: sticky;
-    top: 0px;
 }
 
 .logo {

@@ -1,45 +1,4 @@
-// Sticky header position on page scrolling up
-const header = document.querySelector('.js-header');
-const stickyClass = 'sticky';
-const slideDownClass = 'slide-down';
-const slideDownBoostClass = 'slide-down-boost';
 const themeSwitchWrapperIdMobile = "theme-switch-wrapper-mobile";
-
-let lastScrollTop = 0;
-let isWaiting = false;
-
-function handleHeaderAnimationEnd(event) {
-    if (event.animationName === "headerFadeIn") {
-        header.classList.add(slideDownBoostClass);
-        header.removeEventListener("animationend", handleHeaderAnimationEnd);
-    }
-}
-
-header.addEventListener("animationend", handleHeaderAnimationEnd);
-
-window.addEventListener('scroll', () => {
-    if (!isWaiting) {
-        window.requestAnimationFrame(() => {
-            let currentScroll = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop && header.classList.contains(stickyClass)) {
-                header.classList.remove(stickyClass);
-            } else if (currentScroll < lastScrollTop && currentScroll > 0 && !header.classList.contains(stickyClass)) {
-                header.classList.remove(slideDownClass);
-                void header.offsetWidth;
-                header.classList.add(stickyClass);
-                header.classList.add(slideDownClass);
-            } else if (currentScroll <= 0 && header.classList.contains(stickyClass)) {
-                header.classList.remove(stickyClass);
-            }
-
-            lastScrollTop = currentScroll;
-            isWaiting = false;
-        });
-        isWaiting = true;
-    }
-}, false);
-
 // Dropdown menu
 (function (menuConfig) {
     /**
