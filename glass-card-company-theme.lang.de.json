@@ -1,0 +1,62 @@
+{
+    "partials": {
+        "menu": {
+            "label": "Menü"
+        },
+        "pagination": {
+            "prev": "Zurück",
+            "next": "Weiter"
+        },
+        "footer": {
+            "backToTop": "Nach oben",
+            "followFacebook": "Facebook",
+            "followX": "X",
+            "followInstagram": "Instagram",
+            "followLinkedIn": "LinkedIn",
+            "followGitHub": "GitHub",
+            "followVimeo": "Vimeo",
+            "followPinterest": "Pinterest",
+            "followYoutube": "YouTube",
+            "themeSwitchTitle": "Thema",
+            "themeSwitchValueDark": "Dunkel",
+            "themeSwitchValueLight": "Hell"
+        }
+    },
+    "post": {
+        "publishedBy": "Von",
+        "relatedPosts": "Das solltest du auch lesen:",
+        "readMore": "Weiterlesen...",
+        "lastUpdatedDate": "Dieser Artikel wurde aktualisiert am",
+        "comments": "Kommentare",
+        "previousPost": "Zurück",
+        "nextPost": "Weiter",
+        "shareIt": "Teilen"
+    },
+    "postPrefix": {
+        "title": "Einblicke und Neuigkeiten",
+        "description": "Entdecke unsere neuesten Beiträge, Einblicke und Neuigkeiten über das, was wir tun und was uns wichtig ist."
+    },
+    "page": {
+        "childPages": "Unterseiten"
+    },
+    "tags": {
+        "tagsPageTitle": "Tags",
+        "description": "Sammlung aller %s Tags",
+        "featuringPosts": "Enthält %s Beiträge"
+    },
+    "author": {
+        "visitWebsite": "Website besuchen"
+    },
+    "error": {
+        "404": "404",
+        "message": "Die Seite, die du suchst, wurde verschoben, gelöscht oder existiert nicht. Du kannst zurückgehen oder direkt zur Startseite wechseln.",
+        "button": "Zur Startseite"
+    },
+    "search": {
+        "placeholder": "suchen...",
+        "search": "Suchen",
+        "close": "Schliessen",
+        "title": "Suchen",
+        "submit": "Absenden"
+    }
+}

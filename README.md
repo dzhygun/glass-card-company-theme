@@ -31,5 +31,3 @@ Therefore the theme is cleaned up from all unnecessary features, like posts, tag
 - Missing css implementation to limit animations, transparency etc
 - Missing cross-browser css implementation
 - iOS 26 Safari - background is not extended to bottom and top limits (below floating browser elements)
-- Make german translations
-- Figure out why .svg are duplicated in .js and .svg file

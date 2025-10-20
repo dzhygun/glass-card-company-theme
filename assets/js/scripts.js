@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth'
             });
         };
-
+        backToTopScrollFunction();
         window.addEventListener('scroll', backToTopScrollFunction);
         backToTopButton.addEventListener('click', backToTopFunction);
     }

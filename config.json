@@ -30,7 +30,7 @@
         "createSearchPage": false,
         "createAuthorPages": false,
         "createTagPages": false,
-        "includeHandlebarsInHelpers": false
+        "includeHandlebarsInHelpers": true
     },
     "supportedFeatures": {
         "authorImages": false,

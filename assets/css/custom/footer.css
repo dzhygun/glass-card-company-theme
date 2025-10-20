@@ -185,3 +185,7 @@
     scale: 0.9;
     transition: all 0.24s ease-out;
 }
+
+#svg-map{
+    display: none;
+}
