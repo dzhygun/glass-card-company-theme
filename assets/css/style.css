@@ -8,17 +8,21 @@
 :root {
   --predefined-theme:   dark;
   --glass-card-margin:  20vw;
+  --background-img-fade-in-duration-seconds: 3s;
+  --background-img-fade-in-delay-seconds: 0.1s;
+  --glass-card-fade-in-duration-seconds: 1s;
+  --glass-card-fade-in-delay-seconds: 1s;
   --page-bg-overlay-background: linear-gradient(rgba(224, 255, 255, 0.63), rgba(69, 22, 33, 0.64));
   --page-bg-overlay-blur: blur(5px);
   --page-bg-overlay-saturation: saturate(120%);
+  --glass-card-border-radius: 15px;
+  --glass-card-border-radius-mobile: 15px;
+  --glass-card-single-blick-opacity: 0.7;
   --page-margin:        6%;
   --page-width:         100%;
   --entry-width:        100%; 
   --navbar-height:      4.4rem; 
   --border-radius:      3px;
-  --glass-card-border-radius: 15px;
-  --glass-card-border-radius-mobile: 15px;
-  --glass-card-single-blick-opacity: 0.7;
   --baseline:           0.28333rem;
   --gallery-gap:        calc(var(--baseline) * 1.5); 
   --body-font:          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -100,7 +104,47 @@
   --glass-card-depth:   3;
 }
 
-/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */:root {
+/* custom/*.css files are imported via theme-variables.js in order to preserve @import order in the top of this file */
+
+/* === Accessibility & Cross-browser Enhancements (auto-injected) === */
+
+/* Respect users who prefer reduced motion: disable animations, transitions, and smooth scroll */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after,  *:checked, *:hover, *:active, *::marker, *::selection, *:focus, *:empty{
+    animation: none !important;
+    -webkit-animation: none !important;
+    transition: none !important;
+    -webkit-transition: none !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    scroll-behavior: auto !important;
+  }
+  /* Ensure lazy images are visible even if JS doesn't toggle states */
+  img[loading] { opacity: 1 !important; }
+}
+
+/* Improve contrast / forced colors: remove heavy transparency & blur if needed */
+@media (prefers-contrast: more), (forced-colors: active) {
+  :root {
+    --glass-card-opacity: 1 !important;
+    --glass-card-blur: none !important;
+    --page-bg-overlay-background: #fff !important;
+    --page-bg-overlay-saturation: none !important;
+    --page-bg-overlay-blur: none !important;
+    --text-color: #000 !important;
+    --logo-text-color: #000 !important;
+  }
+}
+
+/* Backdrop-filter cross-browser and graceful fallback */
+@supports not ((backdrop-filter: blur()) or (-webkit-backdrop-filter: blur())) {
+  :root {
+    --glass-card-opacity: 0.95 !important;
+    --glass-card-blur: none !important;
+  }
+}
+
+:root {
   --pcb-width: 42em;
   --pcb-popup-height: 36em;
   --pcb-font-base-size: 17px;

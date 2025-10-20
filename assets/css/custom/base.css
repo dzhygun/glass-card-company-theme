@@ -28,6 +28,8 @@
   --input-bg-color: color-mix(in srgb,
       rgb(var(--glass-card-bg-rgb)) 10%,
       var(--text-color) 90%);
+  --pcb__badge__is-visible__value: hidden;
+  --glass-card-transition: background var(--glass-card-fade-in-duration-seconds) ease-in-out, box-shadow var(--glass-card-fade-in-duration-seconds) ease-in-out, border var(--glass-card-fade-in-duration-seconds) ease-in-out;
 }
 
 *,
